@@ -88,10 +88,12 @@ function displayScheduleData(data) {
     tableBody.appendChild(row);
   });
 
-  // Highlight the current time after rendering the table
+  // Highlight the current time and next departure after rendering the table
   highlightCurrentTime();
-  // Update highlight every minute
+  highlightNextDeparture();
+  // Update highlights every minute
   setInterval(highlightCurrentTime, 60000);
+  setInterval(highlightNextDeparture, 60000);
 }
 
 function generateRouteMap(stops) {
@@ -146,6 +148,34 @@ function highlightCurrentTime() {
       cell.classList.remove("current-time");
     }
   });
+}
+
+// Highlight the next upcoming departure time
+function highlightNextDeparture() {
+  const now = new Date();
+  const currentTotal = now.getHours() * 60 + now.getMinutes();
+
+  let nextCell = null;
+  let minDiff = Infinity;
+
+  document.querySelectorAll('.time-cell').forEach((cell) => {
+    const [h, m] = cell.textContent.split(':').map(Number);
+    let diff = h * 60 + m - currentTotal;
+    if (diff <= 0) diff += 24 * 60;
+
+    if (diff < minDiff) {
+      minDiff = diff;
+      nextCell = cell;
+    }
+  });
+
+  document.querySelectorAll('.time-cell.next-departure').forEach((cell) => {
+    cell.classList.remove('next-departure');
+  });
+
+  if (nextCell) {
+    nextCell.classList.add('next-departure');
+  }
 }
 
 // Load data when page loads

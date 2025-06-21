@@ -334,6 +334,25 @@ body {
   animation: pulse 2s infinite;
 }
 
+/* Highlight for the next upcoming departure */
+.next-departure {
+  background-color: #ff6b35 !important;
+  color: #ffffff !important;
+  animation: next-pulse 2s infinite;
+}
+
+@keyframes next-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 107, 53, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 107, 53, 0);
+  }
+}
+
 @keyframes pulse {
   0%,
   100% {
