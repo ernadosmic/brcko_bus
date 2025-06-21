@@ -1,0 +1,415 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.4;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.schedule-header {
+  background: linear-gradient(135deg, #4472c4 0%, #5b9bd5 100%);
+  color: white;
+  padding: 15px 30px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.schedule-header h1 {
+  font-size: 1.8em;
+  font-weight: 600;
+  margin: 0;
+}
+
+.line-number {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #4472c4;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
+/* Route Section */
+.route-section {
+  margin: 20px 0;
+}
+
+.route-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  padding-left: 5px;
+}
+
+/* Route Map */
+.route-map {
+  position: relative;
+  margin: 20px 0;
+  padding: 30px 10px;
+  overflow-x: auto;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.route-line {
+  position: absolute;
+  top: 50%;
+  left: 50px;
+  right: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #4472c4 0%, #5b9bd5 50%, #4472c4 100%);
+  z-index: 1;
+  border-radius: 2px;
+}
+
+.stops-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  min-height: 80px;
+  padding: 0 50px;
+}
+
+.stop-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  padding: 0;
+  min-width: 60px;
+  text-align: center;
+  position: relative;
+}
+
+.stop-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #4472c4;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px #4472c4;
+  margin-bottom: 8px;
+  z-index: 3;
+  position: relative;
+}
+
+.stop-circle.terminal {
+  background-color: #70ad47;
+  box-shadow: 0 0 0 2px #70ad47;
+  width: 14px;
+  height: 14px;
+}
+
+.stop-circle.special {
+  background-color: #ffc000;
+  box-shadow: 0 0 0 2px #ffc000;
+}
+
+.stop-name {
+  font-size: 0.7em;
+  font-weight: 500;
+  color: #333;
+  max-width: 55px;
+  word-wrap: break-word;
+  hyphens: auto;
+  line-height: 1.2;
+  text-align: center;
+  margin-top: 5px;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+/* Schedule Table */
+.schedule-wrapper {
+  overflow-x: auto;
+  margin: 30px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  background-color: white;
+}
+
+.schedule-table th {
+  background-color: #4472c4;
+  color: white;
+  padding: 10px 6px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.85em;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-right: 1px solid #5b9bd5;
+}
+
+.station-header {
+  background-color: #2f5597 !important;
+  min-width: 160px;
+  text-align: left !important;
+  position: sticky;
+  left: 0;
+  z-index: 11;
+  padding-left: 12px !important;
+}
+
+.direction-header {
+  min-width: 100px;
+  background-color: #2f5597 !important;
+}
+
+.service-header {
+  min-width: 45px;
+  font-size: 0.9em;
+  padding: 10px 4px;
+}
+
+.service-header.regular {
+  background-color: #5b9bd5;
+}
+
+.service-header.irregular {
+  background-color: #f4cccc;
+  color: #333;
+}
+
+.schedule-table td {
+  padding: 6px 4px;
+  text-align: center;
+  border-bottom: 1px solid #e9ecef;
+  border-right: 1px solid #e9ecef;
+  font-size: 0.85em;
+}
+
+.station-name {
+  text-align: left;
+  font-weight: 500;
+  background-color: #f8f9fa;
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  border-right: 2px solid #dee2e6;
+  min-width: 160px;
+  padding-left: 12px !important;
+}
+
+.station-name.request-stop {
+  font-style: italic;
+  color: #666;
+}
+
+.time-cell {
+  font-family: "Courier New", monospace;
+  font-weight: 500;
+  min-width: 45px;
+  font-size: 0.8em;
+}
+
+.time-cell.regular {
+  background-color: rgba(91, 155, 213, 0.15);
+  color: #2e75b6;
+}
+
+.time-cell.irregular {
+  background-color: rgba(244, 204, 204, 0.7);
+  color: #c65d5d;
+}
+
+.time-cell:hover {
+  background-color: #2c5aa0;
+  color: white;
+  cursor: pointer;
+}
+
+/* Zebra striping for rows */
+.schedule-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.schedule-table tbody tr:hover {
+  background-color: #e3f2fd;
+}
+
+/* Legend */
+.legend {
+  margin: 30px 0;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #2c5aa0;
+}
+
+.legend h3 {
+  color: #2c5aa0;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.9em;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+}
+
+.legend-color.regular {
+  background-color: rgba(39, 174, 96, 0.3);
+}
+
+.legend-color.irregular {
+  background-color: rgba(230, 126, 34, 0.3);
+}
+
+/* Info Section */
+.info-section {
+  margin: 30px 0;
+  padding: 20px;
+  background-color: #fff3cd;
+  border-radius: 8px;
+  border-left: 4px solid #ffc107;
+}
+
+.info-section h3 {
+  color: #856404;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+
+.info-section div {
+  color: #856404;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .schedule-header h1 {
+    font-size: 1.4em;
+  }
+
+  .line-number {
+    align-self: center;
+  }
+
+  .route-map {
+    padding: 20px 5px;
+  }
+
+  .stops-container {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  .stop-name {
+    font-size: 0.6em;
+    max-width: 45px;
+    transform: rotate(-35deg);
+  }
+
+  .schedule-table {
+    font-size: 0.75em;
+  }
+
+  .station-header {
+    min-width: 120px;
+  }
+
+  .service-header {
+    min-width: 35px;
+    padding: 8px 3px;
+  }
+
+  .time-cell {
+    min-width: 35px;
+    padding: 4px 2px;
+    font-size: 0.75em;
+  }
+}
+
+@media (max-width: 480px) {
+  .route-line {
+    display: none;
+  }
+
+  .stops-container {
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .stop-marker {
+    min-width: 50px;
+  }
+
+  .stop-name {
+    font-size: 0.55em;
+    max-width: 40px;
+    transform: none;
+    white-space: normal;
+  }
+
+  .schedule-table {
+    font-size: 0.7em;
+  }
+
+  .station-header {
+    min-width: 100px;
+  }
+
+  .time-cell {
+    min-width: 30px;
+    font-size: 0.7em;
+  }
+}

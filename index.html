@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="sr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brčko Bus - Linija 8</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="schedule-header">
+            <div class="header-content">
+                <h1 id="route-name">Maoča - Omerbegovača</h1>
+                <div class="line-number">Linija: 8</div>
+            </div>
+        </header><!-- Route Map -->
+        <div class="route-section">
+            <h3 class="route-title">Ruta linije</h3>
+            <div class="route-map">
+                <div class="route-line"></div>
+                <div class="stops-container" id="stops-container">
+                    <!-- Stops will be dynamically generated -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Table -->
+        <div class="schedule-wrapper">
+            <table class="schedule-table" id="schedule-table">
+                <thead>
+                    <tr>
+                        <th class="station-header">Stanica</th>
+                        <th class="direction-header">Vrijeme polaska</th>
+                        <!-- Service columns will be dynamically generated -->
+                    </tr>
+                </thead>
+                <tbody id="schedule-body">
+                    <!-- Schedule rows will be dynamically generated -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <h3>Objašnjenja</h3>
+            <div class="legend-item">
+                <span class="legend-color regular"></span>
+                <span id="regular-explanation">Redovni polasci</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color irregular"></span>
+                <span id="irregular-explanation">Neregularni polasci</span>
+            </div>
+            <div class="legend-item">
+                <strong>**R**</strong> - Request stop (zaustavljanje na zahtjev)
+            </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="info-section">
+            <h3>Napomene</h3>
+            <div id="additional-notes">
+                <!-- Notes will be populated from JSON -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
