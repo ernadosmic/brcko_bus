@@ -1,0 +1,69 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Bus Schedule",
+    "type": "object",
+    "required": [
+        "name",
+        "line_number",
+        "services",
+        "regular_services",
+        "irregular_services",
+        "regular_explanation",
+        "irregular_explanation",
+        "stops"
+    ],
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "line_number": {
+            "type": "string"
+        },
+        "services": {
+            "type": "integer",
+            "minimum": 1
+        },
+        "regular_services": {
+            "type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "irregular_services": {
+            "type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "regular_explanation": {
+            "type": "string"
+        },
+        "irregular_explanation": {
+            "type": "string"
+        },
+        "stops": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "name",
+                    "times"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "times": {
+                        "type": "array",
+                        "minItems": 18,
+                        "maxItems": 18,
+                        "items": {
+                            "type": "string",
+                            "pattern": "^\\d{2}:\\d{2}$"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
