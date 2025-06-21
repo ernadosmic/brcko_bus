@@ -199,8 +199,8 @@ body {
 }
 
 .stop-dot {
-  width: 20px;
-  height: 20px;
+  width: 50px;
+  height: 50px;
   background: var(--primary-color);
   border: 4px solid white;
   border-radius: 50%;
@@ -665,10 +665,11 @@ th.regular-service {
 
 .station-name {
   position: absolute;
-  top: 80px;
-  left: 50%;
-  transform-origin: bottom center;
-  transform: translateX(-50%) rotate(-60deg);
+  top: 85px;
+  left: 40%;
+  transform: translateX(-50%);
+  transform-origin: top left;
+  transform: rotate(-60deg);
   font-size: 0.75rem;
   font-weight: 600;
   color: #000000;
@@ -686,6 +687,14 @@ th.regular-service {
   color: #000000;
 }
 
+.station.start .station-name {
+  left: 0;
+}
+
+.station.end .station-name {
+  left: 100%;
+}
+
 .station-dot {
   position: absolute;
   top: 100px;
@@ -694,7 +703,7 @@ th.regular-service {
   width: 20px;
   height: 20px;
   background-color: var(--primary-color);
-  border: 4px solid #fff;
+  border: 2px solid #fff;
   border-radius: 50%;
   box-shadow: 0 0 0 2px var(--primary-color);
   z-index: 3;
@@ -708,6 +717,14 @@ th.regular-service {
   box-shadow: 0 0 0 2px var(--success-color);
   /* Adjust positioning to center with route line */
   margin-top: -2px;
+}
+
+.station.start .station-dot {
+  left: 0;
+}
+
+.station.end .station-dot {
+  left: 100%;
 }
 
 @media (max-width: 768px) {
