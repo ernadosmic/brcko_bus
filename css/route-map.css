@@ -8,10 +8,10 @@
 
 .route-line {
   position: absolute;
-  top: 110px;
+  top: 109px;
   left: 0;
   width: 100%;
-  height: 6px;
+  height: 4px;
   background-color: var(--secondary-color);
   border-radius: 3px;
   z-index: 1;
@@ -50,7 +50,7 @@
   transform-origin: top left;
   transform: rotate(-60deg);
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-light);
   color: #000;
   white-space: nowrap;
   width: 180px;
@@ -61,17 +61,21 @@
 
 .station.start .station-name,
 .station.end .station-name {
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-black);
   color: #000;
 }
 
-.station.start .station-name { left: 0; }
-.station.end .station-name { left: 100%; }
+.station.start .station-name {
+  left: 0;
+}
+.station.end .station-name {
+  left: 100%;
+}
 
 .station-dot {
   position: absolute;
   top: 100px;
-  left: 50%;
+  left: 55%;
   transform: translateX(-50%);
   width: 20px;
   height: 20px;
@@ -91,22 +95,40 @@
   margin-top: -2px;
 }
 
-.station.start .station-dot { left: 0; }
-.station.end .station-dot { left: 100%; }
+.station.start .station-dot {
+  left: 0;
+}
+.station.end .station-dot {
+  left: 100%;
+}
 
 @media (max-width: 768px) {
-  .table-responsive { position: relative; }
+  .table-responsive {
+    position: relative;
+  }
   .sticky-col {
     position: sticky;
     left: 0;
     z-index: 1;
     background-color: #fff;
-    box-shadow: 2px 0 5px -2px rgba(0,0,0,0.2);
+    box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.2);
   }
-  .sticky-col.table-warning { background-color: #fff3cd !important; }
-  .table-striped > tbody > tr:nth-of-type(odd) > td.sticky-col { background-color: #f2f2f2 !important; }
-  .table-striped > tbody > tr:nth-of-type(odd) > td.sticky-col.table-warning { background-color: #ffecb5 !important; }
-  .route-map-container { display: none; }
+  .sticky-col.table-warning {
+    background-color: #fff3cd !important;
+  }
+  .table-striped > tbody > tr:nth-of-type(odd) > td.sticky-col {
+    background-color: #f2f2f2 !important;
+  }
+  .table-striped > tbody > tr:nth-of-type(odd) > td.sticky-col.table-warning {
+    background-color: #ffecb5 !important;
+  }
+  .route-map-container {
+    display: none;
+  }
 }
 
-@media (max-width: 1200px) { .route-map-container { display: none; } }
+@media (max-width: 1200px) {
+  .route-map-container {
+    display: none;
+  }
+}
