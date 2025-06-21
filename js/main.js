@@ -10,8 +10,7 @@ class BusScheduleApp {
             await this.loadScheduleData();
             this.renderRouteMap();
             this.renderScheduleTable();
-            this.renderLegend();
-            this.renderAdditionalInfo();
+            // Legend and info are now static in HTML
         } catch (error) {
             console.error('Error initializing bus schedule:', error);
             this.showError('Failed to load bus schedule data');
@@ -217,25 +216,7 @@ class BusScheduleApp {
         });
     }
 
-    renderLegend() {
-        document.getElementById('regular-explanation').textContent =
-            this.scheduleData.regular_explanation;
-        document.getElementById('irregular-explanation').textContent =
-            this.scheduleData.irregular_explanation;
-    }
-
-    renderAdditionalInfo() {
-        const notesContainer = document.getElementById('additional-notes');
-
-        const regularNote = document.createElement('div');
-        regularNote.innerHTML = `<strong>Redovni polasci:</strong> ${this.scheduleData.regular_explanation}`;
-
-        const irregularNote = document.createElement('div');
-        irregularNote.innerHTML = `<strong>Radni dani:</strong> ${this.scheduleData.irregular_explanation}`;
-
-        notesContainer.appendChild(regularNote);
-        notesContainer.appendChild(irregularNote);
-    }
+    // Legend and info are now static in HTML - methods removed
 
     showError(message) {
         const container = document.querySelector('.container');

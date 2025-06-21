@@ -150,15 +150,15 @@ body {
 /* Schedule Table */
 .schedule-wrapper {
   overflow-x: auto;
-  margin: 30px 0;
+  margin: 20px 0;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
 .schedule-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9em;
+  font-size: 0.85em;
   background-color: white;
 }
 
@@ -206,11 +206,11 @@ body {
 }
 
 .schedule-table td {
-  padding: 6px 4px;
+  padding: 4px 3px;
   text-align: center;
   border-bottom: 1px solid #e9ecef;
   border-right: 1px solid #e9ecef;
-  font-size: 0.85em;
+  font-size: 0.8em;
 }
 
 .station-name {
@@ -231,7 +231,7 @@ body {
 }
 
 .time-cell {
-  font-family: "Courier New", monospace;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 500;
   min-width: 45px;
   font-size: 0.8em;
@@ -255,70 +255,79 @@ body {
 
 /* Zebra striping for rows */
 .schedule-table tbody tr:nth-child(even) {
-  background-color: #f8f9fa;
+  background-color: #fbfbfb;
 }
 
 .schedule-table tbody tr:hover {
-  background-color: #e3f2fd;
+  background-color: #f0f8ff;
 }
 
 /* Legend */
 .legend {
-  margin: 30px 0;
-  padding: 20px;
+  margin: 20px 0;
+  padding: 15px 20px;
   background-color: #f8f9fa;
-  border-radius: 8px;
-  border-left: 4px solid #2c5aa0;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
 }
 
 .legend h3 {
-  color: #2c5aa0;
-  margin-bottom: 15px;
-  font-size: 1.1em;
+  color: #333;
+  margin-bottom: 12px;
+  font-size: 1em;
+  font-weight: 600;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  font-size: 0.9em;
+  margin-bottom: 8px;
+  font-size: 0.85em;
+  color: #333;
 }
 
 .legend-color {
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
-  margin-right: 10px;
-  border: 1px solid #ddd;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  margin-right: 8px;
+  border: 1px solid #ccc;
 }
 
 .legend-color.regular {
-  background-color: rgba(39, 174, 96, 0.3);
+  background-color: rgba(91, 155, 213, 0.4);
 }
 
 .legend-color.irregular {
-  background-color: rgba(230, 126, 34, 0.3);
+  background-color: rgba(244, 204, 204, 0.8);
+}
+
+.legend-icon {
+  margin-right: 8px;
+  font-size: 0.9em;
 }
 
 /* Info Section */
 .info-section {
-  margin: 30px 0;
-  padding: 20px;
-  background-color: #fff3cd;
-  border-radius: 8px;
-  border-left: 4px solid #ffc107;
+  margin: 20px 0;
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
 }
 
 .info-section h3 {
-  color: #856404;
-  margin-bottom: 15px;
-  font-size: 1.1em;
+  color: #333;
+  margin-bottom: 12px;
+  font-size: 1em;
+  font-weight: 600;
 }
 
 .info-section div {
-  color: #856404;
-  font-size: 0.9em;
-  line-height: 1.5;
+  color: #333;
+  font-size: 0.85em;
+  line-height: 1.4;
+  margin-bottom: 6px;
 }
 
 /* Responsive Design */
