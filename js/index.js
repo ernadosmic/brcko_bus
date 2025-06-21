@@ -115,13 +115,24 @@ function generateRouteMap(stops) {
 
     const stationName = document.createElement("div");
     stationName.className = "station-name";
-    // Clean up station name for route display
-    let cleanName = stop.name.replace(/\*\*R\*\*/g, "");
+    // Clean up station name for route display and process **R** markers
+    let cleanName = stop.name.replace(
+      /\*\*R\*\*/g,
+      '<span class="station-r">R</span>'
+    );
     // Shorten long names for better display
-    if (cleanName.length > 15) {
-      cleanName = cleanName.substring(0, 12) + "...";
+    if (cleanName.replace(/<[^>]*>/g, '').length > 15) {
+      // Get text length without HTML tags
+      const textOnly = cleanName.replace(/<[^>]*>/g, '');
+      const truncated = textOnly.substring(0, 12) + "...";
+      // Check if we had an R marker and preserve it
+      if (cleanName.includes('<span class="station-r">R</span>')) {
+        cleanName = truncated + '<span class="station-r">R</span>';
+      } else {
+        cleanName = truncated;
+      }
     }
-    stationName.textContent = cleanName;
+    stationName.innerHTML = cleanName; // Changed from textContent to innerHTML
 
     const stationDot = document.createElement("div");
     stationDot.className = "station-dot";
