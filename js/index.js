@@ -1,7 +1,21 @@
 // Enhanced JavaScript to load and display the schedule
 async function loadScheduleData() {
+  // Dynamically determine which JSON file to load based on the HTML filename
+  const pathParts = window.location.pathname.split("/");
+  const htmlFile = pathParts[pathParts.length - 1];
+  const match = htmlFile.match(/line_(\d+)\.html$/);
+  let jsonFile = null;
+  if (match) {
+    jsonFile = `../assets/schedules/line_${match[1]}.json`;
+  } else {
+    // Fallback or error if not on a line_X.html page
+    document.getElementById("schedule-body").innerHTML =
+      '<tr><td colspan="19" class="text-center text-danger">Nepoznata linija</td></tr>';
+    return;
+  }
+
   try {
-    const response = await fetch("../assets/schedules/line_8.json");
+    const response = await fetch(jsonFile);
     const data = await response.json();
 
     displayScheduleData(data);
