@@ -1,4 +1,4 @@
-// Bus Schedule Application
+// Enhanced Bus Schedule Application with improved styling
 class BusScheduleApp {
     constructor() {
         this.scheduleData = null;
@@ -10,12 +10,14 @@ class BusScheduleApp {
             await this.loadScheduleData();
             this.renderRouteMap();
             this.renderScheduleTable();
-            // Legend and info are now static in HTML
+            this.addResponsiveFeatures();
         } catch (error) {
             console.error('Error initializing bus schedule:', error);
             this.showError('Failed to load bus schedule data');
         }
-    } async loadScheduleData() {
+    }
+
+    async loadScheduleData() {
         try {
             const response = await fetch('assets/schedules/line_8.json');
             if (!response.ok) {
@@ -23,7 +25,7 @@ class BusScheduleApp {
             }
             this.scheduleData = await response.json();
 
-            // Update page title - keep original direction from JSON
+            // Update page title
             document.title = `Brčko Bus - Linija ${this.scheduleData.line_number}`;
             document.getElementById('route-name').textContent = this.scheduleData.name;
         } catch (error) {
@@ -33,80 +35,72 @@ class BusScheduleApp {
 
     renderRouteMap() {
         const stopsContainer = document.getElementById('stops-container');
+        if (!stopsContainer) return;
+
         stopsContainer.innerHTML = '';
 
-        // Keep original order from JSON (Maoča to Omerbegovača)
-        const originalStops = this.scheduleData.stops;        // Show all major stops (filter for better display)
-        const majorStops = [
-            'Maoča Badarka',
-            'Maoča Centar',
-            'Maoča Škola',
-            'Maoča Rašljani **R**',
-            'Rašljani **R** (Škola Maoča)',
-            'Prutače',
-            'Šljunkara',
-            'Rahić Centar',
-            'Rahić Škola',
-            'Ograđenovac',
-            'Palanka **R**',
-            'Mušići',
-            'Brka Bor',
-            'Brka Servis',
-            'Tihe Noći',
-            'Brka Kanal',
-            'Stari Brod',
-            'Brod Škola',
-            'Šadrvan',
-            'Suljagića Sokak',
-            'Broduša',
-            'Izbor',
-            'Meraje',
-            'Dom zdravlja',
-            'Kolobara',
-            'Centar',
-            'Vet. Stanica',
-            'Staklorad',
-            '4. Juli',
-            'Dizdaruša S.',
-            'Dizdaruša Dom',
-            'Čađavac **R**',
-            'Šišin Han',
-            'Krajnovići',
-            'Omerbegovača'
-        ]; const displayStops = originalStops.filter(stop =>
-            majorStops.includes(stop.name)
-        );
+        // Show key stops for better visualization
+        const keyStops = this.getKeyStops();
 
-        displayStops.forEach((stop, index) => {
-            const stopElement = this.createStopMarker(stop, index, displayStops.length);
+        keyStops.forEach((stop, index) => {
+            const stopElement = this.createStopElement(stop, index, keyStops.length);
             stopsContainer.appendChild(stopElement);
         });
     }
 
-    createStopMarker(stop, index, totalStops) {
-        const stopMarker = document.createElement('div');
-        stopMarker.className = 'stop-marker';
+    getKeyStops() {
+        // Select representative stops for route visualization
+        const allStops = this.scheduleData.stops.map(stop => stop.name);
+        const keyStopNames = [
+            'Maoča Badarka',
+            'Rahić Centar',
+            'Ograđenovac',
+            'Centar',
+            'Staklorad',
+            'Dizdaruša Dom',
+            'Čađavac **R**',
+            'Krajnovići',
+            'Omerbegovača'
+        ];
 
-        const stopCircle = document.createElement('div');
-        stopCircle.className = 'stop-circle';
+        return keyStopNames.filter(name =>
+            allStops.some(stopName => stopName.includes(name.replace(' **R**', '')))
+        );
+    }
 
-        // Mark first and last stops as terminals (green)
-        if (index === 0 || index === totalStops - 1) {
-            stopCircle.classList.add('terminal');
+    createStopElement(stopName, index, total) {
+        const stopDiv = document.createElement('div');
+        stopDiv.className = 'stop';
+
+        // Add special classes for start and end stations
+        if (index === 0) stopDiv.classList.add('start-station');
+        if (index === total - 1) stopDiv.classList.add('end-station');
+
+        const stopDot = document.createElement('div');
+        stopDot.className = 'stop-dot';
+
+        const stopLabel = document.createElement('div');
+        stopLabel.className = 'stop-label';
+
+        // Clean up stop name and handle R markers
+        let cleanName = stopName.replace(/\*\*R\*\*/g, '');
+        if (cleanName.length > 12) {
+            cleanName = cleanName.substring(0, 10) + '...';
         }
-        // Mark some special stops with orange circles
-        else if (stop.name.includes('Centar') || stop.name.includes('Dom') || stop.name.includes('**R**')) {
-            stopCircle.classList.add('special');
+        stopLabel.textContent = cleanName;
+
+        // Add R indicator if present
+        if (stopName.includes('**R**')) {
+            const rIndicator = document.createElement('span');
+            rIndicator.className = 'station-r';
+            rIndicator.textContent = 'R';
+            stopLabel.appendChild(rIndicator);
         }
 
-        const stopName = document.createElement('div');
-        stopName.className = 'stop-name';
-        stopName.textContent = stop.name.replace(' **R**', '').replace('(Škola Maoča)', '');
+        stopDiv.appendChild(stopDot);
+        stopDiv.appendChild(stopLabel);
 
-        stopMarker.appendChild(stopCircle);
-        stopMarker.appendChild(stopName);
-
-        return stopMarker;
+        return stopDiv;
     }
 
     renderScheduleTable() {
@@ -115,76 +109,104 @@ class BusScheduleApp {
     }
 
     renderTableHeader() {
-        const table = document.getElementById('schedule-table');
-        const thead = table.querySelector('thead tr');
+        const tableHead = document.querySelector('#schedule-table thead');
+        if (!tableHead) return;
 
-        // Clear existing service headers (keep station and direction headers)
-        const existingHeaders = thead.querySelectorAll('.service-header');
-        existingHeaders.forEach(header => header.remove());
+        // Clear existing header
+        tableHead.innerHTML = '';
 
-        // Add service number headers
+        // Main header row
+        const headerRow = document.createElement('tr');
+
+        const stationHeader = document.createElement('th');
+        stationHeader.className = 'station-header sticky-column';
+        stationHeader.textContent = 'Stanica';
+        headerRow.appendChild(stationHeader);
+
+        const timeHeader = document.createElement('th');
+        timeHeader.colSpan = this.scheduleData.services;
+        timeHeader.textContent = 'Vrijeme polaska';
+        timeHeader.className = 'text-center';
+        headerRow.appendChild(timeHeader);
+
+        tableHead.appendChild(headerRow);
+
+        // Service numbers row
+        const serviceRow = document.createElement('tr');
+
+        const emptyCell = document.createElement('th');
+        emptyCell.className = 'sticky-column';
+        serviceRow.appendChild(emptyCell);
+
         for (let i = 1; i <= this.scheduleData.services; i++) {
-            const th = document.createElement('th');
-            th.className = 'service-header';
-            th.textContent = i.toString();
+            const serviceHeader = document.createElement('th');
+            serviceHeader.className = 'text-center service-header';
+            serviceHeader.textContent = i;
 
-            // Color code based on service type
+            // Apply service type styling
             if (this.scheduleData.regular_services.includes(i)) {
-                th.classList.add('regular');
+                serviceHeader.classList.add('regular-service');
             } else {
-                th.classList.add('irregular');
+                serviceHeader.classList.add('irregular-service');
             }
 
-            thead.appendChild(th);
+            serviceRow.appendChild(serviceHeader);
         }
-    } renderTableBody() {
-        const tbody = document.getElementById('schedule-body');
-        tbody.innerHTML = '';
 
-        // Keep original order from JSON (Maoča to Omerbegovača)
-        this.scheduleData.stops.forEach(stop => {
-            const row = this.createScheduleRow(stop);
-            tbody.appendChild(row);
+        tableHead.appendChild(serviceRow);
+    }
+
+    renderTableBody() {
+        const tableBody = document.getElementById('schedule-body');
+        if (!tableBody) return;
+
+        tableBody.innerHTML = '';
+
+        this.scheduleData.stops.forEach((stop, stopIndex) => {
+            const row = this.createScheduleRow(stop, stopIndex);
+            tableBody.appendChild(row);
         });
     }
 
-    createScheduleRow(stop) {
+    createScheduleRow(stop, stopIndex) {
         const row = document.createElement('tr');
+
+        // Highlight start and end stations
+        const isStartStation = stopIndex === 0;
+        const isEndStation = stopIndex === this.scheduleData.stops.length - 1;
+
+        if (isEndStation) {
+            row.classList.add('end-station-row');
+        }
 
         // Station name cell
         const stationCell = document.createElement('td');
-        stationCell.className = 'station-name';
-        stationCell.textContent = stop.name;
+        stationCell.className = 'station-name sticky-column';
 
-        if (stop.name.includes('**R**')) {
-            stationCell.classList.add('request-stop');
+        // Process station name
+        let stationName = stop.name.replace(/\*\*R\*\*/g, '<span class="station-r">R</span>');
+
+        if (isStartStation || isEndStation) {
+            stationCell.innerHTML = `<strong>${stationName}</strong>`;
+        } else {
+            stationCell.innerHTML = stationName;
         }
 
         row.appendChild(stationCell);
 
-        // Direction cell (empty for now, can be used for return direction)
-        const directionCell = document.createElement('td');
-        directionCell.className = 'direction-cell';
-        directionCell.textContent = '→';
-        row.appendChild(directionCell);
-
         // Time cells
-        stop.times.forEach((time, index) => {
+        stop.times.forEach((time, timeIndex) => {
             const timeCell = document.createElement('td');
             timeCell.className = 'time-cell';
             timeCell.textContent = time;
 
-            const serviceNumber = index + 1;
+            // Apply service type styling
+            const serviceNumber = timeIndex + 1;
             if (this.scheduleData.regular_services.includes(serviceNumber)) {
-                timeCell.classList.add('regular');
+                timeCell.classList.add('regular-service');
             } else {
-                timeCell.classList.add('irregular');
+                timeCell.classList.add('irregular-service');
             }
-
-            // Add click handler for time highlighting
-            timeCell.addEventListener('click', () => {
-                this.highlightService(serviceNumber);
-            });
 
             row.appendChild(timeCell);
         });
@@ -192,48 +214,116 @@ class BusScheduleApp {
         return row;
     }
 
-    highlightService(serviceNumber) {
-        // Remove existing highlights
-        document.querySelectorAll('.time-cell.highlighted').forEach(cell => {
-            cell.classList.remove('highlighted');
-        });
+    addResponsiveFeatures() {
+        // Add horizontal scroll indicator on mobile
+        const tableWrapper = document.querySelector('.schedule-wrapper');
+        if (tableWrapper && window.innerWidth <= 768) {
+            const scrollHint = document.createElement('div');
+            scrollHint.className = 'scroll-hint';
+            scrollHint.innerHTML = '<small>← Pomijerite lijevo i desno za pregled →</small>';
+            tableWrapper.appendChild(scrollHint);
+        }
 
-        // Add highlight to selected service column
-        const serviceCells = document.querySelectorAll('.time-cell');
-        serviceCells.forEach((cell, index) => {
-            if ((index % this.scheduleData.services) === (serviceNumber - 1)) {
-                cell.classList.add('highlighted');
-            }
-        });
-
-        // Highlight header
-        const headers = document.querySelectorAll('.service-header');
-        headers.forEach((header, index) => {
-            header.classList.remove('highlighted');
-            if (index === serviceNumber - 1) {
-                header.classList.add('highlighted');
-            }
-        });
+        // Add touch scroll support
+        this.addTouchScrollSupport();
     }
 
-    // Legend and info are now static in HTML - methods removed
+    addTouchScrollSupport() {
+        const tableWrapper = document.querySelector('.schedule-wrapper');
+        if (!tableWrapper) return;
+
+        let isScrolling = false;
+        let startX = 0;
+        let scrollLeft = 0;
+
+        tableWrapper.addEventListener('touchstart', (e) => {
+            isScrolling = true;
+            startX = e.touches[0].pageX - tableWrapper.offsetLeft;
+            scrollLeft = tableWrapper.scrollLeft;
+        });
+
+        tableWrapper.addEventListener('touchmove', (e) => {
+            if (!isScrolling) return;
+            e.preventDefault();
+            const x = e.touches[0].pageX - tableWrapper.offsetLeft;
+            const walk = (x - startX) * 2;
+            tableWrapper.scrollLeft = scrollLeft - walk;
+        });
+
+        tableWrapper.addEventListener('touchend', () => {
+            isScrolling = false;
+        });
+    }
 
     showError(message) {
         const container = document.querySelector('.container');
+        if (!container) return;
+
         const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message';
-        errorDiv.style.cssText = `
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid #dc3545;
+        errorDiv.className = 'alert alert-danger';
+        errorDiv.innerHTML = `
+            <h4>Greška</h4>
+            <p>${message}</p>
+            <p>Molimo pokušajte ponovo kasnije ili kontaktirajte tehničku podršku.</p>
         `;
-        errorDiv.textContent = message;
-        container.appendChild(errorDiv);
+
+        container.insertBefore(errorDiv, container.firstChild);
+    }
+
+    // Utility method to format times
+    formatTime(timeString) {
+        // Ensure consistent time format
+        const [hours, minutes] = timeString.split(':');
+        return `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`;
+    }
+
+    // Method to highlight current time
+    highlightCurrentTime() {
+        const now = new Date();
+        const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+
+        document.querySelectorAll('.time-cell').forEach(cell => {
+            if (cell.textContent === currentTime) {
+                cell.classList.add('current-time');
+            }
+        });
     }
 }
+
+// Enhanced initialization with better error handling
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        new BusScheduleApp();
+    } catch (error) {
+        console.error('Failed to initialize Bus Schedule App:', error);
+
+        // Fallback error display
+        const body = document.body;
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'container mt-5';
+        errorMessage.innerHTML = `
+            <div class="alert alert-danger text-center">
+                <h3>Greška pri učitavanju</h3>
+                <p>Nažalost, došlo je do greške pri učitavanju reda vožnje.</p>
+                <p>Molimo osvježite stranicu ili pokušajte ponovo kasnije.</p>
+                <button class="btn btn-primary" onclick="location.reload()">Osvježi stranicu</button>
+            </div>
+        `;
+        body.appendChild(errorMessage);
+    }
+});
+
+// Add window resize handler for responsive features
+window.addEventListener('resize', () => {
+    // Re-initialize responsive features on resize
+    const app = window.busScheduleApp;
+    if (app && typeof app.addResponsiveFeatures === 'function') {
+        app.addResponsiveFeatures();
+    }
+});
+
+// Export for global access if needed
+window.BusScheduleApp = BusScheduleApp;
 
 // Additional CSS for highlighting
 const additionalStyles = `
@@ -255,6 +345,45 @@ const additionalStyles = `
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(-10px); }
         to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Enhanced styles */
+    .stop {
+        display: flex;
+        align-items: center;
+        margin: 5px 0;
+    }
+    
+    .stop-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #007bff;
+        margin-right: 10px;
+    }
+    
+    .stop-label {
+        font-size: 14px;
+        color: #333;
+    }
+    
+    .station-r {
+        font-weight: bold;
+        color: #dc3545;
+        margin-left: 2px;
+    }
+    
+    .current-time {
+        background-color: #28a745 !important;
+        color: white !important;
+        font-weight: bold;
+    }
+    
+    .scroll-hint {
+        text-align: center;
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
     }
 `;
 

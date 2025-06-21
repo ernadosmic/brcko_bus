@@ -1,0 +1,227 @@
+{% comment %}
+Route Map Visualization Component
+Usage:
+{% include route-map.html
+title="Ruta linije"
+stations=page.route_stations
+start_station=page.start_station
+end_station=page.end_station
+%}
+
+Where stations is an array of station names, start_station is the name of the starting station,
+and end_station is the name of the ending station.
+
+Example in page front matter:
+---
+route_stations:
+- OMERBEGOVACA
+- Krajišnici
+- Sisic Han
+- Čađavac 'R'
+- Dizdaruša Dom
+- Dizdaruša S.
+- 4. Juli
+- Maoča
+start_station: OMERBEGOVACA
+end_station: Maoča
+---
+{% endcomment %}
+
+<div class=" ">
+    <div class="">
+        <h5 class="p-ruta">{{ include.title | default: "Ruta linije" }}</h5>
+    </div>
+    <div class="card-body p-3">
+        <div class="route-map-container">
+            <div class="route-line"></div>
+            <div class="stations">
+                {% for station in include.stations %} <div
+                    class="station {% if station == include.start_station %}start{% endif %} {% if station == include.end_station %}end{% endif %}">
+                    <div class="station-content">
+                        <div class="station-name">{{ station | replace: ' "R"', ' <span class="station-r">R</span>' }}
+                        </div>
+                        <div class="station-dot"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <style>
+            .route-map-container {
+                position: relative;
+                padding: 10px 15px 30px;
+                /* More padding at the top for angled text */
+                margin: 20px auto;
+                max-width: 1200px;
+            }
+
+            .route-line {
+                position: absolute;
+                top: 110px;
+                /* Fixed position for the line - exactly centered with the dots */
+                left: 2%;
+                width: 95%;
+                height: 6px;
+                background-color: var(--secondary-color);
+                border-radius: 3px;
+                z-index: 1;
+                align-self: center;
+            }
+
+            .stations {
+                display: flex;
+                justify-content: space-between;
+                position: relative;
+                z-index: 2;
+                margin-top: -10px;
+                /* Adjust to position stations correctly */
+            }
+
+            .p-ruta {
+                padding-left: 1rem !important;
+                padding-top: 0.5rem;
+            }
+
+            .station {
+                position: relative;
+                width: 90px;
+                height: 120px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .station-content {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+            }
+
+            .station-dot {
+                width: 20px;
+                height: 20px;
+                background-color: var(--primary-color);
+                border-radius: 50%;
+                border: 2px solid #ffffff;
+                box-shadow: 0 0 0 2px var(--primary-color);
+                position: absolute;
+                z-index: 3;
+                top: 104px;
+                /* Positioned at the exact same level as the line */
+                left: 50%;
+                transform: translateX(-50%);
+                /* Only center horizontally */
+            }
+
+            .start .station-dot,
+            .end .station-dot {
+                width: 24px;
+                height: 24px;
+                background-color: var(--success-color);
+                top: 100px;
+            }
+
+            .station-name {
+                font-size: 12px;
+                text-align: left;
+                font-weight: 500;
+                position: absolute;
+                width: 120px;
+                /* Ensure enough width for all text */
+                top: 80px;
+                /* Position above the dot */
+                left: 20px;
+                /* Adjust to position the start of text over the dot */
+                transform-origin: bottom left;
+                /* Rotate from bottom left */
+                transform: rotate(-45deg);
+                white-space: nowrap;
+                /* Prevent text wrapping */
+            }
+
+            .start .station-name,
+            .end .station-name {
+                font-weight: bold;
+            }
+
+            /* Style for R indicator */
+            .station-r {
+                display: inline-block;
+                font-size: 0.75em;
+                font-weight: bold;
+                color: #ffffff;
+                background-color: #f57c00;
+                border-radius: 3px;
+                padding: 0px 4px;
+                margin-left: 2px;
+                vertical-align: super;
+            }
+
+            @media (max-width: 1399px) {
+                .route-map-container {
+                    padding: 10px 4px;
+                    overflow-x: auto;
+                }
+
+                .stations {
+                    flex-wrap: nowrap;
+                    justify-content: flex-start;
+                    margin-top: 0;
+                    min-width: max-content;
+                }
+
+                .station {
+                    margin: 20px 10px;
+                    min-width: 80px;
+                }
+
+                .station-content {
+                    height: auto;
+                }
+
+                .route-line {
+                    top: 110px;
+                    width: 100%;
+                }
+
+                .station-dot {
+                    position: relative;
+                    margin-top: 25px;
+                    top: auto;
+                    left: auto;
+                    transform: none;
+                }
+
+                .station-name {
+                    position: relative;
+                    transform: none;
+                    text-align: center;
+                    width: 100%;
+                    font-size: 10px;
+                    top: auto;
+                    left: auto;
+                    margin-bottom: 8px;
+                }
+
+                /* Hide card styling on mobile */
+                .route-map-card {
+                    border: none !important;
+                    box-shadow: none !important;
+                    background: transparent !important;
+                }
+
+                .route-map-card .card-header {
+                    display: none;
+                }
+
+                .route-map-card .card-body {
+                    padding: 0 !important;
+                    background: transparent !important;
+                }
+            }
+        </style>
+    </div>
+</div>
