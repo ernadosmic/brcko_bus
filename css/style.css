@@ -680,17 +680,15 @@ th.regular-service {
 
 .station-name {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%) rotate(-45deg);
-  transform-origin: center bottom;
+  top: 80px;
+  left: 20px;
+  transform-origin: bottom left;
+  transform: rotate(-45deg);
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--primary-color);
-  text-align: center;
   white-space: nowrap;
-  width: auto;
-  max-width: 120px;
+  width: 120px;
   line-height: 1.2;
   z-index: 3;
 }
@@ -709,14 +707,12 @@ th.regular-service {
   z-index: 3;
 }
 
-.station.start .station-dot {
+.station.start .station-dot,
+.station.end .station-dot {
+  width: 24px;
+  height: 24px;
   background-color: var(--success-color);
   box-shadow: 0 0 0 2px var(--success-color);
-}
-
-.station.end .station-dot {
-  background-color: var(--danger-color);
-  box-shadow: 0 0 0 2px var(--danger-color);
 }
 
 @media (max-width: 768px) {

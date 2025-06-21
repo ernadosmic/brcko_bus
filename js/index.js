@@ -73,6 +73,7 @@ function displayScheduleData(data) {
     // Time cells
     stop.times.forEach((time, timeIndex) => {
       const timeCell = document.createElement("td");
+      timeCell.classList.add("time-cell");
       timeCell.textContent = time;
 
       if (data.regular_services.includes(timeIndex + 1)) {
@@ -86,6 +87,11 @@ function displayScheduleData(data) {
 
     tableBody.appendChild(row);
   });
+
+  // Highlight the current time after rendering the table
+  highlightCurrentTime();
+  // Update highlight every minute
+  setInterval(highlightCurrentTime, 60000);
 }
 
 function generateRouteMap(stops) {
@@ -122,6 +128,23 @@ function generateRouteMap(stops) {
     stationContent.appendChild(stationDot);
     stationDiv.appendChild(stationContent);
     routeStations.appendChild(stationDiv);
+  });
+}
+
+// Highlight cells matching the current time
+function highlightCurrentTime() {
+  const now = new Date();
+  const currentTime = `${now.getHours().toString().padStart(2, "0")}:${now
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")}`;
+
+  document.querySelectorAll(".time-cell").forEach((cell) => {
+    if (cell.textContent === currentTime) {
+      cell.classList.add("current-time");
+    } else {
+      cell.classList.remove("current-time");
+    }
   });
 }
 
