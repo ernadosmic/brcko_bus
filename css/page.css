@@ -15,6 +15,14 @@ body {
   padding: 0 var(--spacing-md);
 }
 
+.hero-font {
+  font-family: "Helvetica" !important;
+  font-weight: 100 !important; /* Use a numeric value; 100 is extra light */
+  font-size: 3.5rem !important; /* Example of a specific size */
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
 .page-banner {
   background: linear-gradient(
     135deg,
