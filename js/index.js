@@ -3,26 +3,23 @@ async function loadScheduleData() {
   // Dynamically determine which JSON file to load based on the HTML filename
   const pathParts = window.location.pathname.split("/");
   const htmlFile = pathParts[pathParts.length - 1];
-  const match = htmlFile.match(/line_(\d+)\.html$/);
-  let jsonFile = null;
-  if (match) {
-    jsonFile = `../assets/schedules/line_${match[1]}.json`;
-  } else {
-    // Fallback or error if not on a line_X.html page
-    document.getElementById("schedule-body").innerHTML =
-      '<tr><td colspan="19" class="text-center text-danger">Nepoznata linija</td></tr>';
-    return;
-  }
+
+  // The JSON filename must match the HTML filename (e.g., line_8A.html -> line_8A.json)
+  const baseName = htmlFile.replace(/\.html$/, '');
+  const jsonFile = `../assets/schedules/${baseName}.json`;
 
   try {
     const response = await fetch(jsonFile);
+    if (!response.ok) {
+      throw new Error(`Schedule file not found: ${response.statusText}`);
+    }
     const data = await response.json();
 
     displayScheduleData(data);
   } catch (error) {
     console.error("Error loading schedule data:", error);
     document.getElementById("schedule-body").innerHTML =
-      '<tr><td colspan="19" class="text-center text-danger">Greška pri učitavanju podataka</td></tr>';
+      '<tr><td colspan="19" class="text-center text-danger">Greška pri učitavanju podataka o redu vožnje.</td></tr>';
   }
 }
 
