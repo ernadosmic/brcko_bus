@@ -87,6 +87,36 @@ function displayScheduleData(data) {
 
     tableBody.appendChild(row);
   });
+
+  highlightCurrentAndNextTimes(data);
+}
+
+function highlightCurrentAndNextTimes(data) {
+  const firstStopTimes = data.stops[0]?.times || [];
+  if (!firstStopTimes.length) return;
+
+  const now = new Date();
+  const minutesNow = now.getHours() * 60 + now.getMinutes();
+
+  const timeToMinutes = (t) => {
+    const [h, m] = t.split(":").map(Number);
+    return h * 60 + m;
+  };
+
+  let currentIndex = firstStopTimes.findIndex((t) => timeToMinutes(t) >= minutesNow);
+  if (currentIndex === -1) return;
+  const nextIndex = currentIndex + 1;
+
+  const bodyRows = document.querySelectorAll("#schedule-body tr");
+  bodyRows.forEach((row) => {
+    const cells = row.querySelectorAll("td");
+    if (cells[currentIndex + 1]) cells[currentIndex + 1].classList.add("current-time");
+    if (cells[nextIndex + 1]) cells[nextIndex + 1].classList.add("current-time");
+  });
+
+  const headerCells = document.querySelectorAll("#service-header th");
+  if (headerCells[currentIndex + 1]) headerCells[currentIndex + 1].classList.add("current-time");
+  if (headerCells[nextIndex + 1]) headerCells[nextIndex + 1].classList.add("current-time");
 }
 
 function generateRouteMap(stops) {

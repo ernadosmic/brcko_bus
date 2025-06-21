@@ -763,3 +763,9 @@ th.regular-service {
   border-radius: 10px;
   overflow: hidden;
 }
+
+/* Highlight for the currently active service times */
+.current-time {
+  background-color: #d4edda !important;
+  color: #155724 !important;
+}
