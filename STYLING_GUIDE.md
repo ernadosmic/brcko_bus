@@ -54,7 +54,9 @@ brcko_bus/
 ├── index.html              # Main application page (enhanced)
 ├── schedule.html           # Alternative Bootstrap-focused version
 ├── css/
-│   └── style.css          # Enhanced custom styles
+│   ├── utils.css         # Variables and utilities
+│   ├── page.css          # Page layout
+│   └── route-map.css     # Route map styles
 ├── js/
 │   └── main.js            # Enhanced JavaScript functionality
 ├── assets/
