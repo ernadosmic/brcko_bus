@@ -11,8 +11,9 @@ body {
 
 .container {
   max-width: 1320px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 0 var(--spacing-md);
+  margin-top: 0.2rem !important;
 }
 
 .hero-font {
@@ -230,6 +231,26 @@ body {
   background: var(--gray-100);
   color: var(--gray-600);
   font-style: italic;
+}
+
+/* Banner Ad Styles */
+.svg-banner-ad {
+  width: 100%; /* Take up the full width of its parent */
+  max-width: 970px; /* Optional: Set a maximum width */
+  margin: 0 auto; /* Center the banner ad */
+  margin-bottom: 2rem;
+}
+
+/* Style the lightning-card (if necessary) */
+.svg-banner-ad lightning-card {
+  width: 100%; /* Make the card fill the container */
+}
+
+/* Style the SVG */
+.svg-banner-ad svg {
+  display: block; /* Removes extra space below the SVG */
+  width: 100%; /* Make the SVG scale to the container's width */
+  height: auto; /* Maintain aspect ratio */
 }
 
 /* Responsive rules */
