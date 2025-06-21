@@ -1,7 +1,7 @@
 // Enhanced JavaScript to load and display the schedule
 async function loadScheduleData() {
   try {
-    const response = await fetch("assets/schedules/line_8.json");
+    const response = await fetch("../assets/schedules/line_8.json");
     const data = await response.json();
 
     displayScheduleData(data);
