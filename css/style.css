@@ -323,42 +323,6 @@ body {
   background-color: rgba(255, 193, 7, 0.2);
 }
 
-.current-time {
-  background-color: var(--warning-color) !important;
-  color: var(--dark-color) !important;
-  font-weight: var(--font-weight-bold);
-  animation: pulse 2s infinite;
-}
-
-/* Highlight for the next upcoming departure */
-.next-departure {
-  background-color: #ff6b35 !important;
-  color: #ffffff !important;
-  animation: next-pulse 2s infinite;
-}
-
-@keyframes next-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(255, 107, 53, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 107, 53, 0);
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
 /* Enhanced Legend */
 .legend {
   background: white;

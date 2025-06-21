@@ -126,50 +126,7 @@ function generateRouteMap(stops) {
   });
 }
 
-// Highlight cells matching the current time
-function highlightCurrentTime() {
-  const now = new Date();
-  const currentTime = `${now.getHours().toString().padStart(2, "0")}:${now
-    .getMinutes()
-    .toString()
-    .padStart(2, "0")}`;
 
-  document.querySelectorAll(".time-cell").forEach((cell) => {
-    if (cell.textContent === currentTime) {
-      cell.classList.add("current-time");
-    } else {
-      cell.classList.remove("current-time");
-    }
-  });
-}
-
-// Highlight the next upcoming departure time
-function highlightNextDeparture() {
-  const now = new Date();
-  const currentTotal = now.getHours() * 60 + now.getMinutes();
-
-  let nextCell = null;
-  let minDiff = Infinity;
-
-  document.querySelectorAll('.time-cell').forEach((cell) => {
-    const [h, m] = cell.textContent.split(':').map(Number);
-    let diff = h * 60 + m - currentTotal;
-    if (diff <= 0) diff += 24 * 60;
-
-    if (diff < minDiff) {
-      minDiff = diff;
-      nextCell = cell;
-    }
-  });
-
-  document.querySelectorAll('.time-cell.next-departure').forEach((cell) => {
-    cell.classList.remove('next-departure');
-  });
-
-  if (nextCell) {
-    nextCell.classList.add('next-departure');
-  }
-}
 
 // Load data when page loads
 document.addEventListener("DOMContentLoaded", loadScheduleData);
