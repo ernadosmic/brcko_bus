@@ -77,9 +77,9 @@ function displayScheduleData(data) {
       timeCell.textContent = time;
 
       if (data.regular_services.includes(timeIndex + 1)) {
-        timeCell.className = "regular-service";
+        timeCell.classList.add("regular-service");
       } else {
-        timeCell.className = "irregular-service";
+        timeCell.classList.add("irregular-service");
       }
 
       row.appendChild(timeCell);
@@ -87,13 +87,6 @@ function displayScheduleData(data) {
 
     tableBody.appendChild(row);
   });
-
-  // Highlight the current time and next departure after rendering the table
-  highlightCurrentTime();
-  highlightNextDeparture();
-  // Update highlights every minute
-  setInterval(highlightCurrentTime, 60000);
-  setInterval(highlightNextDeparture, 60000);
 }
 
 function generateRouteMap(stops) {
