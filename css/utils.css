@@ -1,3 +1,52 @@
+@font-face {
+  font-family: "Helvetica";
+  src: url("../assets/fonts/Helvetica.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica";
+  src: url("../assets/fonts/Helvetica-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica";
+  src: url("../assets/fonts/Helvetica-Oblique.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helvetica";
+  src: url("../assets/fonts/Helvetica-BoldOblique.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Helvetica Light";
+  src: url("../assets/fonts/helvetica-light-587ebe5a59211.ttf")
+    format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Compressed";
+  src: url("../assets/fonts/helvetica-compressed-5871d14b6903a.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "Helvetica Rounded";
+  src: url("../assets/fonts/helvetica-rounded-bold-5871d05ead8de.otf")
+    format("opentype");
+  font-weight: 700;
+}
+
 /* Design system variables and generic utilities */
 :root {
   --primary-color: #2e5cb8;
@@ -20,7 +69,8 @@
   --light-color: #f8f9fa;
   --gray-color: #6c757d;
 
-  --font-family-base: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --font-family-base: "Helvetica", "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
   --font-size-xs: 0.65rem;
   --font-size-sm: 0.75rem;
   --font-size-base: 0.85rem;
@@ -55,13 +105,27 @@
 }
 
 /* Bootstrap overrides */
-.bg-primary { background-color: var(--primary-color) !important; }
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
 
 /* Service colouring */
-.regular-service { background-color: var(--regular-service-bg) !important; color: var(--regular-service-color) !important; }
-.irregular-service { background-color: var(--irregular-service-bg) !important; color: var(--irregular-service-color) !important; }
-.regular-dot { color: var(--regular-service-color); background-color: var(--regular-service-bg); }
-.irregular-dot { color: var(--irregular-service-color); background-color: var(--irregular-service-bg); }
+.regular-service {
+  background-color: var(--regular-service-bg) !important;
+  color: var(--regular-service-color) !important;
+}
+.irregular-service {
+  background-color: var(--irregular-service-bg) !important;
+  color: var(--irregular-service-color) !important;
+}
+.regular-dot {
+  color: var(--regular-service-color);
+  background-color: var(--regular-service-bg);
+}
+.irregular-dot {
+  color: var(--irregular-service-color);
+  background-color: var(--irregular-service-bg);
+}
 
 /* Utility indicator used in tables and maps */
 .station-r {
