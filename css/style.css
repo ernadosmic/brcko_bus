@@ -684,7 +684,7 @@ th.regular-service {
 
 .station {
   position: relative;
-  width: 90px;
+  width: 140px; /* Increased from 90px */
   height: 140px;
   display: flex;
   justify-content: center;
@@ -709,9 +709,10 @@ th.regular-service {
   font-weight: 600;
   color: #000000;
   white-space: nowrap;
-  width: 120px;
+  width: 180px; /* Increased from 120px */
   line-height: 1.2;
   z-index: 3;
+  overflow: visible;
 }
 
 /* Bold first and last station names for alternative route map */
