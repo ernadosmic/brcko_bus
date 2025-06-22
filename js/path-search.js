@@ -95,7 +95,7 @@
                 for (let i = 0; i < sch.services; i++) {
                     const depStr = sch.stops[sIdx].times[i];
                     const arrStr = sch.stops[eIdx].times[i];
-                    if (depStr === '—' || arrStr === '—') continue; // <-- skip invalid
+                    if (!depStr || depStr === '—' || depStr === '' || !arrStr || arrStr === '—' || arrStr === '') continue; // skip invalid
                     const dep = parseTime(depStr);
                     if (dep >= nowMin) {
                         const arr = parseTime(arrStr);
@@ -138,17 +138,17 @@
                     for (let i = 0; i < sch1.services; i++) {
                         const dep1Str = sch1.stops[sIdx].times[i];
                         const arr1Str = sch1.stops[t].times[i];
-                        if (dep1Str === '—' || arr1Str === '—') continue;
+                        if (!dep1Str || dep1Str === '—' || dep1Str === '' || !arr1Str || arr1Str === '—' || arr1Str === '') continue;
 
                         for (let j = 0; j < sch2.services; j++) {
                             const dep2Str = sch2.stops[tIdx2].times[j];
                             const arr2Str = sch2.stops[eIdx2].times[j];
-                            if (dep2Str === '—' || arr2Str === '—') continue;
-
+                            if (!dep2Str || dep2Str === '—' || dep2Str === '' || !arr2Str || arr2Str === '—' || arr2Str === '') continue;
                             const dep1 = parseTime(dep1Str);
                             if (dep1 < nowMin) continue;
                             const arr1 = parseTime(arr1Str);
                             const dep2 = parseTime(dep2Str);
+                            if (dep2 < arr1) continue; // Transfer 
                             const arr2 = parseTime(arr2Str);
                             if (arr2 >= bestDirectArrival) continue; // <-- Only keep if better than direct
                             record(dep1, arr2, [
@@ -209,39 +209,50 @@
                             if (t2Idx3 === -1 || eIdx3 === -1 || t2Idx3 >= eIdx3) continue;
 
                             for (let i = 0; i < sch1.services; i++) {
-                                const dep1 = parseTime(sch1.stops[sIdx].times[i]);
+                                const dep1Str = sch1.stops[sIdx].times[i];
+                                const arr1Str = sch1.stops[t1].times[i];
+                                if (!dep1Str || dep1Str === '—' || dep1Str === '' || !arr1Str || arr1Str === '—' || arr1Str === '') continue;
+                                const dep1 = parseTime(dep1Str);
                                 if (dep1 < nowMin) continue;
-                                const arr1 = parseTime(sch1.stops[t1].times[i]);
+                                const arr1 = parseTime(arr1Str);
+
                                 for (let j = 0; j < sch2.services; j++) {
-                                    const dep2 = parseTime(sch2.stops[t1Idx2].times[j]);
-                                    if (dep2 < arr1) continue;
-                                    const arr2 = parseTime(sch2.stops[t2].times[j]);
+                                    const dep2Str = sch2.stops[t1Idx2].times[j];
+                                    const arr2Str = sch2.stops[t2].times[j];
+                                    if (!dep2Str || dep2Str === '—' || dep2Str === '' || !arr2Str || arr2Str === '—' || arr2Str === '') continue;
+                                    const dep2 = parseTime(dep2Str);
+                                    if (dep2 < arr1) continue; // Transfer bus must depart after arrival
+                                    const arr2 = parseTime(arr2Str);
+
                                     for (let k = 0; k < sch3.services; k++) {
-                                        const dep3 = parseTime(sch3.stops[t2Idx3].times[k]);
+                                        const dep3Str = sch3.stops[t2Idx3].times[k];
+                                        const arr3Str = sch3.stops[eIdx3].times[k];
+                                        if (!dep3Str || dep3Str === '—' || dep3Str === '' || !arr3Str || arr3Str === '—' || arr3Str === '') continue;
+                                        const dep3 = parseTime(dep3Str);
                                         if (dep3 < arr2) continue;
-                                        const arr3 = parseTime(sch3.stops[eIdx3].times[k]);
+                                        const arr3 = parseTime(arr3Str);
                                         if (arr3 >= bestDirectArrival) continue;
                                         record(dep1, arr3, [
                                             {
                                                 line: c1,
                                                 from: sch1.stops[sIdx].name,
                                                 to: sch1.stops[t1].name,
-                                                dep: sch1.stops[sIdx].times[i],
-                                                arr: sch1.stops[t1].times[i]
+                                                dep: dep1Str,
+                                                arr: arr1Str
                                             },
                                             {
                                                 line: c2,
                                                 from: sch2.stops[t1Idx2].name,
                                                 to: sch2.stops[t2].name,
-                                                dep: sch2.stops[t1Idx2].times[j],
-                                                arr: sch2.stops[t2].times[j]
+                                                dep: dep2Str,
+                                                arr: arr2Str
                                             },
                                             {
                                                 line: c3,
                                                 from: sch3.stops[t2Idx3].name,
                                                 to: sch3.stops[eIdx3].name,
-                                                dep: sch3.stops[t2Idx3].times[k],
-                                                arr: sch3.stops[eIdx3].times[k]
+                                                dep: dep3Str,
+                                                arr: arr3Str
                                             }
                                         ]);
                                         break;
