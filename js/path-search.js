@@ -358,7 +358,64 @@
             }
             const routes = allRoutes.slice(0, resultsToShow);
 
-            resultsDiv.innerHTML = routes.map(r => {
+            // Group routes by start, end, and dayOffset
+            function groupRoutes(routes) {
+                const groups = {};
+                routes.forEach(r => {
+                    // Only group two-segment (one transfer) routes
+                    if (r.segments.length === 2) {
+                        const key = `${r.start}|${r.end}|${r.dayOffset}|${r.segments[0].line}|${r.segments[0].from}`;
+                        if (!groups[key]) {
+                            groups[key] = {
+                                ...r,
+                                transferOptions: []
+                            };
+                        }
+                        groups[key].transferOptions.push(r.segments[1]);
+                    } else {
+                        // For direct or multi-transfer, keep as is
+                        const key = Math.random().toString(36).slice(2); // unique
+                        groups[key] = r;
+                    }
+                });
+                return Object.values(groups);
+            }
+
+            const groupedRoutes = groupRoutes(routes);
+
+            resultsDiv.innerHTML = groupedRoutes.map(r => {
+                const dayLabel = getDayLabel(r.dayOffset);
+
+                // If grouped (has transferOptions), render as merged card
+                if (r.transferOptions && r.transferOptions.length) {
+                    const seg0 = r.segments[0];
+                    const sch0 = scheduleCache[seg0.line];
+                    const lineNum0 = sch0?.line_number || seg0.line.replace(/^line_/, '');
+                    const lineName0 = sch0?.name || '';
+                    let main = `<div class="route-segment">
+    <span class="route-time">${seg0.dep} - ${r.end} <sup>${dayLabel}</sup></span>
+    <div><strong>Linija ${lineNum0} (${lineName0})</strong>: ${seg0.from} &rarr;</div>
+</div>`;
+
+                    // List all transfer options
+                    main += `<div class="mt-2"><strong>Stanice presjedanja Linija ${(() => {
+                        const sch1 = scheduleCache[r.transferOptions[0].line];
+                        return sch1?.line_number || r.transferOptions[0].line.replace(/^line_/, '');
+                    })()} (${(() => {
+                        const sch1 = scheduleCache[r.transferOptions[0].line];
+                        return sch1?.name || '';
+                    })()}):</strong><ul class="mb-2" style="list-style:none;padding-left:0;">`;
+
+                    r.transferOptions.forEach(seg1 => {
+                        main += `<li>
+                            ${seg1.dep} ${seg1.from} &rarr; ${seg1.arr} ${seg1.to}
+                        </li>`;
+                    });
+                    main += `</ul></div>`;
+                    return `<div class="route-result">${main}</div>`;
+                }
+
+                // Otherwise, render as before
                 const segs = r.segments.map((seg, idx, arr) => {
                     const sch = scheduleCache[seg.line];
                     const lineNum = sch?.line_number || seg.line.replace(/^line_/, '');
@@ -384,7 +441,6 @@
                         ${idx < arr.length - 1 ? '<hr>' : ''}
                     </div>`;
                 }).join('');
-                const dayLabel = getDayLabel(r.dayOffset);
                 return `<div class="route-result">
                     <span class="route-time">${r.start} - ${r.end} <sup>${dayLabel}</sup></span>
                     ${segs}
