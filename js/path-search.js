@@ -289,6 +289,11 @@
         const endSuggestions = document.getElementById('route-end-suggestions');
         if (!startInput || !endInput || !resultsDiv) return;
 
+        const multiTransferToggle = document.getElementById('multi-transfer-toggle');
+        if (multiTransferToggle) {
+            multiTransferToggle.addEventListener('change', update);
+        }
+
         startInput.disabled = true;
         endInput.disabled = true;
 
@@ -348,6 +353,11 @@
                     if (allRoutes.length >= MAX_RESULTS) break;
                 }
             }
+
+            if (!document.getElementById('multi-transfer-toggle')?.checked) {
+                allRoutes = allRoutes.filter(r => r.segments.length <= 2);
+            }
+
             if (!startInput.value.trim() || !endInput.value.trim()) {
                 resultsDiv.innerHTML = '';
                 return;
@@ -402,9 +412,16 @@
         ${dayLabelHtml}
         <div><strong>Linija ${lineNum0} (${lineName0})</strong>: <span class="transfer-time">(${seg0.dep})</span> ${seg0.from} &rarr;</div>
         <div class="mt-2">
-            ${r.transferOptions.map(seg1 =>
-                        `→ <span class="transfer-time">(${seg1.transferArr})</span> ${seg1.from}`
-                    ).join('<br>')}
+            ${r.transferOptions.map(seg1 => {
+                        const travelTime = parseTime(seg1.arr) - parseTime(seg1.dep);
+                        let walkingHtml = '';
+                        if (travelTime === 1) {
+                            walkingHtml = ` + <i class="fa-duotone fa-solid fa-person-walking"></i> <span class="transfer-time">(4 min)</span> &rarr; ${seg1.to}<hr>`;
+                        } else if (travelTime === 2) {
+                            walkingHtml = ` + <i class="fa-duotone fa-solid fa-person-walking"></i> <span class="transfer-time">(6 min)</span> &rarr; ${seg1.to}<hr>`;
+                        }
+                        return `→ <span class="transfer-time">(${seg1.transferArr})</span> ${seg1.from}${walkingHtml}`;
+                    }).join('<br>')}
         </div>
                     `;
 
@@ -443,8 +460,27 @@
                             <a href="linije/${seg.line}.html" target="_blank" class="irregular-link">Provjeri detaljnije plan</a>
                           </div>`
                         : '';
+
+                    const travelTime = parseTime(seg.arr) - parseTime(seg.dep);
+                    let segmentHtml;
+
+                    // Always define the standard "as-is" route display
+                    const originalSegmentHtml = `<div><strong>Linija ${lineNum} (${lineName})</strong>: <span class="transfer-time">(${seg.dep})</span> ${seg.from} &rarr; <span class="transfer-time">(${seg.arr})</span> ${seg.to}</div>`;
+
+                    if (idx === arr.length - 1 && (travelTime === 1 || travelTime === 2)) {
+                        // If it's a short final leg, create the walking suggestion
+                        const walkingTime = travelTime === 1 ? 4 : 6; // 1 minute = 4 minutes walking, 2 minutes = 5 minutes walking
+                        const walkingPart = ` + <i class="fa-duotone fa-solid fa-person-walking"></i> <span class="transfer-time">(${walkingTime} min)</span> &rarr; ${seg.to}`;
+                        const walkingSuggestionHtml = `<div>${seg.from}${walkingPart}</div>`;
+                        // Combine the suggestion and the original, separated by a line
+                        segmentHtml = `${walkingSuggestionHtml}<hr class="my-1">${originalSegmentHtml}`;
+                    } else {
+                        // Otherwise, just use the standard display
+                        segmentHtml = originalSegmentHtml;
+                    }
+
                     return `<div class="route-segment">
-                        <div><strong>Linija ${lineNum} (${lineName})</strong>: <span class="transfer-time">(${seg.dep})</span> ${seg.from} &rarr; <span class="transfer-time">(${seg.arr})</span> ${seg.to}</div>
+                        ${segmentHtml}
                         ${irregularNote}
                         ${idx < arr.length - 1 ? '<hr>' : ''}
                     </div>`;
