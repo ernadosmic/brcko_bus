@@ -11,7 +11,7 @@ img.responsive-image {
   width: 100%;
   height: auto;
   /* replace 1200/600 with your true pixel ratio */
-  aspect-ratio: 1200 / 600;
+  aspect-ratio: 970 / 250;
   /* if you can’t use aspect-ratio, explicitly set a max-height placeholder: */
   /* max-height: 600px; */
 }
