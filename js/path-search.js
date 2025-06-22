@@ -67,7 +67,9 @@
         const endKey = endStation.trim().toLowerCase();
         if (!startKey || !endKey) return [];
 
+        // Ensure schedules are loaded (redundant if preloaded, but safe)
         await loadAllSchedules();
+
         const now = new Date();
         const nowMin = now.getHours() * 60 + now.getMinutes();
         const results = [];
@@ -141,12 +143,23 @@
         }));
     }
 
-    // UI hookup
-    document.addEventListener('DOMContentLoaded', () => {
+    // UI hookup with disabled inputs until schedules load
+    document.addEventListener('DOMContentLoaded', async () => {
         const startInput = document.getElementById('route-start');
         const endInput = document.getElementById('route-end');
         const resultsDiv = document.getElementById('route-results');
         if (!startInput || !endInput || !resultsDiv) return;
+
+        // disable until ready
+        startInput.disabled = true;
+        endInput.disabled = true;
+
+        // preload all schedule JSONs
+        await loadAllSchedules();
+
+        console.log('[path-search.js] Schedules preloaded, enabling inputs');
+        startInput.disabled = false;
+        endInput.disabled = false;
 
         async function update() {
             const routes = await searchRoutes(startInput.value, endInput.value);
