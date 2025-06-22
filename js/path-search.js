@@ -62,7 +62,7 @@
     }
 
     // Search routes between two stations (direct or one transfer)
-    async function searchRoutes(startStation, endStation) {
+    async function searchRoutes(startStation, endStation, nowMinOverride) {
         const startKey = normalize(startStation.trim());
         const endKey = normalize(endStation.trim());
         if (!startKey || !endKey) return [];
@@ -71,7 +71,9 @@
         await loadAllSchedules();
 
         const now = new Date();
-        const nowMin = now.getHours() * 60 + now.getMinutes();
+        const nowMin = typeof nowMinOverride === 'number'
+            ? nowMinOverride
+            : now.getHours() * 60 + now.getMinutes();
         const results = [];
 
         const schedules = Object.entries(scheduleCache);
@@ -253,7 +255,7 @@
         }
 
         results.sort((a, b) => a.dep - b.dep);
-        return results.slice(0, 3).map(r => ({
+        return results.map(r => ({
             start: formatTime(r.dep),
             end: formatTime(r.arr),
             segments: r.segments
@@ -287,20 +289,44 @@
             return allStations.some(st => normalize(st) === normalize(name.trim()));
         }
 
+        let prevStart = '', prevEnd = '';
         async function update() {
+            if (startInput.value !== prevStart || endInput.value !== prevEnd) {
+                resultsToShow = 3;
+                prevStart = startInput.value;
+                prevEnd = endInput.value;
+            }
             if (!isValidStation(startInput.value) || !isValidStation(endInput.value)) {
                 resultsDiv.innerHTML = '<p class="text-danger">Unesite ispravne stanice iz liste.</p>';
                 return;
             }
-            const routes = await searchRoutes(startInput.value, endInput.value);
+            // Try today
+            const now = new Date();
+            const nowMin = now.getHours() * 60 + now.getMinutes();
+            allRoutes = await searchRoutes(startInput.value, endInput.value, nowMin);
+
+            // If not enough results, try tomorrow (from 00:00)
+            if (allRoutes.length < resultsToShow) {
+                const tomorrowMin = 0; // midnight
+                const tomorrowRoutes = await searchRoutes(startInput.value, endInput.value, tomorrowMin);
+                // Only add tomorrow's results that are not already in allRoutes
+                const seen = new Set(allRoutes.map(r => r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',')));
+                for (const r of tomorrowRoutes) {
+                    const key = r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',');
+                    if (!seen.has(key)) allRoutes.push(r);
+                    if (allRoutes.length >= MAX_RESULTS) break;
+                }
+            }
             if (!startInput.value.trim() || !endInput.value.trim()) {
                 resultsDiv.innerHTML = '';
                 return;
             }
-            if (routes.length === 0) {
+            if (allRoutes.length === 0) {
                 resultsDiv.innerHTML = '<p class="text-danger">Nema dostupnih linija.</p>';
                 return;
             }
+            const routes = allRoutes.slice(0, resultsToShow);
+
             resultsDiv.innerHTML = routes.map(r => {
                 const segs = r.segments.map((seg, idx, arr) => {
                     const sch = scheduleCache[seg.line];
@@ -315,10 +341,14 @@
                     }
                     const isIrregular = sch?.irregular_services?.includes(serviceIdx + 1);
                     const irregularNote = isIrregular
-                        ? `<div class="irregular-note">Napomena: Polasci ove linije ne spadaju u regularni plan vožnje.</div>` : '';
+                        ? `<div class="irregular-note">
+                            <strong>Napomena:</strong> Polasci ove linije ne spadaju u regularni plan vožnje.<br>
+                            <a href="linije/${seg.line}.html" target="_blank" class="irregular-link">Provjeri detaljnije plan</a>
+                          </div>`
+                        : '';
                     return `<div class="route-segment">
-                        
-                        <div><strong>Linija ${lineNum} (${lineName})</strong>: ${seg.from} &rarr; ${seg.to}</div><div class="segment-time"><span>${seg.dep} - ${seg.arr}</span></div>
+                        <div class="segment-time"><span>${seg.dep} - ${seg.arr}</span></div>
+                        <div><strong>Linija ${lineNum} (${lineName})</strong>: ${seg.from} &rarr; ${seg.to}</div>
                         ${irregularNote}
                         ${idx < arr.length - 1 ? '<hr>' : ''}
                     </div>`;
@@ -328,6 +358,19 @@
                     ${segs}
                 </div>`;
             }).join('');
+
+            const totalResults = allRoutes.length;
+            if (resultsToShow < Math.min(totalResults, MAX_RESULTS)) {
+                resultsDiv.innerHTML += `
+                    <div class="d-grid mt-2">
+                        <button id="show-more-btn" class="btn btn-outline-primary">Prikaži još</button>
+                    </div>
+                `;
+                document.getElementById('show-more-btn').onclick = () => {
+                    resultsToShow += 3;
+                    update();
+                };
+            }
         }
 
         startInput.addEventListener('input', update);
@@ -414,4 +457,6 @@
         }, 150));
     }
 
+    let resultsToShow = 3;
+    const MAX_RESULTS = 30;
 })();

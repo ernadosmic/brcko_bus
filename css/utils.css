@@ -219,3 +219,10 @@
   margin-top: 0.2em;
   font-style: italic;
 }
+
+.irregular-link {
+  color: #0d6efd;
+  text-decoration: underline;
+  font-size: 0.97em;
+  padding-left: 0;
+}
