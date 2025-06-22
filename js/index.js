@@ -77,7 +77,7 @@
       const tdName = document.createElement("td");
       tdName.className = `sticky-col${isEnd ? " table-warning" : ""}`;
       const nameHTML = stop.name.replace(
-        /\*\*R\*\*/g,
+        /\(R\)/g,
         '<span class="station-r">R</span>'
       );
       tdName.innerHTML = (idx === 0 || isEnd)
@@ -118,7 +118,7 @@
       const nameEl = document.createElement("div");
       nameEl.className = "station-name";
       nameEl.innerHTML = stop.name.replace(
-        /\*\*R\*\*/g,
+        /\(R\)/g,
         '<span class="station-r">R</span>'
       );
 
