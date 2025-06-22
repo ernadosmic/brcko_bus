@@ -6,7 +6,7 @@
     if (!/^line_\w+\.html$/i.test(htmlFile)) return;
 
     const baseName = htmlFile.replace(/\.html$/i, "");
-    const jsonFile = `../assets/schedules/${baseName}.json`;
+    const jsonFile = `./assets/schedules/${baseName}.json`;
     // ↑ absolute path from your site root
 
     try {
