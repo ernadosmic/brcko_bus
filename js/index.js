@@ -1,21 +1,17 @@
 // schedule.js
 ; (function () {
-  // 1) Load & parse the JSON, then hand off to displayScheduleData()
+  // 1) Main entry: load & display if we’re on a line_*.html page
   async function loadScheduleData() {
-    const pathParts = window.location.pathname.split("/");
-    const htmlFile = pathParts[pathParts.length - 1];
+    const htmlFile = window.location.pathname.split("/").pop();
+    if (!/^line_\w+\.html$/i.test(htmlFile)) return;
 
-    // only on your line_*.html pages
-    if (!/^line_\w+\.html$/.test(htmlFile)) return;
-
-    const baseName = htmlFile.replace(/\.html$/, "");
-    const jsonFile = `../assets/schedules/${baseName}.json`;
+    const baseName = htmlFile.replace(/\.html$/i, "");
+    const jsonFile = `/assets/schedules/${baseName}.json`;
+    // ↑ absolute path from your site root
 
     try {
       const resp = await fetch(jsonFile);
-      if (!resp.ok) {
-        throw new Error(`Schedule file not found (${resp.status})`);
-      }
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
       const data = await resp.json();
       displayScheduleData(data);
     } catch (err) {
@@ -30,16 +26,17 @@
     }
   }
 
-  // 2) Render the table & headers
+  // 2) Build the table & headers
   function displayScheduleData(data) {
-    // header info
+    // — Header info —
     document.getElementById("route-title").textContent = data.name;
     document.getElementById("line-badge").textContent = `Linija: ${data.line_number}`;
     document.getElementById("regular-explanation").textContent = data.regular_explanation;
     document.getElementById("irregular-explanation").textContent = data.irregular_explanation;
 
-    // service header row
+    // — Service numbers row —
     const svcHead = document.getElementById("service-header");
+    svcHead.innerHTML = "";  // clear old
     for (let i = 1; i <= data.services; i++) {
       const th = document.createElement("th");
       th.className = "text-center small";
@@ -50,19 +47,20 @@
       svcHead.appendChild(th);
     }
 
-    // route map
+    // — Route map —
     generateRouteMap(data.stops);
 
-    // schedule rows
+    // — Schedule rows —
     const tbody = document.getElementById("schedule-body");
+    tbody.innerHTML = "";  // clear old
     data.stops.forEach((stop, idx) => {
       const isEnd = idx === data.stops.length - 1;
       const tr = document.createElement("tr");
       if (isEnd) tr.classList.add("table-warning");
 
-      // name cell
+      // station name
       const tdName = document.createElement("td");
-      tdName.className = `sticky-col ${isEnd ? "table-warning" : ""}`;
+      tdName.className = `sticky-col${isEnd ? " table-warning" : ""}`;
       const nameHTML = stop.name.replace(
         /\*\*R\*\*/g,
         '<span class="station-r">R</span>'
@@ -72,7 +70,7 @@
         : nameHTML;
       tr.appendChild(tdName);
 
-      // time cells
+      // times
       stop.times.forEach((time, ti) => {
         const td = document.createElement("td");
         td.className = "time-cell";
@@ -89,7 +87,7 @@
     });
   }
 
-  // 3) Route-map mini-render
+  // 3) Mini route‐map under the headers
   function generateRouteMap(stops) {
     const container = document.getElementById("route-stations");
     container.innerHTML = "";
@@ -120,7 +118,7 @@
     });
   }
 
-  // 4) Auto-invoke as soon as DOM is ready (even if other scripts already hooked DOMContentLoaded)
+  // 4) Hook it up
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", loadScheduleData);
   } else {
