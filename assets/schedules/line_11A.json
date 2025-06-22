@@ -1,0 +1,197 @@
+{
+    "$schema": "./bus_schema.json",
+    "name": "Tesla - Bukvik ž.st.rask.",
+    "line_number": "11a",
+    "services": 4,
+    "regular_services": [
+        1,
+        2,
+        3,
+        4
+    ],
+    "irregular_services": [],
+    "regular_explanation": "Polasci pod brojevima 1, 2, 3, 4 saobraćaju svakodnevno",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "TESLA",
+            "times": [
+                "05:20",
+                "06:30",
+                "13:30",
+                "19:20"
+            ]
+        },
+        {
+            "name": "Vet. Stanica",
+            "times": [
+                "05:22",
+                "06:32",
+                "13:32",
+                "19:22"
+            ]
+        },
+        {
+            "name": "Centar",
+            "times": [
+                "05:24",
+                "06:34",
+                "13:34",
+                "19:24"
+            ]
+        },
+        {
+            "name": "Kolobara",
+            "times": [
+                "05:25",
+                "06:35",
+                "13:35",
+                "19:25"
+            ]
+        },
+        {
+            "name": "Dom zdravlja",
+            "times": [
+                "05:26",
+                "06:36",
+                "13:36",
+                "19:26"
+            ]
+        },
+        {
+            "name": "Meraje",
+            "times": [
+                "05:27",
+                "06:37",
+                "13:37",
+                "19:27"
+            ]
+        },
+        {
+            "name": "Izbor",
+            "times": [
+                "05:28",
+                "06:38",
+                "13:38",
+                "19:28"
+            ]
+        },
+        {
+            "name": "Broduša",
+            "times": [
+                "05:29",
+                "06:39",
+                "13:39",
+                "19:29"
+            ]
+        },
+        {
+            "name": "Suljagića Sokak",
+            "times": [
+                "05:30",
+                "06:40",
+                "13:40",
+                "19:30"
+            ]
+        },
+        {
+            "name": "Stari Rasadnik",
+            "times": [
+                "05:34",
+                "06:44",
+                "13:44",
+                "19:34"
+            ]
+        },
+        {
+            "name": "Brod Škola",
+            "times": [
+                "05:35",
+                "06:45",
+                "13:45",
+                "19:35"
+            ]
+        },
+        {
+            "name": "Ulović Groblje",
+            "times": [
+                "05:42",
+                "06:52",
+                "13:52",
+                "19:42"
+            ]
+        },
+        {
+            "name": "Ulović Crkva",
+            "times": [
+                "05:45",
+                "06:55",
+                "13:55",
+                "19:45"
+            ]
+        },
+        {
+            "name": "Radoševci",
+            "times": [
+                "05:47",
+                "06:57",
+                "13:57",
+                "19:47"
+            ]
+        },
+        {
+            "name": "Bukovac Ž.St.",
+            "times": [
+                "05:49",
+                "06:59",
+                "13:59",
+                "19:49"
+            ]
+        },
+        {
+            "name": "Bukovac Crkva",
+            "times": [
+                "05:51",
+                "07:01",
+                "14:01",
+                "19:51"
+            ]
+        },
+        {
+            "name": "Vitanovići",
+            "times": [
+                "05:52",
+                "07:02",
+                "14:02",
+                "19:52"
+            ]
+        },
+        {
+            "name": "Vitanovići Dom",
+            "times": [
+                "05:53",
+                "07:03",
+                "14:03",
+                "19:53"
+            ]
+        },
+        {
+            "name": "Bukvik Škola",
+            "times": [
+                "05:54",
+                "07:04",
+                "14:04",
+                "19:54"
+            ]
+        },
+        {
+            "name": "Bukvik ž.st.rask.",
+            "times": [
+                "—",
+                "—",
+                "—",
+                "19:59"
+            ]
+        }
+    ]
+}

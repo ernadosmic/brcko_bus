@@ -1,0 +1,110 @@
+{
+    "$schema": "./bus_schema.json",
+    "name": "Bolnica - Miladije",
+    "line_number": "4",
+    "services": 1,
+    "regular_services": [
+        1
+    ],
+    "irregular_services": [],
+    "regular_explanation": "Polasci pod brojem 1 saobraćaju svakodnevno",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "BOLNICA",
+            "times": [
+                "18:30"
+            ]
+        },
+        {
+            "name": "Dom Zdravlja",
+            "times": [
+                "18:31"
+            ]
+        },
+        {
+            "name": "Kolobara",
+            "times": [
+                "18:32"
+            ]
+        },
+        {
+            "name": "Robna Kuća",
+            "times": [
+                "18:33"
+            ]
+        },
+        {
+            "name": "Spliter",
+            "times": [
+                "18:34"
+            ]
+        },
+        {
+            "name": "Grčica I",
+            "times": [
+                "18:35"
+            ]
+        },
+        {
+            "name": "Grčica II",
+            "times": [
+                "18:37"
+            ]
+        },
+        {
+            "name": "Farma",
+            "times": [
+                "18:39"
+            ]
+        },
+        {
+            "name": "Seljanka (škola)",
+            "times": [
+                "18:40"
+            ]
+        },
+        {
+            "name": "Potočari Crkva",
+            "times": [
+                "18:41"
+            ]
+        },
+        {
+            "name": "Potočari I",
+            "times": [
+                "18:42"
+            ]
+        },
+        {
+            "name": "Potočari II",
+            "times": [
+                "18:44"
+            ]
+        },
+        {
+            "name": "Potočari III",
+            "times": [
+                "18:48"
+            ]
+        },
+        {
+            "name": "Trešnjica",
+            "times": [
+                "18:52"
+            ]
+        },
+        {
+            "name": "Dubravice D.",
+            "times": [
+                "18:55"
+            ]
+        },
+        {
+            "name": "MILADIJE",
+            "times": [
+                "18:59"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,188 @@
+{
+    "$schema": "./bus_schema.json",
+    "name": "Tesla - Bukvik Škola (povratak)",
+    "line_number": "11B",
+    "services": 4,
+    "regular_services": [
+        5,
+        6,
+        7,
+        8
+    ],
+    "irregular_services": [],
+    "regular_explanation": "Polasci pod brojevima 5, 6, 7, 8 saobraćaju svakodnevno",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "TESLA",
+            "times": [
+                "06:28",
+                "07:39",
+                "14:39",
+                "20:39"
+            ]
+        },
+        {
+            "name": "Vet. Stanica",
+            "times": [
+                "06:27",
+                "07:38",
+                "14:38",
+                "20:38"
+            ]
+        },
+        {
+            "name": "Centar",
+            "times": [
+                "06:24",
+                "07:35",
+                "14:35",
+                "20:35"
+            ]
+        },
+        {
+            "name": "Kolobara",
+            "times": [
+                "06:23",
+                "07:34",
+                "14:34",
+                "20:34"
+            ]
+        },
+        {
+            "name": "Dom Zdravlja",
+            "times": [
+                "06:22",
+                "07:33",
+                "14:33",
+                "20:33"
+            ]
+        },
+        {
+            "name": "Meraje",
+            "times": [
+                "06:21",
+                "07:32",
+                "14:32",
+                "20:32"
+            ]
+        },
+        {
+            "name": "Izbor",
+            "times": [
+                "06:20",
+                "07:31",
+                "14:31",
+                "20:31"
+            ]
+        },
+        {
+            "name": "Broduša",
+            "times": [
+                "06:19",
+                "07:30",
+                "14:30",
+                "20:30"
+            ]
+        },
+        {
+            "name": "Suljagića Sokak",
+            "times": [
+                "06:18",
+                "07:29",
+                "14:29",
+                "20:29"
+            ]
+        },
+        {
+            "name": "Stari Rasanidik",
+            "times": [
+                "06:16",
+                "07:27",
+                "14:27",
+                "20:27"
+            ]
+        },
+        {
+            "name": "Brod Škola",
+            "times": [
+                "06:13",
+                "07:24",
+                "14:24",
+                "20:24"
+            ]
+        },
+        {
+            "name": "Ulović Groblje",
+            "times": [
+                "06:14",
+                "07:17",
+                "14:17",
+                "20:17"
+            ]
+        },
+        {
+            "name": "Ulović Crkva",
+            "times": [
+                "06:12",
+                "07:15",
+                "14:15",
+                "20:15"
+            ]
+        },
+        {
+            "name": "Radoševci",
+            "times": [
+                "06:10",
+                "07:12",
+                "14:12",
+                "20:12"
+            ]
+        },
+        {
+            "name": "Bukovac Ž.St.",
+            "times": [
+                "06:09",
+                "07:11",
+                "14:11",
+                "20:11"
+            ]
+        },
+        {
+            "name": "Bukovac Crkva",
+            "times": [
+                "05:57",
+                "07:08",
+                "14:08",
+                "20:08"
+            ]
+        },
+        {
+            "name": "Vitanovići",
+            "times": [
+                "05:56",
+                "07:07",
+                "14:07",
+                "20:07"
+            ]
+        },
+        {
+            "name": "Vitanovići Dom",
+            "times": [
+                "05:55",
+                "07:06",
+                "14:06",
+                "20:06"
+            ]
+        },
+        {
+            "name": "Bukvik Škola",
+            "times": [
+                "05:54",
+                "07:05",
+                "14:05",
+                "20:05"
+            ]
+        }
+    ]
+}

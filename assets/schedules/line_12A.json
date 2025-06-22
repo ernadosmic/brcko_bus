@@ -1,0 +1,128 @@
+{
+    "$schema": "./bus_schema.json",
+    "name": "Tesla - Čerik Bor",
+    "line_number": "12a",
+    "services": 1,
+    "regular_services": [
+        1
+    ],
+    "irregular_services": [],
+    "regular_explanation": "Polasci pod brojevima 1 saobraćaju svakodnevno",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "TESLA",
+            "times": [
+                "10:10"
+            ]
+        },
+        {
+            "name": "Vet. Stanica",
+            "times": [
+                "10:11"
+            ]
+        },
+        {
+            "name": "Centar",
+            "times": [
+                "10:14"
+            ]
+        },
+        {
+            "name": "Kolobara",
+            "times": [
+                "10:16"
+            ]
+        },
+        {
+            "name": "Dom Zdravlja",
+            "times": [
+                "10:17"
+            ]
+        },
+        {
+            "name": "Meraje",
+            "times": [
+                "10:18"
+            ]
+        },
+        {
+            "name": "Izbor",
+            "times": [
+                "10:19"
+            ]
+        },
+        {
+            "name": "Suljagića Sokak",
+            "times": [
+                "10:20"
+            ]
+        },
+        {
+            "name": "Šadrvan",
+            "times": [
+                "10:21"
+            ]
+        },
+        {
+            "name": "Brod Škola",
+            "times": [
+                "10:25"
+            ]
+        },
+        {
+            "name": "Brod Spomenik",
+            "times": [
+                "10:27"
+            ]
+        },
+        {
+            "name": "Lukavac raskrs.",
+            "times": [
+                "10:32"
+            ]
+        },
+        {
+            "name": "Bukvik",
+            "times": [
+                "10:35"
+            ]
+        },
+        {
+            "name": "Bukvik ž.stan. \"R\"",
+            "times": [
+                "10:40"
+            ]
+        },
+        {
+            "name": "D.Škakava ras.",
+            "times": [
+                "10:45"
+            ]
+        },
+        {
+            "name": "Seonjaci",
+            "times": [
+                "10:50"
+            ]
+        },
+        {
+            "name": "Dubrave Škola",
+            "times": [
+                "10:55"
+            ]
+        },
+        {
+            "name": "Dubrave raskrs.",
+            "times": [
+                "11:00"
+            ]
+        },
+        {
+            "name": "Čerik Bor",
+            "times": [
+                "11:05"
+            ]
+        }
+    ]
+}
