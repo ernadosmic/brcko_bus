@@ -1,7 +1,7 @@
 {
     "$schema": "./bus_schema.json",
     "name": "Bolnica - Satorovići",
-    "line_number": "3",
+    "line_number": "5",
     "services": 6,
     "regular_services": [
         7,
