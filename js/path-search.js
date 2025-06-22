@@ -62,7 +62,7 @@
     }
 
     // Search routes between two stations (direct or one transfer)
-    async function searchRoutes(startStation, endStation, nowMinOverride) {
+    async function searchRoutes(startStation, endStation, nowMinOverride, dayOffset = 0) {
         const startKey = normalize(startStation.trim());
         const endKey = normalize(endStation.trim());
         if (!startKey || !endKey) return [];
@@ -79,6 +79,7 @@
         const schedules = Object.entries(scheduleCache);
 
         // Record helper
+
         function record(dep, arr, segments) {
             results.push({ dep, arr, segments });
         }
@@ -99,6 +100,7 @@
                     const dep = parseTime(depStr);
                     if (dep >= nowMin) {
                         const arr = parseTime(arrStr);
+                        if (arr - dep > 5 * 60) continue;
                         record(dep, arr, [{
                             line: code,
                             from: sch.stops[sIdx].name,
@@ -151,6 +153,7 @@
                             if (dep2 < arr1) continue; // Transfer 
                             const arr2 = parseTime(arr2Str);
                             if (arr2 >= bestDirectArrival) continue; // <-- Only keep if better than direct
+                            if (arr2 - dep1 > 5 * 60) continue; // Skip if travel time > 5 hours
                             record(dep1, arr2, [
                                 {
                                     line: c1,
@@ -232,6 +235,7 @@
                                         if (dep3 < arr2) continue;
                                         const arr3 = parseTime(arr3Str);
                                         if (arr3 >= bestDirectArrival) continue;
+                                        if (arr3 - dep1 > 5 * 60) continue; // Skip if travel time > 5 hours
                                         record(dep1, arr3, [
                                             {
                                                 line: c1,
@@ -269,7 +273,8 @@
         return results.map(r => ({
             start: formatTime(r.dep),
             end: formatTime(r.arr),
-            segments: r.segments
+            segments: r.segments,
+            dayOffset // <-- add this
         }));
     }
 
@@ -314,17 +319,32 @@
             // Try today
             const now = new Date();
             const nowMin = now.getHours() * 60 + now.getMinutes();
-            allRoutes = await searchRoutes(startInput.value, endInput.value, nowMin);
+            const today = new Date();
+            const todayStr = today.toISOString().slice(0, 10);
 
-            // If not enough results, try tomorrow (from 00:00)
+            allRoutes = (await searchRoutes(startInput.value, endInput.value, nowMin, 0)) || [];
+
             if (allRoutes.length < resultsToShow) {
-                const tomorrowMin = 0; // midnight
-                const tomorrowRoutes = await searchRoutes(startInput.value, endInput.value, tomorrowMin);
+                const tomorrow = new Date(today);
+                tomorrow.setDate(today.getDate() + 1);
+                const tomorrowRoutes = await searchRoutes(startInput.value, endInput.value, 0, 1);
                 // Only add tomorrow's results that are not already in allRoutes
                 const seen = new Set(allRoutes.map(r => r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',')));
                 for (const r of tomorrowRoutes) {
                     const key = r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',');
                     if (!seen.has(key)) allRoutes.push(r);
+                    if (allRoutes.length >= MAX_RESULTS) break;
+                }
+            }
+            if (allRoutes.length < resultsToShow) {
+                const prekosutra = new Date(today);
+                prekosutra.setDate(today.getDate() + 2);
+                const prekosutraRoutes = await searchRoutes(startInput.value, endInput.value, 0, 2);
+                // Only add prekosutra's results that are not already in allRoutes
+                const seen2 = new Set(allRoutes.map(r => r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',')));
+                for (const r of prekosutraRoutes) {
+                    const key = r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',');
+                    if (!seen2.has(key)) allRoutes.push(r);
                     if (allRoutes.length >= MAX_RESULTS) break;
                 }
             }
@@ -364,8 +384,9 @@
                         ${idx < arr.length - 1 ? '<hr>' : ''}
                     </div>`;
                 }).join('');
+                const dayLabel = getDayLabel(r.dayOffset);
                 return `<div class="route-result">
-                    <span class="route-time">${r.start} - ${r.end}</span>
+                    <span class="route-time">${r.start} - ${r.end} <sup>${dayLabel}</sup></span>
                     ${segs}
                 </div>`;
             }).join('');
@@ -478,4 +499,14 @@
 
     let resultsToShow = 3;
     const MAX_RESULTS = 30;
+
+    function getDayLabel(dayOffset) {
+        const d = new Date();
+        d.setDate(d.getDate() + (dayOffset || 0));
+        const dateStr = d.toLocaleDateString('sr-Latn-BA', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        if (dayOffset === 0) return ` danas (${dateStr})`;
+        if (dayOffset === 1) return ` sutra (${dateStr})`;
+        if (dayOffset === 2) return ` prekosutra (${dateStr})`;
+        return '';
+    }
 })();

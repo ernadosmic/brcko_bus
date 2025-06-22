@@ -203,6 +203,12 @@
   display: block;
 }
 
+.route-time sup {
+  font-size: 0.75rem;
+  color: var(--gray-color);
+  vertical-align: super;
+}
+
 .route-result .route-segment {
   margin-bottom: 0.25rem;
 
