@@ -389,7 +389,6 @@
             resultsDiv.innerHTML = groupedRoutes.map(r => {
                 const dayLabel = getDayLabel(r.dayOffset);
 
-                // If grouped (has transferOptions), render as merged card
                 if (r.transferOptions && r.transferOptions.length) {
                     const seg0 = r.segments[0];
                     const sch0 = scheduleCache[seg0.line];
@@ -397,33 +396,29 @@
                     const lineName0 = sch0?.name || '';
                     const dayLabelHtml = `<span class="route-time">${seg0.dep} - ${r.end}<sup>${dayLabel}</sup></span>`;
 
-                    // Collect all transfer departure stops and arrival stops
-                    const transferDepList = r.transferOptions.map(seg1 =>
-                        `→ ${seg1.transferArr} ${seg1.from}`
-                    ).join('<br>');
-
-                    const sch1 = scheduleCache[r.transferOptions[0].line];
-                    const lineNum1 = sch1?.line_number || r.transferOptions[0].line.replace(/^line_/, '');
-                    const lineName1 = sch1?.name || '';
-
-                    const transferArrList = r.transferOptions.map(seg1 =>
-                        `${seg1.dep} ${seg1.from} → ${seg1.arr} ${seg1.to}`
-                    ).join('<br>');
-
-                    const transferArrOnlyList = r.transferOptions.map(seg1 =>
-                        `→ ${seg1.arr} ${seg1.to}`
-                    ).join('<br>');
-
-                    // Render
+                    // Main line: show start time and all transfer stops with arrival times
                     let main = `
                         <div class="route-segment">
                             ${dayLabelHtml}
-                            <div><strong>Linija ${lineNum0} (${lineName0})</strong>: ${seg0.from} &rarr;</div>
-                            <div class="mt-2">${transferDepList}</div>
-                            <div class="mt-2"><strong>Stanice presjedanja Linija ${lineNum1} (${lineName1}):</strong></div>
-                            <div>${r.transferOptions.map(seg1 =>
-                        `${seg1.dep} ${seg1.from} → ${seg1.arr} ${seg1.to}`
-                    ).join('<br>')}</div>
+                            <div><strong>Linija ${lineNum0} (${lineName0})</strong>: (${seg0.dep}) ${seg0.from} &rarr;</div>
+                            <div class="mt-2">
+                                ${r.transferOptions.map(seg1 =>
+                        `→ (${seg1.transferArr}) ${seg1.from}`
+                    ).join('<br>')}
+                            </div>
+                    `;
+
+                    // Transfer line: show all transfer options with both times
+                    const sch1 = scheduleCache[r.transferOptions[0].line];
+                    const lineNum1 = sch1?.line_number || r.transferOptions[0].line.replace(/^line_/, '');
+                    const lineName1 = sch1?.name || '';
+                    main += `
+                        <div class="mt-2"><strong>Stanice presjedanja Linija ${lineNum1} (${lineName1}):</strong></div>
+                        <div>
+                            ${r.transferOptions.map(seg1 =>
+                        `(${seg1.dep}) ${seg1.from} → (${seg1.arr}) ${seg1.to}`
+                    ).join('<br>')}
+                        </div>
                         </div>
                     `;
                     return `<div class="route-result">${main}</div>`;
