@@ -1,29 +1,35 @@
+// schedule.js
 ; (function () {
-  console.log("[schedule.js] 🔥 script loaded, location:", window.location.href);
-
   async function loadScheduleData() {
-    const htmlFile = window.location.pathname.split("/").pop();
-    console.log("[schedule.js] htmlFile:", htmlFile);
+    // 1) Grab the last segment of the path, e.g. "line_1A.html" or "line_1a"
+    let htmlFile = window.location.pathname.split('/').pop() || '';
+    // 2) Strip a trailing slash or .html if present
+    htmlFile = htmlFile.replace(/\/$/, '').replace(/\.html$/i, '');
 
-    if (!/^line_\w+\.html$/i.test(htmlFile)) {
-      console.log("[schedule.js] not a line_*.html page, exiting.");
+    // 3) Match "line_<number><letter>" (case-insensitive)
+    const m = htmlFile.match(/^line_(\d+)([A-Za-z])$/i);
+    if (!m) {
+      // not on a line_*.html page
       return;
     }
 
-    const baseName = htmlFile.replace(/\.html$/i, "");
-    // use window.location.origin to guarantee the correct domain + protocol
-    const jsonFile = `${window.location.origin}/assets/schedules/${baseName}.json`;
-    console.log("[schedule.js] will fetch:", jsonFile);
+    // 4) Reconstruct the proper JSON filename with uppercase suffix
+    const num = m[1];
+    const suffix = m[2].toUpperCase();        // FORCE "A","B",…
+    const jsonName = `line_${num}${suffix}.json`;
+
+    // 5) Absolute path from site root
+    const jsonUrl = `${window.location.origin}/assets/schedules/${jsonName}`;
+    console.log("[schedule.js] fetching:", jsonUrl);
 
     try {
-      const resp = await fetch(jsonFile);
-      console.log("[schedule.js] fetch status:", resp.status);
+      const resp = await fetch(jsonUrl);
+      console.log("[schedule.js] status:", resp.status);
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
       const data = await resp.json();
-      console.log("[schedule.js] got JSON:", data);
       displayScheduleData(data);
     } catch (err) {
-      console.error("[schedule.js] error loading schedule:", err);
+      console.error("[schedule.js] load error:", err);
       const body = document.getElementById("schedule-body");
       if (body) {
         body.innerHTML =
@@ -34,7 +40,6 @@
     }
   }
 
-  // 2) Build the table & headers
   function displayScheduleData(data) {
     // — Header info —
     document.getElementById("route-title").textContent = data.name;
@@ -42,15 +47,17 @@
     document.getElementById("regular-explanation").textContent = data.regular_explanation;
     document.getElementById("irregular-explanation").textContent = data.irregular_explanation;
 
-    // — Service numbers row —
+    // — Service header —
     const svcHead = document.getElementById("service-header");
-    svcHead.innerHTML = "";  // clear old
+    svcHead.innerHTML = "";
     for (let i = 1; i <= data.services; i++) {
       const th = document.createElement("th");
       th.className = "text-center small";
       th.textContent = i;
       th.classList.add(
-        data.regular_services.includes(i) ? "regular-service" : "irregular-service"
+        data.regular_services.includes(i)
+          ? "regular-service"
+          : "irregular-service"
       );
       svcHead.appendChild(th);
     }
@@ -60,13 +67,13 @@
 
     // — Schedule rows —
     const tbody = document.getElementById("schedule-body");
-    tbody.innerHTML = "";  // clear old
+    tbody.innerHTML = "";
     data.stops.forEach((stop, idx) => {
       const isEnd = idx === data.stops.length - 1;
       const tr = document.createElement("tr");
       if (isEnd) tr.classList.add("table-warning");
 
-      // station name
+      // Station name cell
       const tdName = document.createElement("td");
       tdName.className = `sticky-col${isEnd ? " table-warning" : ""}`;
       const nameHTML = stop.name.replace(
@@ -78,7 +85,7 @@
         : nameHTML;
       tr.appendChild(tdName);
 
-      // times
+      // Time cells
       stop.times.forEach((time, ti) => {
         const td = document.createElement("td");
         td.className = "time-cell";
@@ -95,7 +102,6 @@
     });
   }
 
-  // 3) Mini route‐map under the headers
   function generateRouteMap(stops) {
     const container = document.getElementById("route-stations");
     container.innerHTML = "";
@@ -103,7 +109,6 @@
     stops.forEach((stop, idx) => {
       const isStart = idx === 0;
       const isEnd = idx === stops.length - 1;
-
       const stationDiv = document.createElement("div");
       stationDiv.className = `station${isStart ? " start" : ""}${isEnd ? " end" : ""}`;
 
@@ -126,7 +131,7 @@
     });
   }
 
-  // 4) Hook it up
+  // Run on DOM ready
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", loadScheduleData);
   } else {
