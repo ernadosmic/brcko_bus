@@ -1,8 +1,10 @@
 // Enhanced JavaScript to load and display the schedule
 async function loadScheduleData() {
-  // Dynamically determine which JSON file to load based on the HTML filename
   const pathParts = window.location.pathname.split("/");
   const htmlFile = pathParts[pathParts.length - 1];
+
+  // Only proceed if this is a line page
+  if (!/^line_\w+\.html$/.test(htmlFile)) return;
 
   // The JSON filename must match the HTML filename (e.g., line_8A.html -> line_8A.json)
   const baseName = htmlFile.replace(/\.html$/, '');
