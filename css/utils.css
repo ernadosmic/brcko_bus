@@ -226,3 +226,18 @@
   font-size: 0.97em;
   padding-left: 0;
 }
+#route-results {
+  width: 100%;
+  padding: 0 8rem;
+}
+
+.search-area-padding {
+  padding-left: 8rem;
+  padding-right: 8rem;
+}
+@media (max-width: 991.98px) {
+  .search-area-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

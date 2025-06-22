@@ -375,6 +375,15 @@
 
         startInput.addEventListener('input', update);
         endInput.addEventListener('input', update);
+        document.getElementById('swap-btn').onclick = function () {
+            const start = document.getElementById('route-start');
+            const end = document.getElementById('route-end');
+            const tmp = start.value;
+            start.value = end.value;
+            end.value = tmp;
+            start.dispatchEvent(new Event('input'));
+            end.dispatchEvent(new Event('input'));
+        };
     });
 
     let allStations = [];
