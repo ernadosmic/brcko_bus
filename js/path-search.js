@@ -381,8 +381,7 @@
             const tmp = start.value;
             start.value = end.value;
             end.value = tmp;
-            start.dispatchEvent(new Event('input'));
-            end.dispatchEvent(new Event('input'));
+            update(); // Directly update results, do not trigger input events
         };
     });
 

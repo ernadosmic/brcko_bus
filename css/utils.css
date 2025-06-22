@@ -238,7 +238,7 @@
 @media (max-width: 991.98px) {
   #route-results {
     width: 100%;
-    padding: 0 0rem;
+    padding: 0 0.7rem;
   }
   .search-area-padding {
     padding-left: 1rem;
