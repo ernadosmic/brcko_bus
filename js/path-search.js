@@ -444,8 +444,7 @@
                           </div>`
                         : '';
                     return `<div class="route-segment">
-                        <div class="segment-time"><span>${seg.dep} - ${seg.arr}</span></div>
-                        <div><strong>Linija ${lineNum} (${lineName})</strong>: ${seg.from} &rarr; ${seg.to}</div>
+                        <div><strong>Linija ${lineNum} (${lineName})</strong>: <span class="transfer-time">(${seg.dep})</span> ${seg.from} &rarr; <span class="transfer-time">(${seg.arr})</span> ${seg.to}</div>
                         ${irregularNote}
                         ${idx < arr.length - 1 ? '<hr>' : ''}
                     </div>`;
