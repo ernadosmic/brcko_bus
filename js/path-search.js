@@ -94,7 +94,13 @@
                     const dep = parseTime(sch.stops[sIdx].times[i]);
                     if (dep >= nowMin) {
                         const arr = parseTime(sch.stops[eIdx].times[i]);
-                        record(dep, arr, [{ line: code, from: sch.stops[sIdx].name, to: sch.stops[eIdx].name }]);
+                        record(dep, arr, [{
+                            line: code,
+                            from: sch.stops[sIdx].name,
+                            to: sch.stops[eIdx].name,
+                            dep: sch.stops[sIdx].times[i],
+                            arr: sch.stops[eIdx].times[i]
+                        }]);
                         if (arr < bestDirectArrival) bestDirectArrival = arr;
                     }
                 }
@@ -110,6 +116,10 @@
 
             for (let t = sIdx + 1; t < names1.length; t++) {
                 const transfer = names1[t];
+                // Check if sch1 continues to the destination after transfer stop
+                const eIdx1 = names1.indexOf(endKey);
+                if (eIdx1 > t) continue; // Don't suggest transfer if direct route exists
+
                 for (const [c2, sch2] of schedules) {
                     if (c1 === c2) continue;
                     if (!sch2 || !Array.isArray(sch2.stops)) continue;
@@ -131,10 +141,102 @@
                             const arr2 = parseTime(sch2.stops[eIdx2].times[j]);
                             if (arr2 >= bestDirectArrival) continue; // <-- Only keep if better than direct
                             record(dep1, arr2, [
-                                { line: c1, from: sch1.stops[sIdx].name, to: sch1.stops[t].name },
-                                { line: c2, from: sch2.stops[tIdx2].name, to: sch2.stops[eIdx2].name }
+                                {
+                                    line: c1,
+                                    from: sch1.stops[sIdx].name,
+                                    to: sch1.stops[t].name,
+                                    dep: sch1.stops[sIdx].times[i],
+                                    arr: sch1.stops[t].times[i]
+                                },
+                                {
+                                    line: c2,
+                                    from: sch2.stops[tIdx2].name,
+                                    to: sch2.stops[eIdx2].name,
+                                    dep: sch2.stops[tIdx2].times[j],
+                                    arr: sch2.stops[eIdx2].times[j]
+                                }
                             ]);
                             break;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Two-transfer routes (up to three segments)
+        for (const [c1, sch1] of schedules) {
+            if (!sch1 || !Array.isArray(sch1.stops)) continue;
+            const names1 = sch1.stops.map(s => normalize(s.name));
+            const sIdx = names1.indexOf(startKey);
+            if (sIdx === -1) continue;
+
+            for (let t1 = sIdx + 1; t1 < names1.length; t1++) {
+                const transfer1 = names1[t1];
+                const eIdx1 = names1.indexOf(endKey);
+                if (eIdx1 > t1) continue; // Don't suggest transfer if direct route exists
+
+                for (const [c2, sch2] of schedules) {
+                    if (c1 === c2) continue;
+                    if (!sch2 || !Array.isArray(sch2.stops)) continue;
+                    if (getLineNumber(c1) === getLineNumber(c2)) continue;
+                    const names2 = sch2.stops.map(s => normalize(s.name));
+                    const t1Idx2 = names2.indexOf(transfer1);
+                    if (t1Idx2 === -1) continue;
+
+                    for (let t2 = t1Idx2 + 1; t2 < names2.length; t2++) {
+                        const transfer2 = names2[t2];
+                        const eIdx2 = names2.indexOf(endKey);
+                        if (eIdx2 > t2) continue;
+
+                        for (const [c3, sch3] of schedules) {
+                            if (c3 === c2 || c3 === c1) continue;
+                            if (!sch3 || !Array.isArray(sch3.stops)) continue;
+                            if (getLineNumber(c3) === getLineNumber(c2) || getLineNumber(c3) === getLineNumber(c1)) continue;
+                            const names3 = sch3.stops.map(s => normalize(s.name));
+                            const t2Idx3 = names3.indexOf(transfer2);
+                            const eIdx3 = names3.indexOf(endKey);
+                            if (t2Idx3 === -1 || eIdx3 === -1 || t2Idx3 >= eIdx3) continue;
+
+                            for (let i = 0; i < sch1.services; i++) {
+                                const dep1 = parseTime(sch1.stops[sIdx].times[i]);
+                                if (dep1 < nowMin) continue;
+                                const arr1 = parseTime(sch1.stops[t1].times[i]);
+                                for (let j = 0; j < sch2.services; j++) {
+                                    const dep2 = parseTime(sch2.stops[t1Idx2].times[j]);
+                                    if (dep2 < arr1) continue;
+                                    const arr2 = parseTime(sch2.stops[t2].times[j]);
+                                    for (let k = 0; k < sch3.services; k++) {
+                                        const dep3 = parseTime(sch3.stops[t2Idx3].times[k]);
+                                        if (dep3 < arr2) continue;
+                                        const arr3 = parseTime(sch3.stops[eIdx3].times[k]);
+                                        if (arr3 >= bestDirectArrival) continue;
+                                        record(dep1, arr3, [
+                                            {
+                                                line: c1,
+                                                from: sch1.stops[sIdx].name,
+                                                to: sch1.stops[t1].name,
+                                                dep: sch1.stops[sIdx].times[i],
+                                                arr: sch1.stops[t1].times[i]
+                                            },
+                                            {
+                                                line: c2,
+                                                from: sch2.stops[t1Idx2].name,
+                                                to: sch2.stops[t2].name,
+                                                dep: sch2.stops[t1Idx2].times[j],
+                                                arr: sch2.stops[t2].times[j]
+                                            },
+                                            {
+                                                line: c3,
+                                                from: sch3.stops[t2Idx3].name,
+                                                to: sch3.stops[eIdx3].name,
+                                                dep: sch3.stops[t2Idx3].times[k],
+                                                arr: sch3.stops[eIdx3].times[k]
+                                            }
+                                        ]);
+                                        break;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -148,6 +250,8 @@
             segments: r.segments
         }));
     }
+
+
 
     // UI hookup with disabled inputs until schedules load
     document.addEventListener('DOMContentLoaded', async () => {
@@ -189,10 +293,21 @@
                 return;
             }
             resultsDiv.innerHTML = routes.map(r => {
-                const segs = r.segments.map(seg =>
-                    `${seg.line}: ${seg.from} → ${seg.to}`
-                ).join('<br>');
-                return `<div class="border rounded p-2 mb-2"><strong>${r.start} - ${r.end}</strong><br>${segs}</div>`;
+                const segs = r.segments.map((seg, idx, arr) => {
+                    const sch = scheduleCache[seg.line];
+                    const lineNum = sch?.line_number || seg.line.replace(/^line_/, '');
+                    const lineName = sch?.name || '';
+                    return `<div class="route-segment">
+    
+    <div><strong>Linija ${lineNum} (${lineName})</strong>: ${seg.from} &rarr; ${seg.to}</div>
+    <div class="segment-time"><span>${seg.dep} - ${seg.arr}</span></div>
+    ${idx < arr.length - 1 ? '<hr>' : ''}
+</div>`;
+                }).join('');
+                return `<div class="route-result">
+        <span class="route-time">${r.start} - ${r.end}</span>
+        ${segs}
+    </div>`;
             }).join('');
         }
 

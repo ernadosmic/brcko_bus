@@ -184,3 +184,32 @@
 .autocomplete-suggestions div:hover {
   background: #f1f1f1;
 }
+
+/* Route result card */
+.route-result {
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  background: #f9f9fc;
+  margin-bottom: 1rem;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.route-result .route-time {
+  font-weight: bold;
+  font-size: 1.15rem;
+  color: var(--success-color);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.route-result .route-segment {
+  margin-bottom: 0.25rem;
+
+  position: relative;
+}
+
+.segment-time {
+  margin-bottom: 0.1em;
+  margin-top: 0.5em;
+}
