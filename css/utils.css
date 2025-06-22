@@ -142,17 +142,40 @@
   vertical-align: super;
 }
 .autocomplete-suggestions {
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
   z-index: 10;
   background: #fff;
-  border: 1px solid #ccc;
-  border-top: none; /* Add this line */
+  border-top: none; /* Remove top border to merge with input */
   max-height: 200px;
   overflow-y: auto;
-  border-radius: 0 0 0.25rem 0.25rem; /* Optional: rounded bottom corners */
+  border-radius: 0 0 0.25rem 0.25rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+.autocomplete-suggestions.active {
+  display: block;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.input-group.position-relative {
+  /* Ensure stacking context for absolute suggestions */
+  position: relative;
+}
+.input-group .form-control {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+.input-group .form-control:focus {
+  z-index: 11; /* Ensure input is above suggestions border */
+  position: relative;
+}
+
+/* Remove input's bottom border when suggestions are visible */
+.input-group .form-control:focus + .autocomplete-suggestions {
+  border-top: none;
 }
 .autocomplete-suggestions div {
   padding: 6px 12px;

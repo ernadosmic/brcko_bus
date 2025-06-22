@@ -230,23 +230,54 @@
         input.addEventListener('input', function () {
             const val = input.value.trim().toLowerCase();
             suggestionsDiv.innerHTML = '';
+            suggestionsDiv.classList.remove('active');
             if (!val) return;
             const matches = allStations.filter(st =>
                 normalize(st).includes(normalize(val))
-            ).slice(0, 10); // limit to 10 suggestions
+            ).slice(0, 10);
+            if (matches.length) suggestionsDiv.classList.add('active');
             matches.forEach(st => {
                 const div = document.createElement('div');
                 div.textContent = st;
                 div.onclick = () => {
                     input.value = st;
                     suggestionsDiv.innerHTML = '';
+                    suggestionsDiv.classList.remove('active');
                     input.dispatchEvent(new Event('input'));
                 };
                 suggestionsDiv.appendChild(div);
             });
         });
-        // Hide suggestions on blur (with timeout to allow click)
-        input.addEventListener('blur', () => setTimeout(() => suggestionsDiv.innerHTML = '', 150));
+        input.addEventListener('blur', () => setTimeout(() => {
+            suggestionsDiv.innerHTML = '';
+            suggestionsDiv.classList.remove('active');
+        }, 150));
+    } function setupAutocomplete(input, suggestionsDiv) {
+        input.addEventListener('input', function () {
+            const val = input.value.trim().toLowerCase();
+            suggestionsDiv.innerHTML = '';
+            suggestionsDiv.classList.remove('active');
+            if (!val) return;
+            const matches = allStations.filter(st =>
+                normalize(st).includes(normalize(val))
+            ).slice(0, 10);
+            if (matches.length) suggestionsDiv.classList.add('active');
+            matches.forEach(st => {
+                const div = document.createElement('div');
+                div.textContent = st;
+                div.onclick = () => {
+                    input.value = st;
+                    suggestionsDiv.innerHTML = '';
+                    suggestionsDiv.classList.remove('active');
+                    input.dispatchEvent(new Event('input'));
+                };
+                suggestionsDiv.appendChild(div);
+            });
+        });
+        input.addEventListener('blur', () => setTimeout(() => {
+            suggestionsDiv.innerHTML = '';
+            suggestionsDiv.classList.remove('active');
+        }, 150));
     }
 
 })();

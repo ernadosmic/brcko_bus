@@ -30,17 +30,23 @@
   <div class="container my-4">
     <div class="row justify-content-center">
       <div class="col-lg-6">
-        <div class="input-group mb-2 position-relative">
-          <span class="input-group-text">Od</span>
-          <input id="route-start" type="text" class="form-control" placeholder="Početna stanica" autocomplete="off">
-          <div id="route-start-suggestions" class="autocomplete-suggestions"></div>
+        <div class="row g-2 align-items-end">
+          <div class="col-12 col-md-6">
+            <div class="input-group position-relative">
+              <span class="input-group-text">Od</span>
+              <input id="route-start" type="text" class="form-control" placeholder="Početna stanica" autocomplete="off">
+              <div id="route-start-suggestions" class="autocomplete-suggestions"></div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="input-group position-relative">
+              <span class="input-group-text">Do</span>
+              <input id="route-end" type="text" class="form-control" placeholder="Krajnja stanica" autocomplete="off">
+              <div id="route-end-suggestions" class="autocomplete-suggestions"></div>
+            </div>
+          </div>
         </div>
-        <div class="input-group mb-3 position-relative">
-          <span class="input-group-text">Do</span>
-          <input id="route-end" type="text" class="form-control" placeholder="Krajnja stanica" autocomplete="off">
-          <div id="route-end-suggestions" class="autocomplete-suggestions"></div>
-        </div>
-        <div id="route-results"></div>
+        <div id="route-results" class="mt-3"></div>
       </div>
     </div>
   </div>
