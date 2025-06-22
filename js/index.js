@@ -1,21 +1,29 @@
-// schedule.js
 ; (function () {
-  // 1) Main entry: load & display if we’re on a line_*.html page
+  console.log("[schedule.js] 🔥 script loaded, location:", window.location.href);
+
   async function loadScheduleData() {
     const htmlFile = window.location.pathname.split("/").pop();
-    if (!/^line_\w+\.html$/i.test(htmlFile)) return;
+    console.log("[schedule.js] htmlFile:", htmlFile);
+
+    if (!/^line_\w+\.html$/i.test(htmlFile)) {
+      console.log("[schedule.js] not a line_*.html page, exiting.");
+      return;
+    }
 
     const baseName = htmlFile.replace(/\.html$/i, "");
-    const jsonFile = `/assets/schedules/${baseName}.json`;
-    // ↑ absolute path from your site root
+    // use window.location.origin to guarantee the correct domain + protocol
+    const jsonFile = `${window.location.origin}/assets/schedules/${baseName}.json`;
+    console.log("[schedule.js] will fetch:", jsonFile);
 
     try {
       const resp = await fetch(jsonFile);
+      console.log("[schedule.js] fetch status:", resp.status);
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
       const data = await resp.json();
+      console.log("[schedule.js] got JSON:", data);
       displayScheduleData(data);
     } catch (err) {
-      console.error("Error loading schedule data:", err);
+      console.error("[schedule.js] error loading schedule:", err);
       const body = document.getElementById("schedule-body");
       if (body) {
         body.innerHTML =
