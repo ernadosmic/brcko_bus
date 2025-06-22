@@ -141,3 +141,23 @@
   margin-left: 2px;
   vertical-align: super;
 }
+.autocomplete-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-top: none; /* Add this line */
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 0 0 0.25rem 0.25rem; /* Optional: rounded bottom corners */
+}
+.autocomplete-suggestions div {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.autocomplete-suggestions div:hover {
+  background: #f1f1f1;
+}

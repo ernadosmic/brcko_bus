@@ -154,20 +154,31 @@
         const startInput = document.getElementById('route-start');
         const endInput = document.getElementById('route-end');
         const resultsDiv = document.getElementById('route-results');
+        const startSuggestions = document.getElementById('route-start-suggestions');
+        const endSuggestions = document.getElementById('route-end-suggestions');
         if (!startInput || !endInput || !resultsDiv) return;
 
-        // disable until ready
         startInput.disabled = true;
         endInput.disabled = true;
 
-        // preload all schedule JSONs
         await loadAllSchedules();
+        await collectAllStations();
 
-        console.log('[path-search.js] Schedules preloaded, enabling inputs');
+        setupAutocomplete(startInput, startSuggestions);
+        setupAutocomplete(endInput, endSuggestions);
+
         startInput.disabled = false;
         endInput.disabled = false;
 
+        function isValidStation(name) {
+            return allStations.some(st => normalize(st) === normalize(name.trim()));
+        }
+
         async function update() {
+            if (!isValidStation(startInput.value) || !isValidStation(endInput.value)) {
+                resultsDiv.innerHTML = '<p class="text-danger">Unesite ispravne stanice iz liste.</p>';
+                return;
+            }
             const routes = await searchRoutes(startInput.value, endInput.value);
             if (!startInput.value.trim() || !endInput.value.trim()) {
                 resultsDiv.innerHTML = '';
@@ -189,6 +200,18 @@
         endInput.addEventListener('input', update);
     });
 
+    let allStations = [];
+
+    async function collectAllStations() {
+        const stationSet = new Set();
+        for (const sch of Object.values(scheduleCache)) {
+            if (sch && Array.isArray(sch.stops)) {
+                sch.stops.forEach(stop => stationSet.add(stop.name));
+            }
+        }
+        allStations = Array.from(stationSet).sort((a, b) => a.localeCompare(b, 'hr'));
+    }
+
     function getLineNumber(code) {
         const m = code.match(/^line_(\d+)/i);
         return m ? m[1] : null;
@@ -201,6 +224,29 @@
             .replace(/[žz]/g, 'z')
             .replace(/[šs]/g, 's')
             .replace(/[đd]/g, 'd');
+    }
+
+    function setupAutocomplete(input, suggestionsDiv) {
+        input.addEventListener('input', function () {
+            const val = input.value.trim().toLowerCase();
+            suggestionsDiv.innerHTML = '';
+            if (!val) return;
+            const matches = allStations.filter(st =>
+                normalize(st).includes(normalize(val))
+            ).slice(0, 10); // limit to 10 suggestions
+            matches.forEach(st => {
+                const div = document.createElement('div');
+                div.textContent = st;
+                div.onclick = () => {
+                    input.value = st;
+                    suggestionsDiv.innerHTML = '';
+                    input.dispatchEvent(new Event('input'));
+                };
+                suggestionsDiv.appendChild(div);
+            });
+        });
+        // Hide suggestions on blur (with timeout to allow click)
+        input.addEventListener('blur', () => setTimeout(() => suggestionsDiv.innerHTML = '', 150));
     }
 
 })();
