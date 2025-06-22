@@ -63,8 +63,8 @@
 
     // Search routes between two stations (direct or one transfer)
     async function searchRoutes(startStation, endStation) {
-        const startKey = startStation.trim().toLowerCase();
-        const endKey = endStation.trim().toLowerCase();
+        const startKey = normalize(startStation.trim());
+        const endKey = normalize(endStation.trim());
         if (!startKey || !endKey) return [];
 
         // Ensure schedules are loaded (redundant if preloaded, but safe)
@@ -86,7 +86,7 @@
         let bestDirectArrival = Infinity;
         for (const [code, sch] of schedules) {
             if (!sch || !Array.isArray(sch.stops)) continue;
-            const names = sch.stops.map(s => s.name.toLowerCase());
+            const names = sch.stops.map(s => normalize(s.name));
             const sIdx = names.indexOf(startKey);
             const eIdx = names.indexOf(endKey);
             if (sIdx !== -1 && eIdx !== -1 && sIdx < eIdx) {
@@ -104,7 +104,7 @@
         // One-transfer routes
         for (const [c1, sch1] of schedules) {
             if (!sch1 || !Array.isArray(sch1.stops)) continue;
-            const names1 = sch1.stops.map(s => s.name.toLowerCase());
+            const names1 = sch1.stops.map(s => normalize(s.name));
             const sIdx = names1.indexOf(startKey);
             if (sIdx === -1) continue;
 
@@ -115,7 +115,7 @@
                     if (!sch2 || !Array.isArray(sch2.stops)) continue;
                     // Prevent transfers between A/B of the same line number
                     if (getLineNumber(c1) === getLineNumber(c2)) continue;
-                    const names2 = sch2.stops.map(s => s.name.toLowerCase());
+                    const names2 = sch2.stops.map(s => normalize(s.name));
                     const tIdx2 = names2.indexOf(transfer);
                     const eIdx2 = names2.indexOf(endKey);
                     if (tIdx2 === -1 || eIdx2 === -1 || tIdx2 >= eIdx2) continue;
@@ -192,6 +192,15 @@
     function getLineNumber(code) {
         const m = code.match(/^line_(\d+)/i);
         return m ? m[1] : null;
+    }
+
+    function normalize(str) {
+        return str
+            .toLowerCase()
+            .replace(/[čćc]/g, 'c')
+            .replace(/[žz]/g, 'z')
+            .replace(/[šs]/g, 's')
+            .replace(/[đd]/g, 'd');
     }
 
 })();
