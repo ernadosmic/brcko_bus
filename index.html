@@ -812,6 +812,17 @@
   <script src="../js/index.js"></script>
 
   <script src="js/search-lines.js"></script>
+
+  <!-- Parallax Banner -->
+  <script>
+    window.addEventListener('scroll', function () {
+      const banner = document.getElementById('parallax-banner');
+      if (!banner) return;
+      // Adjust the multiplier (0.5) for more/less parallax effect
+      const offset = window.scrollY * 0.2;
+      banner.style.backgroundPosition = `center ${offset}px`;
+    });
+  </script>
 </body>
 </body>
 
