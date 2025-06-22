@@ -27,6 +27,21 @@
   <div class="sticky-top" data-component="navbar"></div>
   <div data-component="page_banner"></div>
 
+  <div class="container my-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="input-group mb-2">
+          <span class="input-group-text">Od</span>
+          <input id="route-start" type="text" class="form-control" placeholder="Početna stanica" autocomplete="off">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Do</span>
+          <input id="route-end" type="text" class="form-control" placeholder="Krajnja stanica" autocomplete="off">
+        </div>
+        <div id="route-results"></div>
+      </div>
+    </div>
+  </div>
 
   <div class="container my-5">
     <div data-component="svg_banner_ad"></div>
@@ -806,15 +821,14 @@
     crossorigin="anonymous"></script>
 
   <!-- Component Loader -->
-  <script src="../js/main.js"></script>
+  <script src="js/main.js"></script>
 
   <!-- Page logic -->
-  <script src="../js/index.js"></script>
+  <script src="js/index.js"></script>
 
   <script src="js/search-lines.js"></script>
+  <script src="js/path-search.js"></script>
 
 
 </body>
-</body>
-
 </html>

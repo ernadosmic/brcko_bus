@@ -9,7 +9,8 @@ async function getLineStations() {
     async function fetchStations(lineNum, suffix) {
         suffix = suffix.toUpperCase();
         try {
-            const resp = await fetch(`/assets/schedules/line_${lineNum}${suffix}.json`);
+            const base = document.body.dataset.pathPrefix || '';
+            const resp = await fetch(`${base}assets/schedules/line_${lineNum}${suffix}.json`);
             if (!resp.ok) return [];
             const data = await resp.json();
             if (!Array.isArray(data.stops)) return [];
