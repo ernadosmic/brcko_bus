@@ -1,145 +1,129 @@
-// Enhanced JavaScript to load and display the schedule
-async function loadScheduleData() {
-  const pathParts = window.location.pathname.split("/");
-  const htmlFile = pathParts[pathParts.length - 1];
+// schedule.js
+; (function () {
+  // 1) Load & parse the JSON, then hand off to displayScheduleData()
+  async function loadScheduleData() {
+    const pathParts = window.location.pathname.split("/");
+    const htmlFile = pathParts[pathParts.length - 1];
 
-  // Only proceed if this is a line page
-  if (!/^line_\w+\.html$/.test(htmlFile)) return;
+    // only on your line_*.html pages
+    if (!/^line_\w+\.html$/.test(htmlFile)) return;
 
-  // The JSON filename must match the HTML filename (e.g., line_8A.html -> line_8A.json)
-  const baseName = htmlFile.replace(/\.html$/, '');
-  const jsonFile = `../assets/schedules/${baseName}.json`;
+    const baseName = htmlFile.replace(/\.html$/, "");
+    const jsonFile = `../assets/schedules/${baseName}.json`;
 
-  try {
-    const response = await fetch(jsonFile);
-    if (!response.ok) {
-      throw new Error(`Schedule file not found: ${response.statusText}`);
-    }
-    const data = await response.json();
-
-    displayScheduleData(data);
-  } catch (error) {
-    console.error("Error loading schedule data:", error);
-    document.getElementById("schedule-body").innerHTML =
-      '<tr><td colspan="19" class="text-center text-danger">Greška pri učitavanju podataka o redu vožnje.</td></tr>';
-  }
-}
-
-function displayScheduleData(data) {
-  // Update title and info
-  document.getElementById("route-title").textContent = data.name;
-  document.getElementById("line-badge").textContent =
-    `Linija: ${data.line_number}`;
-  document.getElementById("regular-explanation").textContent =
-    data.regular_explanation;
-  document.getElementById("irregular-explanation").textContent =
-    data.irregular_explanation;
-
-  // Generate service header
-  const serviceHeader = document.getElementById("service-header");
-  for (let i = 1; i <= data.services; i++) {
-    const th = document.createElement("th");
-    th.className = "text-center small";
-    th.textContent = i;
-
-    if (data.regular_services.includes(i)) {
-      th.classList.add("regular-service");
-    } else {
-      th.classList.add("irregular-service");
-    }
-
-    serviceHeader.appendChild(th);
-  }
-
-  // Generate route map
-  generateRouteMap(data.stops);
-
-  // Generate schedule table
-  const tableBody = document.getElementById("schedule-body");
-
-  data.stops.forEach((stop, index) => {
-    const row = document.createElement("tr");
-    const isEndStation = index === data.stops.length - 1;
-
-    if (isEndStation) {
-      row.className = "table-warning";
-    }
-
-    // Station name cell
-    const stationCell = document.createElement("td");
-    stationCell.className = `sticky-col ${isEndStation ? "table-warning" : ""}`;
-
-    // Process station name to handle **R** markers
-    let stationName = stop.name.replace(
-      /\*\*R\*\*/g,
-      '<span class="station-r">R</span>',
-    );
-
-    if (index === 0 || isEndStation) {
-      stationCell.innerHTML = `<strong>${stationName}</strong>`;
-    } else {
-      stationCell.innerHTML = stationName;
-    }
-
-    row.appendChild(stationCell);
-
-    // Time cells
-    stop.times.forEach((time, timeIndex) => {
-      const timeCell = document.createElement("td");
-      timeCell.classList.add("time-cell");
-      timeCell.textContent = time;
-
-      if (data.regular_services.includes(timeIndex + 1)) {
-        timeCell.classList.add("regular-service");
-      } else {
-        timeCell.classList.add("irregular-service");
+    try {
+      const resp = await fetch(jsonFile);
+      if (!resp.ok) {
+        throw new Error(`Schedule file not found (${resp.status})`);
       }
+      const data = await resp.json();
+      displayScheduleData(data);
+    } catch (err) {
+      console.error("Error loading schedule data:", err);
+      const body = document.getElementById("schedule-body");
+      if (body) {
+        body.innerHTML =
+          '<tr><td colspan="19" class="text-center text-danger">' +
+          "Greška pri učitavanju podataka o redu vožnje." +
+          "</td></tr>";
+      }
+    }
+  }
 
-      row.appendChild(timeCell);
-    });
+  // 2) Render the table & headers
+  function displayScheduleData(data) {
+    // header info
+    document.getElementById("route-title").textContent = data.name;
+    document.getElementById("line-badge").textContent = `Linija: ${data.line_number}`;
+    document.getElementById("regular-explanation").textContent = data.regular_explanation;
+    document.getElementById("irregular-explanation").textContent = data.irregular_explanation;
 
-    tableBody.appendChild(row);
-  });
-}
-
-function generateRouteMap(stops) {
-  const routeStations = document.getElementById("route-stations");
-  routeStations.innerHTML = "";
-
-  stops.forEach((stop, index) => {
-    const stationDiv = document.createElement("div");
-    stationDiv.className = "station";
-
-    if (index === 0) {
-      stationDiv.classList.add("start");
-    } else if (index === stops.length - 1) {
-      stationDiv.classList.add("end");
+    // service header row
+    const svcHead = document.getElementById("service-header");
+    for (let i = 1; i <= data.services; i++) {
+      const th = document.createElement("th");
+      th.className = "text-center small";
+      th.textContent = i;
+      th.classList.add(
+        data.regular_services.includes(i) ? "regular-service" : "irregular-service"
+      );
+      svcHead.appendChild(th);
     }
 
-    const stationContent = document.createElement("div");
-    stationContent.className = "station-content";
+    // route map
+    generateRouteMap(data.stops);
 
-    const stationName = document.createElement("div");
-    stationName.className = "station-name";
-    // Clean up station name for route display and process **R** markers
-    let cleanName = stop.name.replace(
-      /\*\*R\*\*/g,
-      '<span class="station-r">R</span>'
-    );
-    // Remove the truncation logic - show full names
-    stationName.innerHTML = cleanName; // Changed from textContent to innerHTML
+    // schedule rows
+    const tbody = document.getElementById("schedule-body");
+    data.stops.forEach((stop, idx) => {
+      const isEnd = idx === data.stops.length - 1;
+      const tr = document.createElement("tr");
+      if (isEnd) tr.classList.add("table-warning");
 
-    const stationDot = document.createElement("div");
-    stationDot.className = "station-dot";
+      // name cell
+      const tdName = document.createElement("td");
+      tdName.className = `sticky-col ${isEnd ? "table-warning" : ""}`;
+      const nameHTML = stop.name.replace(
+        /\*\*R\*\*/g,
+        '<span class="station-r">R</span>'
+      );
+      tdName.innerHTML = (idx === 0 || isEnd)
+        ? `<strong>${nameHTML}</strong>`
+        : nameHTML;
+      tr.appendChild(tdName);
 
-    stationContent.appendChild(stationName);
-    stationContent.appendChild(stationDot);
-    stationDiv.appendChild(stationContent);
-    routeStations.appendChild(stationDiv);
-  });
-}
+      // time cells
+      stop.times.forEach((time, ti) => {
+        const td = document.createElement("td");
+        td.className = "time-cell";
+        td.textContent = time;
+        td.classList.add(
+          data.regular_services.includes(ti + 1)
+            ? "regular-service"
+            : "irregular-service"
+        );
+        tr.appendChild(td);
+      });
 
+      tbody.appendChild(tr);
+    });
+  }
 
+  // 3) Route-map mini-render
+  function generateRouteMap(stops) {
+    const container = document.getElementById("route-stations");
+    container.innerHTML = "";
 
-// Load data when page loads
-document.addEventListener("DOMContentLoaded", loadScheduleData);
+    stops.forEach((stop, idx) => {
+      const isStart = idx === 0;
+      const isEnd = idx === stops.length - 1;
+
+      const stationDiv = document.createElement("div");
+      stationDiv.className = `station${isStart ? " start" : ""}${isEnd ? " end" : ""}`;
+
+      const content = document.createElement("div");
+      content.className = "station-content";
+
+      const nameEl = document.createElement("div");
+      nameEl.className = "station-name";
+      nameEl.innerHTML = stop.name.replace(
+        /\*\*R\*\*/g,
+        '<span class="station-r">R</span>'
+      );
+
+      const dot = document.createElement("div");
+      dot.className = "station-dot";
+
+      content.append(nameEl, dot);
+      stationDiv.appendChild(content);
+      container.appendChild(stationDiv);
+    });
+  }
+
+  // 4) Auto-invoke as soon as DOM is ready (even if other scripts already hooked DOMContentLoaded)
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadScheduleData);
+  } else {
+    loadScheduleData();
+  }
+})();
