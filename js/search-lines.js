@@ -6,7 +6,7 @@ async function getLineStations() {
     // Helper to fetch and parse JSON
     async function fetchStations(lineNum, suffix) {
         try {
-            const resp = await fetch(`assets/schedules/line_${lineNum}${suffix}.json`);
+            const resp = await fetch(`/assets/schedules/line_${lineNum}${suffix}.json`);
             if (!resp.ok) return [];
             const data = await resp.json();
             if (!data.stops) return [];
