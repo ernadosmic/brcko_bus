@@ -12,7 +12,7 @@
     ],
     "irregular_services": [],
     "regular_explanation": "Polasci pod brojevima 1,2,3,4,5 saobraćaju svakodnevno",
-    "irregular_explanation": "—",
+    "irregular_explanation": "",
     "stops": [
         {
             "name": "Bolnica",
@@ -187,41 +187,41 @@
         {
             "name": "S.B. Polje igralište",
             "times": [
-                "—",
-                "—",
-                "—",
+                "",
+                "",
+                "",
                 "19:46",
-                "—"
+                ""
             ]
         },
         {
             "name": "S.B. Polje igralište",
             "times": [
-                "—",
-                "—",
-                "—",
+                "",
+                "",
+                "",
                 "19:47",
-                "—"
+                ""
             ]
         },
         {
             "name": "S.B. Polje igralište",
             "times": [
-                "—",
-                "—",
-                "—",
+                "",
+                "",
+                "",
                 "19:48",
-                "—"
+                ""
             ]
         },
         {
             "name": "S.B. Polje (R)",
             "times": [
-                "—",
-                "—",
-                "—",
+                "",
+                "",
+                "",
                 "19:49",
-                "—"
+                ""
             ]
         },
         {
