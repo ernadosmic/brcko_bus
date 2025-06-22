@@ -91,15 +91,18 @@
             const eIdx = names.indexOf(endKey);
             if (sIdx !== -1 && eIdx !== -1 && sIdx < eIdx) {
                 for (let i = 0; i < sch.services; i++) {
-                    const dep = parseTime(sch.stops[sIdx].times[i]);
+                    const depStr = sch.stops[sIdx].times[i];
+                    const arrStr = sch.stops[eIdx].times[i];
+                    if (depStr === '—' || arrStr === '—') continue; // <-- skip invalid
+                    const dep = parseTime(depStr);
                     if (dep >= nowMin) {
-                        const arr = parseTime(sch.stops[eIdx].times[i]);
+                        const arr = parseTime(arrStr);
                         record(dep, arr, [{
                             line: code,
                             from: sch.stops[sIdx].name,
                             to: sch.stops[eIdx].name,
-                            dep: sch.stops[sIdx].times[i],
-                            arr: sch.stops[eIdx].times[i]
+                            dep: depStr,
+                            arr: arrStr
                         }]);
                         if (arr < bestDirectArrival) bestDirectArrival = arr;
                     }
@@ -131,14 +134,20 @@
                     if (tIdx2 === -1 || eIdx2 === -1 || tIdx2 >= eIdx2) continue;
 
                     for (let i = 0; i < sch1.services; i++) {
-                        const dep1 = parseTime(sch1.stops[sIdx].times[i]);
-                        if (dep1 < nowMin) continue;
-                        const arr1 = parseTime(sch1.stops[t].times[i]);
+                        const dep1Str = sch1.stops[sIdx].times[i];
+                        const arr1Str = sch1.stops[t].times[i];
+                        if (dep1Str === '—' || arr1Str === '—') continue;
 
                         for (let j = 0; j < sch2.services; j++) {
-                            const dep2 = parseTime(sch2.stops[tIdx2].times[j]);
-                            if (dep2 < arr1) continue;
-                            const arr2 = parseTime(sch2.stops[eIdx2].times[j]);
+                            const dep2Str = sch2.stops[tIdx2].times[j];
+                            const arr2Str = sch2.stops[eIdx2].times[j];
+                            if (dep2Str === '—' || arr2Str === '—') continue;
+
+                            const dep1 = parseTime(dep1Str);
+                            if (dep1 < nowMin) continue;
+                            const arr1 = parseTime(arr1Str);
+                            const dep2 = parseTime(dep2Str);
+                            const arr2 = parseTime(arr2Str);
                             if (arr2 >= bestDirectArrival) continue; // <-- Only keep if better than direct
                             record(dep1, arr2, [
                                 {
@@ -297,17 +306,27 @@
                     const sch = scheduleCache[seg.line];
                     const lineNum = sch?.line_number || seg.line.replace(/^line_/, '');
                     const lineName = sch?.name || '';
+                    let serviceIdx = -1;
+                    if (sch && sch.stops) {
+                        const fromIdx = sch.stops.findIndex(s => s.name === seg.from);
+                        if (fromIdx !== -1) {
+                            serviceIdx = sch.stops[fromIdx].times.indexOf(seg.dep);
+                        }
+                    }
+                    const isIrregular = sch?.irregular_services?.includes(serviceIdx + 1);
+                    const irregularNote = isIrregular
+                        ? `<div class="irregular-note">Napomena: Polasci ove linije ne spadaju u regularni plan vožnje.</div>` : '';
                     return `<div class="route-segment">
-    
-    <div><strong>Linija ${lineNum} (${lineName})</strong>: ${seg.from} &rarr; ${seg.to}</div>
-    <div class="segment-time"><span>${seg.dep} - ${seg.arr}</span></div>
-    ${idx < arr.length - 1 ? '<hr>' : ''}
-</div>`;
+                        
+                        <div><strong>Linija ${lineNum} (${lineName})</strong>: ${seg.from} &rarr; ${seg.to}</div><div class="segment-time"><span>${seg.dep} - ${seg.arr}</span></div>
+                        ${irregularNote}
+                        ${idx < arr.length - 1 ? '<hr>' : ''}
+                    </div>`;
                 }).join('');
                 return `<div class="route-result">
-        <span class="route-time">${r.start} - ${r.end}</span>
-        ${segs}
-    </div>`;
+                    <span class="route-time">${r.start} - ${r.end}</span>
+                    ${segs}
+                </div>`;
             }).join('');
         }
 

@@ -213,3 +213,9 @@
   margin-bottom: 0.1em;
   margin-top: 0.5em;
 }
+.irregular-note {
+  color: #b85c00;
+  font-size: 0.95em;
+  margin-top: 0.2em;
+  font-style: italic;
+}
