@@ -399,13 +399,13 @@
                     // Main line: show start time and all transfer stops with arrival times
                     let main = `
                         <div class="route-segment">
-                            ${dayLabelHtml}
-                            <div><strong>Linija ${lineNum0} (${lineName0})</strong>: (${seg0.dep}) ${seg0.from} &rarr;</div>
-                            <div class="mt-2">
-                                ${r.transferOptions.map(seg1 =>
-                        `→ (${seg1.transferArr}) ${seg1.from}`
+        ${dayLabelHtml}
+        <div><strong>Linija ${lineNum0} (${lineName0})</strong>: <span class="transfer-time">(${seg0.dep})</span> ${seg0.from} &rarr;</div>
+        <div class="mt-2">
+            ${r.transferOptions.map(seg1 =>
+                        `→ <span class="transfer-time">(${seg1.transferArr})</span> ${seg1.from}`
                     ).join('<br>')}
-                            </div>
+        </div>
                     `;
 
                     // Transfer line: show all transfer options with both times
@@ -414,12 +414,12 @@
                     const lineName1 = sch1?.name || '';
                     main += `
                         <div class="mt-2"><strong>Stanice presjedanja Linija ${lineNum1} (${lineName1}):</strong></div>
-                        <div>
-                            ${r.transferOptions.map(seg1 =>
-                        `(${seg1.dep}) ${seg1.from} → (${seg1.arr}) ${seg1.to}`
+    <div>
+        ${r.transferOptions.map(seg1 =>
+                        `<span class="transfer-time">(${seg1.dep})</span> ${seg1.from} → <span class="transfer-time">(${seg1.arr})</span> ${seg1.to}`
                     ).join('<br>')}
-                        </div>
-                        </div>
+    </div>
+    </div>
                     `;
                     return `<div class="route-result">${main}</div>`;
                 }
