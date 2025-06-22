@@ -96,16 +96,23 @@ function triggerFilter(query) {
 
     const out = document.getElementById('found-stations');
     out.innerHTML = '';
+
     if (query && chips.size) {
+        // remove indentation in the template & join
         out.innerHTML = [...chips]
-            .map(s => `<span class="badge bg-warning text-dark me-2 mb-1 station-chip" style="cursor:pointer;">
-                    ${highlightMatch(s, query)}
-                  </span>`)
+            .map(s =>
+                `<span class="badge bg-warning text-dark me-2 mb-1 station-chip" style="cursor:pointer;">` +
+                `${highlightMatch(s, query)}` +
+                `</span>`
+            )
             .join('');
+
+        // on click, trim() the text so there’s no leading/trailing spaces
         out.querySelectorAll('.station-chip').forEach(chip =>
             chip.addEventListener('click', () => {
-                const txt = chip.textContent;
-                document.getElementById('search-bar').value = txt;
+                const txt = chip.textContent.trim();
+                const searchBar = document.getElementById('search-bar');
+                searchBar.value = txt;
                 triggerFilter(txt.toLowerCase());
             })
         );
