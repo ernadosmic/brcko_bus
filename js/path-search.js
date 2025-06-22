@@ -82,6 +82,8 @@
         }
 
         // Direct routes
+        // Collect direct route earliest arrival
+        let bestDirectArrival = Infinity;
         for (const [code, sch] of schedules) {
             if (!sch || !Array.isArray(sch.stops)) continue;
             const names = sch.stops.map(s => s.name.toLowerCase());
@@ -93,6 +95,7 @@
                     if (dep >= nowMin) {
                         const arr = parseTime(sch.stops[eIdx].times[i]);
                         record(dep, arr, [{ line: code, from: sch.stops[sIdx].name, to: sch.stops[eIdx].name }]);
+                        if (arr < bestDirectArrival) bestDirectArrival = arr;
                     }
                 }
             }
@@ -110,6 +113,8 @@
                 for (const [c2, sch2] of schedules) {
                     if (c1 === c2) continue;
                     if (!sch2 || !Array.isArray(sch2.stops)) continue;
+                    // Prevent transfers between A/B of the same line number
+                    if (getLineNumber(c1) === getLineNumber(c2)) continue;
                     const names2 = sch2.stops.map(s => s.name.toLowerCase());
                     const tIdx2 = names2.indexOf(transfer);
                     const eIdx2 = names2.indexOf(endKey);
@@ -124,6 +129,7 @@
                             const dep2 = parseTime(sch2.stops[tIdx2].times[j]);
                             if (dep2 < arr1) continue;
                             const arr2 = parseTime(sch2.stops[eIdx2].times[j]);
+                            if (arr2 >= bestDirectArrival) continue; // <-- Only keep if better than direct
                             record(dep1, arr2, [
                                 { line: c1, from: sch1.stops[sIdx].name, to: sch1.stops[t].name },
                                 { line: c2, from: sch2.stops[tIdx2].name, to: sch2.stops[eIdx2].name }
@@ -182,5 +188,10 @@
         startInput.addEventListener('input', update);
         endInput.addEventListener('input', update);
     });
+
+    function getLineNumber(code) {
+        const m = code.match(/^line_(\d+)/i);
+        return m ? m[1] : null;
+    }
 
 })();
