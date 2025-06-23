@@ -329,7 +329,7 @@
 
             allRoutes = (await searchRoutes(startInput.value, endInput.value, nowMin, 0)) || [];
 
-            if (allRoutes.length < resultsToShow) {
+            if (allRoutes.length < MAX_RESULTS) {
                 const tomorrow = new Date(today);
                 tomorrow.setDate(today.getDate() + 1);
                 const tomorrowRoutes = await searchRoutes(startInput.value, endInput.value, 0, 1);
@@ -341,7 +341,7 @@
                     if (allRoutes.length >= MAX_RESULTS) break;
                 }
             }
-            if (allRoutes.length < resultsToShow) {
+            if (allRoutes.length < MAX_RESULTS) {
                 const prekosutra = new Date(today);
                 prekosutra.setDate(today.getDate() + 2);
                 const prekosutraRoutes = await searchRoutes(startInput.value, endInput.value, 0, 2);
