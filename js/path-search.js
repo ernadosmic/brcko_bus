@@ -433,10 +433,27 @@
                     // After pruning, find the earliest arrival time among the remaining valid options
                     // and set it as the main 'end' time for the entire grouped route.
                     if (group.transferOptions.length > 0) {
-                        const bestEnd = group.transferOptions.reduce((best, current) => {
-                            return parseTime(current.originalEnd) < parseTime(best) ? current.originalEnd : best;
-                        }, group.transferOptions[0].originalEnd);
-                        group.end = bestEnd;
+                        const bestEndTimeInMinutes = group.transferOptions.reduce((bestTime, currentOpt) => {
+                            // Time if taking the bus transfer
+                            const busArrivalTime = parseTime(currentOpt.originalEnd);
+
+                            // Time if walking from the transfer stop
+                            const travelTime = parseTime(currentOpt.arr) - parseTime(currentOpt.dep);
+                            let walkingArrivalTime = Infinity;
+                            if (travelTime === 1) {
+                                walkingArrivalTime = parseTime(currentOpt.transferArr) + 4; // 4 min walk
+                            } else if (travelTime === 2) {
+                                walkingArrivalTime = parseTime(currentOpt.transferArr) + 6; // 6 min walk
+                            }
+
+                            // The best time for this specific option is the minimum of walking or taking the bus
+                            const bestTimeForThisOption = Math.min(busArrivalTime, walkingArrivalTime);
+
+                            // Compare with the overall best time found so far
+                            return Math.min(bestTime, bestTimeForThisOption);
+                        }, parseTime(group.transferOptions[0].originalEnd)); // Initial best time
+
+                        group.end = formatTime(bestEndTimeInMinutes);
                     }
                 }
 
