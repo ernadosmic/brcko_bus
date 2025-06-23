@@ -366,7 +366,6 @@
                 resultsDiv.innerHTML = '<p class="text-danger">Nema dostupnih linija.</p>';
                 return;
             }
-            const routes = allRoutes.slice(0, resultsToShow);
 
             // Group routes by start, end, and dayOffset
             function groupRoutes(routes) {
@@ -374,16 +373,20 @@
                 routes.forEach(r => {
                     // Only group two-segment (one transfer) routes
                     if (r.segments.length === 2) {
-                        const key = `${r.start}|${r.end}|${r.dayOffset}|${r.segments[0].line}|${r.segments[0].from}`;
+                        const seg0 = r.segments[0];
+                        // Group by the first leg of the journey to find all possible transfers from that one bus ride
+                        const key = `${seg0.line}|${seg0.dep}|${seg0.from}|${r.dayOffset}`;
                         if (!groups[key]) {
                             groups[key] = {
-                                ...r,
+                                ...r, // Use the first route found as a template
                                 transferOptions: []
                             };
                         }
+                        // Store the second leg, including the arrival time at the transfer stop and the overall end time for this specific path
                         groups[key].transferOptions.push({
                             ...r.segments[1],
-                            transferArr: r.segments[0].arr // store arrival at transfer stop
+                            transferArr: seg0.arr,
+                            originalEnd: r.end
                         });
                     } else {
                         // For direct or multi-transfer, keep as is
@@ -391,12 +394,59 @@
                         groups[key] = r;
                     }
                 });
+
+                // Post-process the grouped transfers to remove illogical options
+                for (const key in groups) {
+                    const group = groups[key];
+                    if (!group.transferOptions || group.transferOptions.length <= 1) {
+                        continue; // Nothing to process
+                    }
+
+                    const sch0 = scheduleCache[group.segments[0].line];
+                    if (!sch0 || !sch0.stops) {
+                        continue; // Schedule not found, can't sort
+                    }
+
+                    const stopNames0 = sch0.stops.map(s => s.name);
+
+                    // Sort transfer options chronologically by their arrival time on the first line
+                    group.transferOptions.sort((a, b) => {
+                        return parseTime(a.transferArr) - parseTime(b.transferArr);
+                    });
+
+                    // Find the first transfer point that is a short walk from the destination
+                    let walkableTransferIndex = -1;
+                    for (let i = 0; i < group.transferOptions.length; i++) {
+                        const opt = group.transferOptions[i];
+                        const travelTime = parseTime(opt.arr) - parseTime(opt.dep);
+                        if (travelTime === 1 || travelTime === 2) {
+                            walkableTransferIndex = i;
+                            break; // Found the first walkable transfer, this is our logical cutoff
+                        }
+                    }
+
+                    // If a walkable transfer was found, prune all subsequent (less logical) options
+                    if (walkableTransferIndex !== -1) {
+                        group.transferOptions = group.transferOptions.slice(0, walkableTransferIndex + 1);
+                    }
+
+                    // After pruning, find the earliest arrival time among the remaining valid options
+                    // and set it as the main 'end' time for the entire grouped route.
+                    if (group.transferOptions.length > 0) {
+                        const bestEnd = group.transferOptions.reduce((best, current) => {
+                            return parseTime(current.originalEnd) < parseTime(best) ? current.originalEnd : best;
+                        }, group.transferOptions[0].originalEnd);
+                        group.end = bestEnd;
+                    }
+                }
+
                 return Object.values(groups);
             }
 
-            const groupedRoutes = groupRoutes(routes);
+            const allGroupedRoutes = groupRoutes(allRoutes);
+            const routesToDisplay = allGroupedRoutes.slice(0, resultsToShow);
 
-            resultsDiv.innerHTML = groupedRoutes.map(r => {
+            resultsDiv.innerHTML = routesToDisplay.map(r => {
                 const dayLabel = getDayLabel(r.dayOffset);
 
                 if (r.transferOptions && r.transferOptions.length) {
@@ -491,8 +541,8 @@
                 </div>`;
             }).join('');
 
-            const totalResults = allRoutes.length;
-            if (resultsToShow < Math.min(totalResults, MAX_RESULTS)) {
+            const totalGroupedResults = allGroupedRoutes.length;
+            if (resultsToShow < Math.min(totalGroupedResults, MAX_RESULTS)) {
                 resultsDiv.innerHTML += `
                     <div class="d-grid mt-2">
                         <button id="show-more-btn" class="btn btn-outline-primary">Prikaži još</button>

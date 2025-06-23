@@ -15,7 +15,7 @@
     "irregular_explanation": "Polasci pod brojem 1, 2 i 4 ne saobraćaju subotom, nedjeljom, praznikom i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
-            "name": "POTOČARI II",
+            "name": "Potočari II",
             "times": [
                 "",
                 "13:15",
@@ -159,7 +159,7 @@
             ]
         },
         {
-            "name": "Brod Spomenik",
+            "name": "Stari Brod",
             "times": [
                 "09:31",
                 "13:43",

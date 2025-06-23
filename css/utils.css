@@ -145,7 +145,7 @@
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 47.34px;
   right: 0;
   z-index: 10;
   background: #fff;
@@ -234,12 +234,12 @@
 }
 #route-results {
   width: 100%;
-  padding: 0 8rem;
+  padding: 0 11rem;
 }
 
 .search-area-padding {
-  padding-left: 8rem;
-  padding-right: 8rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 @media (max-width: 991.98px) {
   #route-results {
@@ -259,4 +259,21 @@
   font-family: "Courier New", Courier, monospace;
   font-size: 0.9em;
   letter-spacing: 0.5px;
+}
+
+/* Replaced for robust vertical alignment using flexbox */
+.form-switch {
+  font-size: 1.1rem; /* Increases the size of the toggle */
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem; /* Adjusts space between toggle and label */
+  padding-top: 50px; /* Overrides Bootstrap's default padding */
+  float: left; /* Ensures proper alignment */
+}
+
+.form-switch .form-check-input {
+  font-size: 1.1rem; /* Makes the toggle bigger */
+  /* Resets Bootstrap's positioning to work with flexbox */
+  float: left;
+  margin-left: 0;
 }
