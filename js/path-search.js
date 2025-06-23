@@ -334,9 +334,9 @@
                 tomorrow.setDate(today.getDate() + 1);
                 const tomorrowRoutes = await searchRoutes(startInput.value, endInput.value, 0, 1);
                 // Only add tomorrow's results that are not already in allRoutes
-                const seen = new Set(allRoutes.map(r => r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',')));
+                const seen = new Set(allRoutes.map(r => r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',') + '-' + r.dayOffset));
                 for (const r of tomorrowRoutes) {
-                    const key = r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',');
+                    const key = r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',') + '-' + r.dayOffset;
                     if (!seen.has(key)) allRoutes.push(r);
                     if (allRoutes.length >= MAX_RESULTS) break;
                 }
@@ -346,9 +346,9 @@
                 prekosutra.setDate(today.getDate() + 2);
                 const prekosutraRoutes = await searchRoutes(startInput.value, endInput.value, 0, 2);
                 // Only add prekosutra's results that are not already in allRoutes
-                const seen2 = new Set(allRoutes.map(r => r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',')));
+                const seen2 = new Set(allRoutes.map(r => r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',') + '-' + r.dayOffset));
                 for (const r of prekosutraRoutes) {
-                    const key = r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',');
+                    const key = r.start + '-' + r.end + '-' + r.segments.map(s => s.dep).join(',') + '-' + r.dayOffset;
                     if (!seen2.has(key)) allRoutes.push(r);
                     if (allRoutes.length >= MAX_RESULTS) break;
                 }
@@ -619,36 +619,10 @@
             suggestionsDiv.innerHTML = '';
             suggestionsDiv.classList.remove('active');
         }, 150));
-    } function setupAutocomplete(input, suggestionsDiv) {
-        input.addEventListener('input', function () {
-            const val = input.value.trim().toLowerCase();
-            suggestionsDiv.innerHTML = '';
-            suggestionsDiv.classList.remove('active');
-            if (!val) return;
-            const matches = allStations.filter(st =>
-                normalize(st).includes(normalize(val))
-            ).slice(0, 10);
-            if (matches.length) suggestionsDiv.classList.add('active');
-            matches.forEach(st => {
-                const div = document.createElement('div');
-                div.textContent = st;
-                div.onclick = () => {
-                    input.value = st;
-                    suggestionsDiv.innerHTML = '';
-                    suggestionsDiv.classList.remove('active');
-                    input.dispatchEvent(new Event('input'));
-                };
-                suggestionsDiv.appendChild(div);
-            });
-        });
-        input.addEventListener('blur', () => setTimeout(() => {
-            suggestionsDiv.innerHTML = '';
-            suggestionsDiv.classList.remove('active');
-        }, 150));
     }
 
     let resultsToShow = 3;
-    const MAX_RESULTS = 30;
+    const MAX_RESULTS = 60;
 
     function getDayLabel(dayOffset) {
         const d = new Date();

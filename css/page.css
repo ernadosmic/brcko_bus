@@ -14,9 +14,10 @@ body {
 
 .container {
   max-width: 1320px;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 0 var(--spacing-md);
   margin-top: 0.2rem !important;
+  margin-bottom: 0.2rem !important;
 }
 
 .hero-font {
