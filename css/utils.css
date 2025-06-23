@@ -154,6 +154,8 @@
   overflow-y: auto;
   border-radius: 0 0 0.25rem 0.25rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  font-size: 1.2rem;
+  color: #1976d2;
 }
 .autocomplete-suggestions.active {
   display: block;
