@@ -162,10 +162,10 @@
               <p class="mb-4">Šta želite da uradite sa redom vožnje?</p>
               <div class="d-grid gap-2">
                 <button type="button" class="btn btn-primary btn-lg" id="shareBtn">
-                  <i class="fas fa-share-alt me-2"></i>Podijeli
+                  <i class="fas fa-share-alt me-2"></i>Podijeli link
                 </button>
                 <button type="button" class="btn btn-success btn-lg" id="downloadBtn">
-                  <i class="fas fa-download me-2"></i>Preuzmi
+                  <i class="fas fa-download me-2"></i>Preuzmi sliku
                 </button>
               </div>
             </div>
@@ -190,7 +190,7 @@
     // Add event listeners
     document.getElementById('shareBtn').addEventListener('click', () => {
       modal.hide();
-      shareScheduleImage();
+      shareScheduleLink();
     });
 
     document.getElementById('downloadBtn').addEventListener('click', () => {
@@ -223,41 +223,34 @@
     return await html2canvas(scheduleCard, options);
   }
 
-  // Share schedule image
-  async function shareScheduleImage() {
+  // Share schedule link
+  async function shareScheduleLink() {
     try {
-      const canvas = await generateScheduleCanvas();
-      const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-
       const lineNumber = document.getElementById('line-badge').textContent.replace('Linija: ', '');
       const routeName = document.getElementById('route-title').textContent;
+      const currentUrl = window.location.href;
 
-      if (navigator.share && navigator.canShare && navigator.canShare({ files: [new File([blob], 'schedule.png', { type: 'image/png' })] })) {
+      if (navigator.share) {
         // Use Web Share API if available
-        const file = new File([blob], `red_voznje_linija_${lineNumber}.png`, { type: 'image/png' });
         await navigator.share({
           title: `Red vožnje - Linija ${lineNumber}`,
           text: `Red vožnje za liniju ${lineNumber}: ${routeName}`,
-          files: [file]
+          url: currentUrl
         });
       } else {
-        // Fallback: copy to clipboard and show instructions
+        // Fallback: copy URL to clipboard and show instructions
         try {
-          await navigator.clipboard.write([
-            new ClipboardItem({
-              'image/png': blob
-            })
-          ]);
-          alert('Slika je kopirana u clipboard! Možete je zalijepiti u bilo koju aplikaciju (Ctrl+V).');
+          await navigator.clipboard.writeText(currentUrl);
+          alert(`Link je kopiran u clipboard!\n\nLinija ${lineNumber}: ${routeName}\n${currentUrl}\n\nMožete ga zalijepiti bilo gdje (Ctrl+V).`);
         } catch (clipboardError) {
-          console.log('Clipboard not supported, falling back to download');
-          // If clipboard fails, download instead
-          downloadImageFromBlob(blob, lineNumber);
+          console.log('Clipboard not supported, showing URL');
+          // If clipboard fails, show URL in a prompt
+          prompt('Kopirajte ovaj link za dijeljenje:', currentUrl);
         }
       }
     } catch (error) {
-      console.error('Error sharing image:', error);
-      alert('Greška pri dijeljenju slike. Pokušajte ponovo.');
+      console.error('Error sharing link:', error);
+      alert('Greška pri dijeljenju linka. Pokušajte ponovo.');
     }
   }
 
