@@ -208,16 +208,21 @@
   async function generateScheduleCanvas() {
     const scheduleCard = document.querySelector('.schedule-card');
 
+    // Get the actual content dimensions
+    const rect = scheduleCard.getBoundingClientRect();
+
     const options = {
       scale: 2, // Higher quality
       backgroundColor: '#ffffff',
       useCORS: true,
       allowTaint: false,
       logging: false,
-      width: scheduleCard.scrollWidth,
-      height: scheduleCard.scrollHeight,
+      width: rect.width, // Use actual rendered width
+      height: rect.height, // Use actual rendered height
       scrollX: 0,
-      scrollY: 0
+      scrollY: 0,
+      windowWidth: rect.width,
+      windowHeight: rect.height
     };
 
     return await html2canvas(scheduleCard, options);

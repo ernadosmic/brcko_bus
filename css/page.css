@@ -336,3 +336,7 @@ body {
   border-radius: 10px;
   overflow: hidden;
 }
+
+.download-schedule-btn {
+  padding: 0 0.4rem;
+}
