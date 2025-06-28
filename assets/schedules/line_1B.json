@@ -4,20 +4,22 @@
     "line_number": "1",
     "services": 5,
     "regular_services": [
-        6,
-        7,
-        8,
-        9,
-        10
+        2
     ],
-    "weekday_services": [],
-    "only_weekday_services": [],
-    "regular_explanation": "Polasci pod brojem 4 saobraćaju svakodnevno",
-    "weekday_explanation": "",
-    "only_weekday_explanation": "",
+    "weekday_services": [
+        3
+    ],
+    "irregular_services": [
+        1,
+        4,
+        5
+    ],
+    "regular_explanation": "Polasci pod brojem 2 saobraćaju svakodnevno",
+    "weekday_explanation": "Polasci pod brojem 3 saobraćaju radnim danima",
+    "irregular_explanation": "Polasci pod brojem 1, 4, 5 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
-            "name": "N.NASELJE",
+            "name": "Novo Naselje",
             "times": [
                 "05:45",
                 "07:00",
@@ -27,7 +29,7 @@
             ]
         },
         {
-            "name": "B. Polje",
+            "name": "Brezovo Polje",
             "times": [
                 "05:48",
                 "07:03",
@@ -37,7 +39,7 @@
             ]
         },
         {
-            "name": "S.B. Polje (R)",
+            "name": "Selo Brezovo Polje (R)",
             "times": [
                 "05:49",
                 "",
@@ -47,7 +49,7 @@
             ]
         },
         {
-            "name": "S.B. Polje igralište",
+            "name": "Selo Brezovo Polje igralište",
             "times": [
                 "05:50",
                 "",
@@ -57,7 +59,7 @@
             ]
         },
         {
-            "name": "S.B. Polje",
+            "name": "Selo Brezovo Polje",
             "times": [
                 "05:51",
                 "",
@@ -67,7 +69,7 @@
             ]
         },
         {
-            "name": "S.B. Polje igralište",
+            "name": "Selo Brezovo Polje igralište",
             "times": [
                 "05:52",
                 "",
@@ -77,7 +79,7 @@
             ]
         },
         {
-            "name": "S.B. Polje (R)",
+            "name": "Selo Brezovo Polje (R)",
             "times": [
                 "05:53",
                 "07:10",
@@ -127,7 +129,7 @@
             ]
         },
         {
-            "name": "Pirometali",
+            "name": "Pirometal",
             "times": [
                 "06:02",
                 "07:17",
@@ -147,7 +149,7 @@
             ]
         },
         {
-            "name": "Brezik R.",
+            "name": "Brezik (R)",
             "times": [
                 "06:04",
                 "07:19",
@@ -157,7 +159,7 @@
             ]
         },
         {
-            "name": "Blizna",
+            "name": "Blizina",
             "times": [
                 "06:05",
                 "07:20",
@@ -177,7 +179,7 @@
             ]
         },
         {
-            "name": "Bosnaprod",
+            "name": "Bosnaplod",
             "times": [
                 "06:07",
                 "07:22",
@@ -207,7 +209,7 @@
             ]
         },
         {
-            "name": "Centar",
+            "name": "Brčko Centar",
             "times": [
                 "06:10",
                 "07:25",
@@ -237,7 +239,7 @@
             ]
         },
         {
-            "name": "BOLNICA",
+            "name": "Bolnica",
             "times": [
                 "06:13",
                 "07:28",
