@@ -38,7 +38,13 @@
             <div class="card-header bg-primary text-white">
                 <div class="d-flex justify-content-between align-items-center">
                     <h4 class="mb-0" id="route-title">Maoča - Omerbegovača</h4>
-                    <span class="badge bg-light text-dark" id="line-badge">Linija: 8</span>
+                    <div class="d-flex align-items-center gap-2">
+                        <button id="download-schedule-btn" class="btn btn-light btn-sm"
+                            title="Podijeli ili preuzmi red vožnje">
+                            <i class="fas fa-share-alt"></i> Podijeli/Preuzmi
+                        </button>
+                        <span class="badge bg-light text-dark" id="line-badge">Linija: 8</span>
+                    </div>
                 </div>
             </div>
 
@@ -127,6 +133,9 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- html2canvas for image generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <!-- Component Loader -->
     <script src="../js/main.js"></script>

@@ -520,13 +520,22 @@
                             serviceIdx = sch.stops[fromIdx].times.indexOf(seg.dep);
                         }
                     }
-                    const isweekday = sch?.weekday_services?.includes(serviceIdx + 1);
-                    const weekdayNote = isweekday
-                        ? `<div class="weekday-note">
-                            <strong>Napomena:</strong> Polasci ove linije ne spadaju u regularni plan vožnje.<br>
+                    const isRegular = sch?.regular_services?.includes(serviceIdx + 1);
+                    const isWeekday = sch?.weekday_services?.includes(serviceIdx + 1);
+                    const isIrregular = sch?.irregular_services?.includes(serviceIdx + 1);
+
+                    let serviceNote = '';
+                    if (isWeekday) {
+                        serviceNote = `<div class="weekday-note">
+                            <strong>Napomena:</strong> Polasci ove linije u ovom terminu saobraćaju samo radnim danima.<br>
                             <a href="linije/${seg.line}.html" target="_blank" class="weekday-link">Provjeri detaljnije plan</a>
-                          </div>`
-                        : '';
+                          </div>`;
+                    } else if (isIrregular) {
+                        serviceNote = `<div class="weekday-note">
+                            <strong>Napomena:</strong> Polasci ove linije u ovom terminu ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta.<br>
+                            <a href="linije/${seg.line}.html" target="_blank" class="weekday-link">Provjeri detaljnije plan</a>
+                          </div>`;
+                    }
 
                     const travelTime = parseTime(seg.arr) - parseTime(seg.dep);
                     let segmentHtml;
@@ -548,7 +557,7 @@
 
                     return `<div class="route-segment">
                         ${segmentHtml}
-                        ${weekdayNote}
+                        ${serviceNote}
                         ${idx < arr.length - 1 ? '<hr>' : ''}
                     </div>`;
                 }).join('');

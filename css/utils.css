@@ -243,6 +243,7 @@
   text-decoration: underline;
   font-size: 0.97em;
   padding-left: 0;
+  margin-top: 50px;
 }
 #route-results {
   width: 100%;

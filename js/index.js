@@ -136,10 +136,173 @@
     });
   }
 
+  // Share/Download schedule as image function
+  function setupDownloadButton() {
+    const downloadBtn = document.getElementById('download-schedule-btn');
+    const scheduleCard = document.querySelector('.schedule-card');
+
+    if (!downloadBtn || !scheduleCard) return;
+
+    downloadBtn.addEventListener('click', function () {
+      showShareDownloadModal();
+    });
+  }
+
+  // Show modal with share/download options
+  function showShareDownloadModal() {
+    const modalHtml = `
+      <div class="modal fade" id="shareDownloadModal" tabindex="-1" aria-labelledby="shareDownloadModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="shareDownloadModalLabel">Izaberite opciju</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+              <p class="mb-4">Šta želite da uradite sa redom vožnje?</p>
+              <div class="d-grid gap-2">
+                <button type="button" class="btn btn-primary btn-lg" id="shareBtn">
+                  <i class="fas fa-share-alt me-2"></i>Podijeli
+                </button>
+                <button type="button" class="btn btn-success btn-lg" id="downloadBtn">
+                  <i class="fas fa-download me-2"></i>Preuzmi
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Remove existing modal if present
+    const existingModal = document.getElementById('shareDownloadModal');
+    if (existingModal) {
+      existingModal.remove();
+    }
+
+    // Add modal to page
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('shareDownloadModal'));
+    modal.show();
+
+    // Add event listeners
+    document.getElementById('shareBtn').addEventListener('click', () => {
+      modal.hide();
+      shareScheduleImage();
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      modal.hide();
+      downloadScheduleImage();
+    });
+
+    // Clean up modal after it's hidden
+    document.getElementById('shareDownloadModal').addEventListener('hidden.bs.modal', function () {
+      this.remove();
+    });
+  }
+
+  // Generate canvas from schedule card
+  async function generateScheduleCanvas() {
+    const scheduleCard = document.querySelector('.schedule-card');
+
+    const options = {
+      scale: 2, // Higher quality
+      backgroundColor: '#ffffff',
+      useCORS: true,
+      allowTaint: false,
+      logging: false,
+      width: scheduleCard.scrollWidth,
+      height: scheduleCard.scrollHeight,
+      scrollX: 0,
+      scrollY: 0
+    };
+
+    return await html2canvas(scheduleCard, options);
+  }
+
+  // Share schedule image
+  async function shareScheduleImage() {
+    try {
+      const canvas = await generateScheduleCanvas();
+      const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+
+      const lineNumber = document.getElementById('line-badge').textContent.replace('Linija: ', '');
+      const routeName = document.getElementById('route-title').textContent;
+
+      if (navigator.share && navigator.canShare && navigator.canShare({ files: [new File([blob], 'schedule.png', { type: 'image/png' })] })) {
+        // Use Web Share API if available
+        const file = new File([blob], `red_voznje_linija_${lineNumber}.png`, { type: 'image/png' });
+        await navigator.share({
+          title: `Red vožnje - Linija ${lineNumber}`,
+          text: `Red vožnje za liniju ${lineNumber}: ${routeName}`,
+          files: [file]
+        });
+      } else {
+        // Fallback: copy to clipboard and show instructions
+        try {
+          await navigator.clipboard.write([
+            new ClipboardItem({
+              'image/png': blob
+            })
+          ]);
+          alert('Slika je kopirana u clipboard! Možete je zalijepiti u bilo koju aplikaciju (Ctrl+V).');
+        } catch (clipboardError) {
+          console.log('Clipboard not supported, falling back to download');
+          // If clipboard fails, download instead
+          downloadImageFromBlob(blob, lineNumber);
+        }
+      }
+    } catch (error) {
+      console.error('Error sharing image:', error);
+      alert('Greška pri dijeljenju slike. Pokušajte ponovo.');
+    }
+  }
+
+  // Download schedule image
+  async function downloadScheduleImage() {
+    try {
+      const canvas = await generateScheduleCanvas();
+      const lineNumber = document.getElementById('line-badge').textContent.replace('Linija: ', '');
+
+      // Create download link
+      const link = document.createElement('a');
+      link.download = `red_voznje_linija_${lineNumber}.png`;
+      link.href = canvas.toDataURL('image/png');
+
+      // Trigger download
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+    } catch (error) {
+      console.error('Error downloading image:', error);
+      alert('Greška pri preuzimanju slike. Pokušajte ponovo.');
+    }
+  }
+
+  // Helper function to download from blob
+  function downloadImageFromBlob(blob, lineNumber) {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.download = `red_voznje_linija_${lineNumber}.png`;
+    link.href = url;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
   // Run on DOM ready
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", loadScheduleData);
+    document.addEventListener("DOMContentLoaded", () => {
+      loadScheduleData();
+      setupDownloadButton();
+    });
   } else {
     loadScheduleData();
+    setupDownloadButton();
   }
 })();
