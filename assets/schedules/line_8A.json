@@ -11,7 +11,7 @@
         13,
         18
     ],
-    "irregular_services": [
+    "weekday_services": [
         2,
         4,
         5,
@@ -26,7 +26,7 @@
         17
     ],
     "regular_explanation": "Polasci pod brojevima 1,3,6, 9, 13, 18 saobraćaju svakodnevno",
-    "irregular_explanation": "Polasci pod brojevima 2,4,5,7,8,10,11,12,14,15,16,17 saobraćaju samo radnim danima",
+    "weekday_explanation": "Polasci pod brojevima 2,4,5,7,8,10,11,12,14,15,16,17 saobraćaju samo radnim danima",
     "stops": [
         {
             "name": "Maoča Badarka",

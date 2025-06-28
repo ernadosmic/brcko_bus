@@ -9,11 +9,11 @@
         4,
         5
     ],
-    "irregular_services": [
+    "weekday_services": [
         2
     ],
     "regular_explanation": "Polasci pod brojevima 1, 3, 4, 5 saobraćaju svakodnevno",
-    "irregular_explanation": "Polasci pod brojem 2 ne saobraćaju subotom, nedjeljom i praznikom",
+    "weekday_explanation": "Polasci pod brojem 2 ne saobraćaju subotom, nedjeljom i praznikom",
     "stops": [
         {
             "name": "POSAVCI",

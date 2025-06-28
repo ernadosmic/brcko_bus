@@ -8,14 +8,14 @@
         6,
         7
     ],
-    "irregular_services": [
+    "weekday_services": [
         1,
         2,
         4,
         5
     ],
     "regular_explanation": "Polasci pod brojem 3, 6, 7 saobraćaju svakodnevno",
-    "irregular_explanation": "Polasci pod brojem 1, 2, 4, 5 ne saobraćaju subotom, nedjeljom i praznikom",
+    "weekday_explanation": "Polasci pod brojem 1, 2, 4, 5 ne saobraćaju subotom, nedjeljom i praznikom",
     "stops": [
         {
             "name": "VUČILOVAC",

@@ -10,9 +10,11 @@
         9,
         10
     ],
-    "irregular_services": [],
-    "regular_explanation": "Polasci pod brojevima 6,7,8,9,10 saobraćaju svakodnevno",
-    "irregular_explanation": "",
+    "weekday_services": [],
+    "only_weekday_services": [],
+    "regular_explanation": "Polasci pod brojem 4 saobraćaju svakodnevno",
+    "weekday_explanation": "",
+    "only_weekday_explanation": "",
     "stops": [
         {
             "name": "N.NASELJE",

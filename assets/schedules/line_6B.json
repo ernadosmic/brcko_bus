@@ -10,9 +10,9 @@
         9,
         10
     ],
-    "irregular_services": [],
+    "weekday_services": [],
     "regular_explanation": "Polasci pod brojevima 6, 7, 8, 9, 10 saobraćaju svakodnevno",
-    "irregular_explanation": "",
+    "weekday_explanation": "",
     "stops": [
         {
             "name": "SATOROVIĆI DOM",

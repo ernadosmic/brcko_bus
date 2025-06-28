@@ -6,9 +6,9 @@
     "regular_services": [
         1
     ],
-    "irregular_services": [],
+    "weekday_services": [],
     "regular_explanation": "Polasci pod brojem 1 saobraćaju svakodnevno",
-    "irregular_explanation": "",
+    "weekday_explanation": "",
     "stops": [
         {
             "name": "BOLNICA",

@@ -18,7 +18,7 @@ The bus schedule application has been enhanced with modern Bootstrap-inspired st
 - **Secondary Color**: `#f8b739` (Warm orange)
 - **Service Types**:
   - Regular services: Blue background (`#e3f2fd`) with dark blue text (`#1976d2`)
-  - Irregular services: Light red background (`#ffe0e0`) with dark red text (`#d32f2f`)
+  - weekday services: Light red background (`#ffe0e0`) with dark red text (`#d32f2f`)
 
 ### 3. **Component Structure**
 
@@ -89,7 +89,7 @@ brcko_bus/
 ### Service Types
 
 - `.regular-service` - Blue styling for daily services
-- `.irregular-service` - Red styling for weekday-only services
+- `.weekday-service` - Red styling for weekday-only services
 
 ### Layout
 

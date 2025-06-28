@@ -9,9 +9,9 @@
         7,
         8
     ],
-    "irregular_services": [],
+    "weekday_services": [],
     "regular_explanation": "Polasci pod brojevima 5, 6, 7, 8 saobraćaju svakodnevno",
-    "irregular_explanation": "",
+    "weekday_explanation": "",
     "stops": [
         {
             "name": "TESLA",

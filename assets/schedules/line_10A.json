@@ -8,9 +8,9 @@
         2,
         3
     ],
-    "irregular_services": [],
+    "weekday_services": [],
     "regular_explanation": "Polasci pod brojevima 1, 2, 3 saobraćaju svakodnevno",
-    "irregular_explanation": "",
+    "weekday_explanation": "",
     "stops": [
         {
             "name": "BIJELA ŠKOLA",

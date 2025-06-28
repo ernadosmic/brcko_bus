@@ -520,11 +520,11 @@
                             serviceIdx = sch.stops[fromIdx].times.indexOf(seg.dep);
                         }
                     }
-                    const isIrregular = sch?.irregular_services?.includes(serviceIdx + 1);
-                    const irregularNote = isIrregular
-                        ? `<div class="irregular-note">
+                    const isweekday = sch?.weekday_services?.includes(serviceIdx + 1);
+                    const weekdayNote = isweekday
+                        ? `<div class="weekday-note">
                             <strong>Napomena:</strong> Polasci ove linije ne spadaju u regularni plan vožnje.<br>
-                            <a href="linije/${seg.line}.html" target="_blank" class="irregular-link">Provjeri detaljnije plan</a>
+                            <a href="linije/${seg.line}.html" target="_blank" class="weekday-link">Provjeri detaljnije plan</a>
                           </div>`
                         : '';
 
@@ -548,7 +548,7 @@
 
                     return `<div class="route-segment">
                         ${segmentHtml}
-                        ${irregularNote}
+                        ${weekdayNote}
                         ${idx < arr.length - 1 ? '<hr>' : ''}
                     </div>`;
                 }).join('');

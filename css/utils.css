@@ -56,8 +56,10 @@
   --secondary-dark: #e09e1a;
   --secondary-light: #ffc850;
 
-  --regular-service-bg: #e3f2fd;
-  --regular-service-color: #1976d2;
+  --regular-service-bg: #e3fded;
+  --regular-service-color: #149914;
+  --weekday-service-bg: #e3f2fd;
+  --weekday-service-color: #1976d2;
   --irregular-service-bg: #ffe0e0;
   --irregular-service-color: #d32f2f;
 
@@ -116,6 +118,10 @@
   background-color: var(--regular-service-bg) !important;
   color: var(--regular-service-color) !important;
 }
+.weekday-service {
+  background-color: var(--weekday-service-bg) !important;
+  color: var(--weekday-service-color) !important;
+}
 .irregular-service {
   background-color: var(--irregular-service-bg) !important;
   color: var(--irregular-service-color) !important;
@@ -123,6 +129,10 @@
 .regular-dot {
   color: var(--regular-service-color);
   background-color: var(--regular-service-bg);
+}
+.weekday-dot {
+  color: var(--weekday-service-color);
+  background-color: var(--weekday-service-bg);
 }
 .irregular-dot {
   color: var(--irregular-service-color);
@@ -221,14 +231,14 @@
   margin-bottom: 0.1em;
   margin-top: 0.5em;
 }
-.irregular-note {
+.weekday-note {
   color: #b85c00;
   font-size: 0.95em;
   margin-top: 0.2em;
   font-style: italic;
 }
 
-.irregular-link {
+.weekday-link {
   color: #0d6efd;
   text-decoration: underline;
   font-size: 0.97em;

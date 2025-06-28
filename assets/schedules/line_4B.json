@@ -6,9 +6,9 @@
     "regular_services": [
         2
     ],
-    "irregular_services": [],
+    "weekday_services": [],
     "regular_explanation": "Polasci pod brojem 2 saobraćaju svakodnevno",
-    "irregular_explanation": "",
+    "weekday_explanation": "",
     "stops": [
         {
             "name": "MILADIJE",

@@ -7,8 +7,10 @@
         "line_number",
         "services",
         "regular_services",
+        "weekday_services",
         "irregular_services",
         "regular_explanation",
+        "weekday_explanation",
         "irregular_explanation",
         "stops"
     ],
@@ -29,7 +31,13 @@
                 "type": "integer"
             }
         },
-        "irregular_services": {
+        "weekday_services": {
+            "type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "only_weekday_services": {
             "type": "array",
             "items": {
                 "type": "integer"
@@ -38,7 +46,10 @@
         "regular_explanation": {
             "type": "string"
         },
-        "irregular_explanation": {
+        "weekday_explanation": {
+            "type": "string"
+        },
+        "only_weekday_explanation": {
             "type": "string"
         },
         "stops": {
@@ -55,8 +66,8 @@
                     },
                     "times": {
                         "type": "array",
-                        "minItems": 18,
-                        "maxItems": 18,
+                        "minItems": 5,
+                        "maxItems": 5,
                         "items": {
                             "type": "string",
                             "pattern": "^\\d{2}:\\d{2}$"

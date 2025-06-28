@@ -176,6 +176,10 @@ body {
   background-color: var(--regular-service-bg);
   border-color: var(--regular-service-color);
 }
+.legend-color.weekday {
+  background-color: var(--weekday-service-bg);
+  border-color: var(--weekday-service-color);
+}
 .legend-color.irregular {
   background-color: var(--irregular-service-bg);
   border-color: var(--irregular-service-color);
@@ -304,6 +308,11 @@ body {
     font-size: 0.7rem;
   }
   .regular-service {
+    background-color: #e3fded !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .weekday-service {
     background-color: #e3f2fd !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;

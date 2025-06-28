@@ -6,13 +6,13 @@
     "regular_services": [
         3
     ],
-    "irregular_services": [
+    "weekday_services": [
         1,
         2,
         4
     ],
     "regular_explanation": "Polasci pod brojem 3 saobraćaju svakodnevno",
-    "irregular_explanation": "Polasci pod brojem 1, 2 i 4 ne saobraćaju subotom, nedjeljom, praznikom i radnim danom za vrijeme školskog raspusta",
+    "weekday_explanation": "Polasci pod brojem 1, 2 i 4 ne saobraćaju subotom, nedjeljom, praznikom i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
             "name": "Potočari II",

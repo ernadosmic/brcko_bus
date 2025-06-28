@@ -10,12 +10,12 @@
         13,
         14
     ],
-    "irregular_services": [
+    "weekday_services": [
         8,
         11
     ],
     "regular_explanation": "Polasci pod brojem 9, 10, 12, 13, 14 saobraćaju svakodnevno",
-    "irregular_explanation": "Polasci pod brojem 8, 11 ne saobraćaju subotom, nedjeljom i praznikom",
+    "weekday_explanation": "Polasci pod brojem 8, 11 ne saobraćaju subotom, nedjeljom i praznikom",
     "stops": [
         {
             "name": "Potočari II",

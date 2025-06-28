@@ -46,6 +46,7 @@
     document.getElementById("line-badge").textContent = `Linija: ${data.line_number}`;
     document.getElementById("regular-explanation").textContent = data.regular_explanation;
     document.getElementById("irregular-explanation").textContent = data.irregular_explanation;
+    document.getElementById("weekday-explanation").textContent = data.weekday_explanation;
 
     // — Service header —
     const svcHead = document.getElementById("service-header");
@@ -57,7 +58,9 @@
       th.classList.add(
         data.regular_services.includes(i)
           ? "regular-service"
-          : "irregular-service"
+          : data.irregular_services && data.irregular_services.includes(i)
+            ? "irregular-service"
+            : "weekday-service"
       );
       svcHead.appendChild(th);
     }
@@ -93,7 +96,9 @@
         td.classList.add(
           data.regular_services.includes(ti + 1)
             ? "regular-service"
-            : "irregular-service"
+            : data.irregular_services && data.irregular_services.includes(ti + 1)
+              ? "irregular-service"
+              : "weekday-service"
         );
         tr.appendChild(td);
       });
