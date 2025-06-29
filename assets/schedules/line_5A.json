@@ -1,22 +1,25 @@
 {
     "$schema": "./bus_schema.json",
-    "name": "Satorovići - Bolnica",
+    "name": "Šatorovići - Bolnica",
     "line_number": "5",
     "services": 6,
     "regular_services": [
+        2
+    ],
+    "weekday_services": [],
+    "irregular_services": [
         1,
-        2,
         3,
         4,
         5,
         6
     ],
-    "weekday_services": [],
-    "regular_explanation": "Polasci pod brojevima 1, 2, 3, 4, 5, 6 saobraćaju svakodnevno",
+    "regular_explanation": "Polasci pod brojem 2 saobraćaju svakodnevno",
     "weekday_explanation": "",
+    "irregular_explanation": "Polasci pod brojem 1, 3, 4, 5 i 6 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
-            "name": "SATOROVIĆI",
+            "name": "Šatorovići",
             "times": [
                 "05:50",
                 "07:10",
@@ -27,7 +30,7 @@
             ]
         },
         {
-            "name": "Satorovići I",
+            "name": "Šatorovići I",
             "times": [
                 "05:52",
                 "07:12",
@@ -71,7 +74,7 @@
             ]
         },
         {
-            "name": "Dubravice D. (R)",
+            "name": "Dubravice Donje (R)",
             "times": [
                 "06:05",
                 "07:25",
@@ -137,7 +140,7 @@
             ]
         },
         {
-            "name": "Seljanka (Škola)",
+            "name": "Seljanka",
             "times": [
                 "06:20",
                 "07:40",
@@ -170,7 +173,7 @@
             ]
         },
         {
-            "name": "Grčica Crkva",
+            "name": "Grčica I (Crkva)",
             "times": [
                 "06:24",
                 "07:44",
@@ -181,7 +184,7 @@
             ]
         },
         {
-            "name": "Soliter",
+            "name": "Veterinarska stanica",
             "times": [
                 "06:25",
                 "07:45",
@@ -192,7 +195,7 @@
             ]
         },
         {
-            "name": "Centar",
+            "name": "Brčko Centar",
             "times": [
                 "06:26",
                 "07:46",

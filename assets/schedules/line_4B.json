@@ -3,21 +3,23 @@
     "name": "Miladije - Bolnica",
     "line_number": "4",
     "services": 1,
-    "regular_services": [
-        2
-    ],
+    "regular_services": [],
     "weekday_services": [],
-    "regular_explanation": "Polasci pod brojem 2 saobraćaju svakodnevno",
+    "irregular_services": [
+        1
+    ],
+    "regular_explanation": "",
     "weekday_explanation": "",
+    "irregular_explanation": "Polasci pod brojem 1 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
-            "name": "MILADIJE",
+            "name": "Miladije",
             "times": [
                 "19:00"
             ]
         },
         {
-            "name": "Dubravice D.",
+            "name": "Dubravice Donje (R)",
             "times": [
                 "19:04"
             ]
@@ -53,7 +55,7 @@
             ]
         },
         {
-            "name": "Seljanka (škola)",
+            "name": "Seljanka",
             "times": [
                 "19:19"
             ]
@@ -77,13 +79,13 @@
             ]
         },
         {
-            "name": "Spliter",
+            "name": "Veterinarska stanica",
             "times": [
                 "19:25"
             ]
         },
         {
-            "name": "Robna Kuća",
+            "name": "Brčko Centar",
             "times": [
                 "19:26"
             ]
@@ -101,7 +103,7 @@
             ]
         },
         {
-            "name": "BOLNICA",
+            "name": "Bolnica",
             "times": [
                 "19:29"
             ]

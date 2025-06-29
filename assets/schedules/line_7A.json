@@ -1,21 +1,25 @@
 {
     "$schema": "./bus_schema.json",
-    "name": "Strepci - Izbor",
+    "name": "Štrepci - Dom zdravlja - Izbor",
     "line_number": "7",
     "services": 5,
     "regular_services": [
+        2
+    ],
+    "weekday_services": [
+        3
+    ],
+    "irregular_services": [
         1,
-        2,
-        3,
         4,
         5
     ],
-    "weekday_services": [],
-    "regular_explanation": "Polasci pod brojevima 1, 2, 3, 4, 5 saobraćaju svakodnevno",
-    "weekday_explanation": "",
+    "regular_explanation": "Polasci pod brojem 2 saobraćaju svakodnevno",
+    "weekday_explanation": "Polasci pod brojem 3 saobraćaju radnim danima",
+    "irregular_explanation": "Polasci pod brojem 1, 4 i 5 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
-            "name": "STREPCI",
+            "name": "Štrepci",
             "times": [
                 "06:00",
                 "08:00",
@@ -95,7 +99,7 @@
             ]
         },
         {
-            "name": "Boće G.",
+            "name": "Boće Gornje",
             "times": [
                 "06:18",
                 "08:18",
@@ -145,7 +149,7 @@
             ]
         },
         {
-            "name": "Begovača",
+            "name": "Omerbegovača",
             "times": [
                 "06:28",
                 "08:28",
@@ -155,7 +159,7 @@
             ]
         },
         {
-            "name": "Krajinovići",
+            "name": "krajnovići",
             "times": [
                 "06:29",
                 "08:29",
@@ -225,7 +229,7 @@
             ]
         },
         {
-            "name": "Vet. Stanica",
+            "name": "Veterinarska Stanica",
             "times": [
                 "06:36",
                 "08:36",
@@ -235,7 +239,7 @@
             ]
         },
         {
-            "name": "Centar",
+            "name": "Brčko Centar",
             "times": [
                 "06:37",
                 "08:37",
@@ -275,7 +279,7 @@
             ]
         },
         {
-            "name": "IZBOR",
+            "name": "Izbor",
             "times": [
                 "06:41",
                 "08:41",

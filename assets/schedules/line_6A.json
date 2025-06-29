@@ -1,21 +1,24 @@
 {
     "$schema": "./bus_schema.json",
-    "name": "Satorovići Dom - Bolnica",
+    "name": "Satorovići - Bolnica",
     "line_number": "6",
     "services": 5,
     "regular_services": [
+        2
+    ],
+    "weekday_services": [],
+    "irregular_services": [
         1,
-        2,
         3,
         4,
         5
     ],
-    "weekday_services": [],
-    "regular_explanation": "Polasci pod brojevima 1, 2, 3, 4, 5 saobraćaju svakodnevno",
+    "regular_explanation": "Polasci pod brojem 2 saobraćaju svakodnevno",
     "weekday_explanation": "",
+    "irregular_explanation": "Polasci pod brojem 1, 3, 4 i 5 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
-            "name": "SATOROVIĆI DOM",
+            "name": "Šatorovići",
             "times": [
                 "05:50",
                 "07:15",
@@ -57,26 +60,6 @@
         {
             "name": "Grabici",
             "times": [
-                "06:01",
-                "07:21",
-                "11:51",
-                "15:41",
-                "18:55"
-            ]
-        },
-        {
-            "name": "Begovača (R)",
-            "times": [
-                "06:05",
-                "07:25",
-                "11:55",
-                "15:44",
-                "18:54"
-            ]
-        },
-        {
-            "name": "Krajinovići",
-            "times": [
                 "06:11",
                 "07:36",
                 "12:01",
@@ -85,17 +68,17 @@
             ]
         },
         {
-            "name": "Š. Han",
+            "name": "Omerbegovača (R)",
             "times": [
                 "06:14",
                 "07:39",
-                "12:04",
+                "11:04",
                 "15:44",
                 "18:54"
             ]
         },
         {
-            "name": "Čadavac (R)",
+            "name": "krajnovići",
             "times": [
                 "06:16",
                 "07:41",
@@ -105,7 +88,7 @@
             ]
         },
         {
-            "name": "Dizdaruša",
+            "name": "Šišin Han",
             "times": [
                 "06:17",
                 "07:42",
@@ -115,7 +98,7 @@
             ]
         },
         {
-            "name": "Dizdaruša Š.",
+            "name": "Čađavac (R)",
             "times": [
                 "06:18",
                 "07:43",
@@ -125,7 +108,7 @@
             ]
         },
         {
-            "name": "4. Juli",
+            "name": "Dizdaruša",
             "times": [
                 "06:19",
                 "07:44",
@@ -135,7 +118,7 @@
             ]
         },
         {
-            "name": "Staklorad",
+            "name": "Dizdaruša Š.",
             "times": [
                 "06:20",
                 "07:45",
@@ -145,7 +128,7 @@
             ]
         },
         {
-            "name": "Vet. Stanica",
+            "name": "4. Juli",
             "times": [
                 "06:21",
                 "07:46",
@@ -155,7 +138,7 @@
             ]
         },
         {
-            "name": "Centar",
+            "name": "Staklorad",
             "times": [
                 "06:22",
                 "07:47",
@@ -165,7 +148,7 @@
             ]
         },
         {
-            "name": "Kolobara",
+            "name": "Veterinarska Stanica",
             "times": [
                 "06:23",
                 "07:48",
@@ -175,7 +158,7 @@
             ]
         },
         {
-            "name": "Dom zdravlja",
+            "name": "Brčko Centar",
             "times": [
                 "06:27",
                 "07:52",
@@ -185,13 +168,33 @@
             ]
         },
         {
-            "name": "BOLNICA",
+            "name": "Kolobara",
             "times": [
                 "06:28",
                 "07:53",
                 "12:18",
                 "15:58",
                 "19:08"
+            ]
+        },
+        {
+            "name": "Dom zdravlja",
+            "times": [
+                "06:29",
+                "07:54",
+                "12:19",
+                "15:59",
+                "19:09"
+            ]
+        },
+        {
+            "name": "Bolnica",
+            "times": [
+                "06:30",
+                "07:55",
+                "12:20",
+                "16:00",
+                "19:10"
             ]
         }
     ]

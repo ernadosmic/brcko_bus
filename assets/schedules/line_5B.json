@@ -1,19 +1,22 @@
 {
     "$schema": "./bus_schema.json",
-    "name": "Bolnica - Satorovići",
+    "name": "Bolnica - Šatorovići",
     "line_number": "5",
     "services": 6,
     "regular_services": [
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
+        4
     ],
     "weekday_services": [],
-    "regular_explanation": "Polasci pod brojevima 7, 8, 9, 10, 11, 12 saobraćaju svakodnevno",
+    "irregular_services": [
+        1,
+        2,
+        3,
+        5,
+        6
+    ],
+    "regular_explanation": "Polasci pod brojem 4 saobraćaju svakodnevno",
     "weekday_explanation": "",
+    "irregular_explanation": "Polasci pod brojem 1, 2, 3, 5 i 6 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
             "name": "Bolnica",
@@ -49,7 +52,7 @@
             ]
         },
         {
-            "name": "Centar",
+            "name": "Brčko Centar",
             "times": [
                 "06:33",
                 "11:03",
@@ -60,7 +63,7 @@
             ]
         },
         {
-            "name": "Soliter",
+            "name": "Veterinarska stanica",
             "times": [
                 "06:34",
                 "11:04",
@@ -71,7 +74,7 @@
             ]
         },
         {
-            "name": "Grčica Crkva",
+            "name": "Grčica I (Crkva)",
             "times": [
                 "06:35",
                 "11:05",
@@ -82,7 +85,7 @@
             ]
         },
         {
-            "name": "Grčica I",
+            "name": "Grčica II",
             "times": [
                 "06:36",
                 "11:06",
@@ -104,7 +107,7 @@
             ]
         },
         {
-            "name": "Seljanka (Škola)",
+            "name": "Seljanka",
             "times": [
                 "06:39",
                 "11:09",
@@ -170,7 +173,7 @@
             ]
         },
         {
-            "name": "Dubravice D. (R)",
+            "name": "Dubravice Donje (R)",
             "times": [
                 "06:54",
                 "11:24",
@@ -214,7 +217,7 @@
             ]
         },
         {
-            "name": "Satorovići I",
+            "name": "Šatorovići I",
             "times": [
                 "07:07",
                 "11:37",
@@ -225,7 +228,7 @@
             ]
         },
         {
-            "name": "SATOROVIĆI",
+            "name": "Šatorovići",
             "times": [
                 "07:09",
                 "11:39",
