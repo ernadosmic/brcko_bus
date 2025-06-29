@@ -4,18 +4,21 @@
     "line_number": "2",
     "services": 7,
     "regular_services": [
-        9,
-        10,
-        12,
-        13,
-        14
+        6
     ],
     "weekday_services": [
-        8,
-        11
+        3
     ],
-    "regular_explanation": "Polasci pod brojem 9, 10, 12, 13, 14 saobraćaju svakodnevno",
-    "weekday_explanation": "Polasci pod brojem 8, 11 ne saobraćaju subotom, nedjeljom i praznikom",
+    "irregular_services": [
+        1,
+        2,
+        4,
+        5,
+        7
+    ],
+    "regular_explanation": "Polasci pod brojem 6 saobraćaju svakodnevno",
+    "weekday_explanation": "Polasci pod brojem 3 saobraćaju radnim danima",
+    "irregular_explanation": "Polasci pod brojem 1, 2, 4, 5 i 7 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
             "name": "Potočari II",
@@ -42,7 +45,7 @@
             ]
         },
         {
-            "name": "Brezik crkva",
+            "name": "Potočari crkva",
             "times": [
                 "",
                 "08:03",
@@ -54,7 +57,7 @@
             ]
         },
         {
-            "name": "Brezik raskr.",
+            "name": "Brezik (R)",
             "times": [
                 "",
                 "08:04",
@@ -90,7 +93,7 @@
             ]
         },
         {
-            "name": "Greica II",
+            "name": "Grčica II",
             "times": [
                 "",
                 "08:07",
@@ -102,7 +105,7 @@
             ]
         },
         {
-            "name": "Greica I",
+            "name": "Grčica I (Crkva)",
             "times": [
                 "",
                 "08:08",
@@ -114,7 +117,7 @@
             ]
         },
         {
-            "name": "Vet.stanica",
+            "name": "Veterinarska stanica",
             "times": [
                 "",
                 "08:09",
@@ -126,9 +129,9 @@
             ]
         },
         {
-            "name": "Centar",
+            "name": "Brčko Centar",
             "times": [
-                "06:53",
+                "06:32",
                 "08:12",
                 "10:32",
                 "",
@@ -140,7 +143,7 @@
         {
             "name": "Kolobara",
             "times": [
-                "06:54",
+                "06:34",
                 "08:14",
                 "10:34",
                 "",
@@ -150,9 +153,9 @@
             ]
         },
         {
-            "name": "D. Zdravlja",
+            "name": "Dom zdravlja",
             "times": [
-                "06:56",
+                "06:36",
                 "08:16",
                 "10:36",
                 "",
@@ -164,7 +167,7 @@
         {
             "name": "Bolnica",
             "times": [
-                "06:57",
+                "06:37",
                 "08:17",
                 "10:37",
                 "",
@@ -176,7 +179,7 @@
         {
             "name": "PSC",
             "times": [
-                "06:58",
+                "06:38",
                 "08:18",
                 "10:38",
                 "",
@@ -186,9 +189,9 @@
             ]
         },
         {
-            "name": "Antunović p.",
+            "name": "Antunović pumpa",
             "times": [
-                "06:59",
+                "06:39",
                 "08:19",
                 "10:39",
                 "",
@@ -203,8 +206,8 @@
                 "",
                 "",
                 "",
-                "11:30",
-                "13:42",
+                "",
+                "13:39",
                 "16:59",
                 ""
             ]
@@ -229,7 +232,7 @@
                 "10:42",
                 "11:33",
                 "13:45",
-                "17:03",
+                "17:05",
                 "19:37"
             ]
         },
@@ -246,7 +249,7 @@
             ]
         },
         {
-            "name": "Slankara",
+            "name": "Šljunkara",
             "times": [
                 "06:46",
                 "08:26",
@@ -330,7 +333,7 @@
             ]
         },
         {
-            "name": "M. POLJE",
+            "name": "Marković Polje",
             "times": [
                 "06:57",
                 "08:37",
@@ -366,7 +369,7 @@
             ]
         },
         {
-            "name": "Čišva",
+            "name": "Crkva Vučilovac",
             "times": [
                 "",
                 "08:46",
@@ -378,7 +381,7 @@
             ]
         },
         {
-            "name": "VUČILOVAC",
+            "name": "Vučilovac",
             "times": [
                 "",
                 "08:55",
