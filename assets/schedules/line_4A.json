@@ -3,12 +3,14 @@
     "name": "Bolnica - Miladije",
     "line_number": "4",
     "services": 1,
-    "regular_services": [
+    "regular_services": [],
+    "weekday_services": [],
+    "irregular_services": [
         1
     ],
-    "weekday_services": [],
-    "regular_explanation": "Polasci pod brojem 1 saobraćaju svakodnevno",
+    "regular_explanation": "",
     "weekday_explanation": "",
+    "irregular_explanation": "Polasci pod brojem 1 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
             "name": "BOLNICA",
