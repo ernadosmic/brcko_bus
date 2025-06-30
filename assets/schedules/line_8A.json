@@ -11,7 +11,8 @@
         13,
         18
     ],
-    "weekday_services": [
+    "weekday_services": [],
+    "irregular_services": [
         2,
         4,
         5,
@@ -25,8 +26,9 @@
         16,
         17
     ],
-    "regular_explanation": "Polasci pod brojevima 1,3,6, 9, 13, 18 saobraćaju svakodnevno",
-    "weekday_explanation": "Polasci pod brojevima 2,4,5,7,8,10,11,12,14,15,16,17 saobraćaju samo radnim danima",
+    "regular_explanation": "Polasci pod brojem 1, 3, 6, 9, 13 i 18 saobraćaju svakodnevno",
+    "weekday_explanation": "",
+    "irregular_explanation": "Polasci pod brojem 2, 4, 5, 7, 8, 10, 11, 12, 14, 15, 16 i 17 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
             "name": "Maoča Badarka",
@@ -72,52 +74,6 @@
                 "18:01",
                 "19:01",
                 "20:01"
-            ]
-        },
-        {
-            "name": "Maoča Škola",
-            "times": [
-                "06:02",
-                "06:32",
-                "07:02",
-                "07:32",
-                "08:02",
-                "10:02",
-                "11:02",
-                "11:32",
-                "12:02",
-                "12:32",
-                "13:02",
-                "13:32",
-                "15:02",
-                "16:02",
-                "17:32",
-                "18:02",
-                "19:02",
-                "20:02"
-            ]
-        },
-        {
-            "name": "Maoča Rašljani (R)",
-            "times": [
-                "06:03",
-                "06:33",
-                "07:03",
-                "07:33",
-                "08:03",
-                "10:03",
-                "11:03",
-                "11:33",
-                "12:03",
-                "12:33",
-                "13:03",
-                "13:33",
-                "15:03",
-                "16:03",
-                "17:33",
-                "18:03",
-                "19:03",
-                "20:03"
             ]
         },
         {
@@ -282,7 +238,7 @@
             ]
         },
         {
-            "name": "Mušići",
+            "name": "Musići",
             "times": [
                 "06:12",
                 "06:42",
@@ -325,29 +281,6 @@
                 "18:13",
                 "19:13",
                 "20:13"
-            ]
-        },
-        {
-            "name": "Brka Servis",
-            "times": [
-                "06:14",
-                "06:44",
-                "07:14",
-                "07:44",
-                "08:14",
-                "10:14",
-                "11:14",
-                "11:44",
-                "12:14",
-                "12:44",
-                "13:14",
-                "13:44",
-                "15:14",
-                "16:14",
-                "17:44",
-                "18:14",
-                "19:14",
-                "20:14"
             ]
         },
         {
@@ -420,7 +353,7 @@
             ]
         },
         {
-            "name": "Stari Brod",
+            "name": "Stari Brod (Spomenik)",
             "times": [
                 "06:18",
                 "06:48",
@@ -627,7 +560,7 @@
             ]
         },
         {
-            "name": "Centar",
+            "name": "Brčko Centar",
             "times": [
                 "06:32",
                 "07:02",
@@ -650,7 +583,7 @@
             ]
         },
         {
-            "name": "Vet. Stanica",
+            "name": "Veterinarska Stanica",
             "times": [
                 "06:36",
                 "07:06",
@@ -719,7 +652,7 @@
             ]
         },
         {
-            "name": "Dizdaruša S.",
+            "name": "Dizdaruša Š.",
             "times": [
                 "06:45",
                 "07:15",
@@ -742,7 +675,7 @@
             ]
         },
         {
-            "name": "Dizdaruša Dom",
+            "name": "Dizdaruša",
             "times": [
                 "06:46",
                 "07:16",
