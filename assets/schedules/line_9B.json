@@ -1,336 +1,379 @@
 {
     "$schema": "./bus_schema.json",
-    "name": "Rašljani - Potočari",
+    "name": "Potočari - Rašljani",
     "line_number": "9",
-    "services": 3,
+    "services": 4,
     "regular_services": [
-        1
-    ],
-    "weekday_services": [
-        2,
         3
     ],
-    "regular_explanation": "Polasci pod brojem 1 saobraćaju svakodnevno",
-    "weekday_explanation": "Polasci pod brojem 2 i 3 ne saobraćaju subotom, nedjeljom, praznikom i radnim danom za vrijeme školskog raspusta",
+    "weekday_services": [],
+    "irregular_services": [
+        1,
+        2,
+        4
+    ],
+    "regular_explanation": "Polasci pod brojem 3 saobraćaju svakodnevno",
+    "weekday_explanation": "",
+    "irregular_explanation": "Polasci pod brojem 1, 2 i 4 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
-            "name": "RAŠLJANI",
+            "name": "Potočari II",
             "times": [
-                "05:40",
-                "11:40",
-                "17:40"
-            ]
-        },
-        {
-            "name": "Rašljani Škola",
-            "times": [
-                "05:45",
-                "11:45",
-                "17:45"
-            ]
-        },
-        {
-            "name": "Zlatići \"R\"",
-            "times": [
-                "05:46",
-                "11:46",
-                "17:46"
-            ]
-        },
-        {
-            "name": "Pobrići",
-            "times": [
-                "05:47",
-                "11:47",
-                "17:47"
-            ]
-        },
-        {
-            "name": "Samari",
-            "times": [
-                "05:48",
-                "11:48",
-                "17:48"
-            ]
-        },
-        {
-            "name": "Gradina",
-            "times": [
-                "05:49",
-                "11:49",
-                "17:49"
-            ]
-        },
-        {
-            "name": "Maoča (R)",
-            "times": [
-                "05:51",
-                "11:51",
-                "17:51"
-            ]
-        },
-        {
-            "name": "Prutače",
-            "times": [
-                "05:53",
-                "11:53",
-                "17:53"
-            ]
-        },
-        {
-            "name": "Šljivikara",
-            "times": [
-                "05:54",
-                "11:54",
-                "17:54"
-            ]
-        },
-        {
-            "name": "Gornji Rahić",
-            "times": [
-                "05:56",
-                "11:56",
-                "17:56"
-            ]
-        },
-        {
-            "name": "G. Rahić Škola",
-            "times": [
-                "05:58",
-                "11:58",
-                "17:58"
-            ]
-        },
-        {
-            "name": "Ograđenovac",
-            "times": [
-                "06:00",
-                "12:00",
-                "18:00"
-            ]
-        },
-        {
-            "name": "Palanka \"R\"",
-            "times": [
-                "06:13",
-                "12:13",
-                "18:13"
-            ]
-        },
-        {
-            "name": "Didići",
-            "times": [
-                "06:12",
-                "12:12",
-                "18:12"
-            ]
-        },
-        {
-            "name": "Palanka Dom",
-            "times": [
-                "06:10",
-                "12:10",
-                "18:10"
-            ]
-        },
-        {
-            "name": "Palanka Škola",
-            "times": [
-                "06:08",
-                "12:08",
-                "18:08"
-            ]
-        },
-        {
-            "name": "Palanka Dom",
-            "times": [
-                "06:10",
-                "12:10",
-                "18:10"
-            ]
-        },
-        {
-            "name": "Didići",
-            "times": [
-                "06:12",
-                "12:12",
-                "18:12"
-            ]
-        },
-        {
-            "name": "Palanka \"R\"",
-            "times": [
-                "06:13",
-                "12:13",
-                "18:13"
-            ]
-        },
-        {
-            "name": "Musići",
-            "times": [
-                "06:14",
-                "12:14",
-                "18:14"
-            ]
-        },
-        {
-            "name": "Brka Bor",
-            "times": [
-                "06:15",
-                "12:15",
-                "18:15"
-            ]
-        },
-        {
-            "name": "Brka Servis",
-            "times": [
-                "06:16",
-                "12:16",
-                "18:16"
-            ]
-        },
-        {
-            "name": "Tihe Noći",
-            "times": [
-                "06:18",
-                "12:18",
-                "18:18"
-            ]
-        },
-        {
-            "name": "Stari Brod",
-            "times": [
-                "06:23",
-                "12:23",
-                "18:23"
-            ]
-        },
-        {
-            "name": "Brod Škola",
-            "times": [
-                "06:24",
-                "12:24",
-                "18:24"
-            ]
-        },
-        {
-            "name": "Šadrvan",
-            "times": [
-                "06:25",
-                "12:25",
-                "18:25"
-            ]
-        },
-        {
-            "name": "Suljagića Sokak",
-            "times": [
-                "06:29",
-                "12:29",
-                "18:29"
-            ]
-        },
-        {
-            "name": "Broduša",
-            "times": [
-                "06:30",
-                "12:30",
-                "18:30"
-            ]
-        },
-        {
-            "name": "Izbor",
-            "times": [
-                "06:31",
-                "12:31",
-                "18:31"
-            ]
-        },
-        {
-            "name": "Meraje",
-            "times": [
-                "06:32",
-                "12:32",
-                "18:32"
-            ]
-        },
-        {
-            "name": "Dom zdravlja",
-            "times": [
-                "06:33",
-                "12:33",
-                "18:33"
-            ]
-        },
-        {
-            "name": "Kolobara",
-            "times": [
-                "06:35",
-                "12:35",
-                "18:35"
-            ]
-        },
-        {
-            "name": "Centar",
-            "times": [
-                "06:37",
-                "12:37",
-                "18:37"
-            ]
-        },
-        {
-            "name": "Vet. Stanica",
-            "times": [
-                "06:41",
-                "12:41",
-                "18:41"
-            ]
-        },
-        {
-            "name": "Grčica Crkva",
-            "times": [
-                "06:42",
-                "12:42",
-                "18:42"
-            ]
-        },
-        {
-            "name": "Grčica II",
-            "times": [
-                "06:43",
-                "12:43",
-                "18:43"
-            ]
-        },
-        {
-            "name": "Farma",
-            "times": [
-                "06:45",
-                "12:45",
-                "18:45"
-            ]
-        },
-        {
-            "name": "Potočari Crkva",
-            "times": [
-                "06:47",
-                "12:47",
-                "18:47"
+                "",
+                "13:15",
+                "17:30",
+                "19:20"
             ]
         },
         {
             "name": "Potočari I",
             "times": [
-                "06:48",
-                "12:48",
-                "18:48"
+                "",
+                "13:18",
+                "17:33",
+                "19:23"
             ]
         },
         {
-            "name": "Potočari II",
+            "name": "Potočari crkva",
             "times": [
-                "06:51",
-                "12:51",
-                "18:51"
+                "",
+                "13:19",
+                "17:34",
+                "19:24"
+            ]
+        },
+        {
+            "name": "Farma",
+            "times": [
+                "09:09",
+                "13:21",
+                "17:36",
+                "19:26"
+            ]
+        },
+        {
+            "name": "Grčica II",
+            "times": [
+                "09:11",
+                "13:23",
+                "17:38",
+                "19:28"
+            ]
+        },
+        {
+            "name": "Grčica I (Crkva)",
+            "times": [
+                "09:12",
+                "13:24",
+                "17:39",
+                "19:29"
+            ]
+        },
+        {
+            "name": "Veterinarska Stanica",
+            "times": [
+                "09:13",
+                "13:25",
+                "17:40",
+                "19:30"
+            ]
+        },
+        {
+            "name": "Brčko Centar",
+            "times": [
+                "09:17",
+                "13:29",
+                "17:44",
+                "19:34"
+            ]
+        },
+        {
+            "name": "Kolobara",
+            "times": [
+                "09:19",
+                "13:31",
+                "17:46",
+                "19:36"
+            ]
+        },
+        {
+            "name": "Dom zdravlja",
+            "times": [
+                "09:21",
+                "13:33",
+                "17:48",
+                "19:38"
+            ]
+        },
+        {
+            "name": "Meraje",
+            "times": [
+                "09:22",
+                "13:34",
+                "17:49",
+                "19:39"
+            ]
+        },
+        {
+            "name": "Izbor",
+            "times": [
+                "09:23",
+                "13:35",
+                "17:50",
+                "19:40"
+            ]
+        },
+        {
+            "name": "Broduša",
+            "times": [
+                "09:24",
+                "13:36",
+                "17:51",
+                "19:41"
+            ]
+        },
+        {
+            "name": "Suljagića Sokak",
+            "times": [
+                "09:25",
+                "13:37",
+                "17:52",
+                "19:42"
+            ]
+        },
+        {
+            "name": "Šadrvan",
+            "times": [
+                "09:29",
+                "13:41",
+                "17:56",
+                "19:46"
+            ]
+        },
+        {
+            "name": "Brod Škola",
+            "times": [
+                "09:30",
+                "13:42",
+                "17:57",
+                "19:47"
+            ]
+        },
+        {
+            "name": "Stari Brod (Spomenik)",
+            "times": [
+                "09:31",
+                "13:43",
+                "17:58",
+                "19:48"
+            ]
+        },
+        {
+            "name": "Tihe Noći",
+            "times": [
+                "09:36",
+                "13:48",
+                "18:03",
+                "19:53"
+            ]
+        },
+        {
+            "name": "Brka Servis",
+            "times": [
+                "09:38",
+                "13:50",
+                "18:05",
+                "19:55"
+            ]
+        },
+        {
+            "name": "Brka Bor",
+            "times": [
+                "09:39",
+                "13:51",
+                "18:06",
+                "19:56"
+            ]
+        },
+        {
+            "name": "Musići",
+            "times": [
+                "09:40",
+                "13:52",
+                "18:07",
+                "19:57"
+            ]
+        },
+        {
+            "name": "Palanka (R)",
+            "times": [
+                "09:51",
+                "14:03",
+                "18:18",
+                "20:08"
+            ]
+        },
+        {
+            "name": "Didići",
+            "times": [
+                "09:50",
+                "14:02",
+                "18:17",
+                "20:07"
+            ]
+        },
+        {
+            "name": "Palanka Dom",
+            "times": [
+                "09:48",
+                "14:00",
+                "18:15",
+                "20:05"
+            ]
+        },
+        {
+            "name": "Palanka Škola",
+            "times": [
+                "09:46",
+                "13:58",
+                "18:13",
+                "20:03"
+            ]
+        },
+        {
+            "name": "Palanka Dom",
+            "times": [
+                "09:48",
+                "14:00",
+                "18:15",
+                "20:05"
+            ]
+        },
+        {
+            "name": "Didići",
+            "times": [
+                "09:50",
+                "14:02",
+                "18:17",
+                "20:07"
+            ]
+        },
+        {
+            "name": "Palanka (R)",
+            "times": [
+                "09:51",
+                "14:03",
+                "18:18",
+                "20:08"
+            ]
+        },
+        {
+            "name": "Ograđenovac",
+            "times": [
+                "09:54",
+                "14:06",
+                "18:21",
+                "20:11"
+            ]
+        },
+        {
+            "name": "Rahić Škola",
+            "times": [
+                "09:56",
+                "14:08",
+                "18:23",
+                "20:13"
+            ]
+        },
+        {
+            "name": "Rahić Centar",
+            "times": [
+                "09:58",
+                "14:10",
+                "18:25",
+                "20:15"
+            ]
+        },
+        {
+            "name": "Šljivikara",
+            "times": [
+                "10:00",
+                "14:12",
+                "18:27",
+                "20:17"
+            ]
+        },
+        {
+            "name": "Prutače",
+            "times": [
+                "10:01",
+                "14:13",
+                "18:28",
+                "20:18"
+            ]
+        },
+        {
+            "name": "Rašljani (R) (Škola Maoča)",
+            "times": [
+                "10:03",
+                "14:15",
+                "18:30",
+                "20:20"
+            ]
+        },
+        {
+            "name": "Gradina",
+            "times": [
+                "10:05",
+                "14:17",
+                "18:32",
+                "20:22"
+            ]
+        },
+        {
+            "name": "Samari",
+            "times": [
+                "10:06",
+                "14:18",
+                "18:33",
+                "20:23"
+            ]
+        },
+        {
+            "name": "Pobrići",
+            "times": [
+                "10:07",
+                "14:19",
+                "18:34",
+                "20:24"
+            ]
+        },
+        {
+            "name": "Zlatići (R)",
+            "times": [
+                "10:08",
+                "14:20",
+                "18:35",
+                "20:25"
+            ]
+        },
+        {
+            "name": "Rašljani Škola",
+            "times": [
+                "10:09",
+                "14:21",
+                "18:36",
+                "20:26"
+            ]
+        },
+        {
+            "name": "Rašljani",
+            "times": [
+                "10:14",
+                "14:26",
+                "18:41",
+                "20:31"
             ]
         }
     ]
