@@ -620,6 +620,8 @@
     }
 
     function setupAutocomplete(input, suggestionsDiv) {
+        let isClickingOnSuggestion = false;
+
         input.addEventListener('input', function () {
             const val = input.value.trim().toLowerCase();
             suggestionsDiv.innerHTML = '';
@@ -632,19 +634,40 @@
             matches.forEach(st => {
                 const div = document.createElement('div');
                 div.textContent = st;
+                div.addEventListener('mousedown', () => {
+                    isClickingOnSuggestion = true;
+                });
                 div.onclick = () => {
                     input.value = st;
                     suggestionsDiv.innerHTML = '';
                     suggestionsDiv.classList.remove('active');
                     input.dispatchEvent(new Event('input'));
+                    isClickingOnSuggestion = false;
+                    input.focus(); // Keep focus on input
                 };
                 suggestionsDiv.appendChild(div);
             });
         });
-        input.addEventListener('blur', () => setTimeout(() => {
-            suggestionsDiv.innerHTML = '';
-            suggestionsDiv.classList.remove('active');
-        }, 150));
+
+        // Use focusout instead of blur and check if we're clicking on suggestion
+        input.addEventListener('focusout', () => {
+            // Only hide suggestions if we're not clicking on one
+            if (!isClickingOnSuggestion) {
+                setTimeout(() => {
+                    suggestionsDiv.innerHTML = '';
+                    suggestionsDiv.classList.remove('active');
+                }, 150);
+            }
+        });
+
+        // Reset flag when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!suggestionsDiv.contains(e.target) && e.target !== input) {
+                isClickingOnSuggestion = false;
+                suggestionsDiv.innerHTML = '';
+                suggestionsDiv.classList.remove('active');
+            }
+        });
     }
 
     let resultsToShow = 3;
