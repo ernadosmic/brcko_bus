@@ -1,45 +1,74 @@
 /* Stations Grid Layout */
 .stations-grid {
-  display: grid;
+  display: grid !important;
   gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
   max-width: 100%;
+  width: 100%;
 }
 
 /* Responsive grid with exact card counts */
 @media (min-width: 1400px) {
   .stations-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr) !important;
     gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 }
 
 @media (min-width: 1200px) and (max-width: 1399px) {
   .stations-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr) !important;
     gap: 1.75rem;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .stations-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr) !important;
     gap: 1.5rem;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .stations-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
     gap: 1.25rem;
   }
 }
 
 @media (max-width: 767px) {
   .stations-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 1rem;
   }
+}
+
+/* Debug styles - remove after testing */
+
+/* Station Card Wrapper - Direct children of the grid */
+.station-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Ensure cards stretch to fill their grid cell */
+.station-card-wrapper .station-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.station-card-wrapper .card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.station-card-wrapper .d-grid {
+  margin-top: auto;
 }
 
 /* Station Card Styling */
