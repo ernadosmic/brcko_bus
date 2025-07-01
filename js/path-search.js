@@ -4,6 +4,8 @@
 
     // Cache for loaded schedule data
     const scheduleCache = {};
+    // Map of normalized station name -> array of line codes that service it
+    const stationLinesMap = {};
 
     // Fetch schedule JSON for a given line code (e.g., "line_1A")
     async function fetchSchedule(lineCode) {
@@ -58,6 +60,20 @@
         });
 
         await Promise.all(promises);
+
+        // Build station -> lines map for quicker lookups
+        Object.entries(scheduleCache).forEach(([code, sch]) => {
+            if (!sch || !Array.isArray(sch.stops)) return;
+            sch.stops.forEach(stop => {
+                const key = normalize(stop.name);
+                if (!stationLinesMap[key]) stationLinesMap[key] = new Set();
+                stationLinesMap[key].add(code);
+            });
+        });
+        Object.keys(stationLinesMap).forEach(k => {
+            stationLinesMap[k] = Array.from(stationLinesMap[k]);
+        });
+
         console.log('[path-search.js] All schedules loaded:', Object.keys(scheduleCache));
     }
 
@@ -87,7 +103,11 @@
         // Direct routes
         // Collect direct route earliest arrival
         let bestDirectArrival = Infinity;
-        for (const [code, sch] of schedules) {
+        const directLines = (stationLinesMap[startKey] && stationLinesMap[endKey])
+            ? stationLinesMap[startKey].filter(l => stationLinesMap[endKey].includes(l))
+            : [];
+        for (const code of directLines) {
+            const sch = scheduleCache[code];
             if (!sch || !Array.isArray(sch.stops)) continue;
             const names = sch.stops.map(s => normalize(s.name));
             const sIdx = names.indexOf(startKey);
@@ -115,7 +135,10 @@
         }
 
         // One-transfer routes
-        for (const [c1, sch1] of schedules) {
+        const linesFromStart = stationLinesMap[startKey] || [];
+        const linesToEnd = stationLinesMap[endKey] || [];
+        for (const c1 of linesFromStart) {
+            const sch1 = scheduleCache[c1];
             if (!sch1 || !Array.isArray(sch1.stops)) continue;
             const names1 = sch1.stops.map(s => normalize(s.name));
             const sIdx = names1.indexOf(startKey);
@@ -123,14 +146,15 @@
 
             for (let t = sIdx + 1; t < names1.length; t++) {
                 const transfer = names1[t];
-                // Check if sch1 continues to the destination after transfer stop
                 const eIdx1 = names1.indexOf(endKey);
                 if (eIdx1 > t) continue; // Don't suggest transfer if direct route exists
 
-                for (const [c2, sch2] of schedules) {
+                const transferLines = stationLinesMap[transfer] || [];
+                for (const c2 of transferLines) {
                     if (c1 === c2) continue;
+                    if (!linesToEnd.includes(c2)) continue;
+                    const sch2 = scheduleCache[c2];
                     if (!sch2 || !Array.isArray(sch2.stops)) continue;
-                    // Prevent transfers between A/B of the same line number
                     if (getLineNumber(c1) === getLineNumber(c2)) continue;
                     const names2 = sch2.stops.map(s => normalize(s.name));
                     const tIdx2 = names2.indexOf(transfer);
@@ -150,9 +174,9 @@
                             if (dep1 < nowMin) continue;
                             const arr1 = parseTime(arr1Str);
                             const dep2 = parseTime(dep2Str);
-                            if (dep2 < arr1) continue; // Transfer 
+                            if (dep2 < arr1) continue; // Transfer
                             const arr2 = parseTime(arr2Str);
-                            if (arr2 >= bestDirectArrival) continue; // <-- Only keep if better than direct
+                            if (arr2 >= bestDirectArrival) continue; // Only keep if better than direct
                             if (arr2 - dep1 > 5 * 60) continue; // Skip if travel time > 5 hours
                             record(dep1, arr2, [
                                 {
@@ -178,7 +202,8 @@
         }
 
         // Two-transfer routes (up to three segments)
-        for (const [c1, sch1] of schedules) {
+        for (const c1 of linesFromStart) {
+            const sch1 = scheduleCache[c1];
             if (!sch1 || !Array.isArray(sch1.stops)) continue;
             const names1 = sch1.stops.map(s => normalize(s.name));
             const sIdx = names1.indexOf(startKey);
@@ -189,8 +214,13 @@
                 const eIdx1 = names1.indexOf(endKey);
                 if (eIdx1 > t1) continue; // Don't suggest transfer if direct route exists
 
-                for (const [c2, sch2] of schedules) {
+                const linesAtT1 = stationLinesMap[transfer1] || [];
+                for (const c2 of linesAtT1) {
                     if (c1 === c2) continue;
+                    if (!linesToEnd.includes(c2) && !(stationLinesMap[endKey] || []).includes(c2)) {
+                        // second line must lead to end or to another transfer later
+                    }
+                    const sch2 = scheduleCache[c2];
                     if (!sch2 || !Array.isArray(sch2.stops)) continue;
                     if (getLineNumber(c1) === getLineNumber(c2)) continue;
                     const names2 = sch2.stops.map(s => normalize(s.name));
@@ -202,8 +232,11 @@
                         const eIdx2 = names2.indexOf(endKey);
                         if (eIdx2 > t2) continue;
 
-                        for (const [c3, sch3] of schedules) {
+                        const linesAtT2 = stationLinesMap[transfer2] || [];
+                        for (const c3 of linesAtT2) {
                             if (c3 === c2 || c3 === c1) continue;
+                            if (!linesToEnd.includes(c3)) continue;
+                            const sch3 = scheduleCache[c3];
                             if (!sch3 || !Array.isArray(sch3.stops)) continue;
                             if (getLineNumber(c3) === getLineNumber(c2) || getLineNumber(c3) === getLineNumber(c1)) continue;
                             const names3 = sch3.stops.map(s => normalize(s.name));
@@ -285,6 +318,8 @@
         const startInput = document.getElementById('route-start');
         const endInput = document.getElementById('route-end');
         const resultsDiv = document.getElementById('route-results');
+        const loadingDiv = document.getElementById('route-loading');
+        const searchBtn = document.getElementById('route-search-btn');
         const startSuggestions = document.getElementById('route-start-suggestions');
         const endSuggestions = document.getElementById('route-end-suggestions');
         if (!startInput || !endInput || !resultsDiv) return;
@@ -321,6 +356,8 @@
                 resultsDiv.innerHTML = '<p class="text-danger">Unesite ispravne stanice iz liste.</p>';
                 return;
             }
+            if (loadingDiv) loadingDiv.style.display = 'block';
+            resultsDiv.innerHTML = '';
             // Try today
             const now = new Date();
             const nowMin = now.getHours() * 60 + now.getMinutes();
@@ -359,10 +396,12 @@
             }
 
             if (!startInput.value.trim() || !endInput.value.trim()) {
+                if (loadingDiv) loadingDiv.style.display = 'none';
                 resultsDiv.innerHTML = '';
                 return;
             }
             if (allRoutes.length === 0) {
+                if (loadingDiv) loadingDiv.style.display = 'none';
                 resultsDiv.innerHTML = '<p class="text-danger">Nema dostupnih linija.</p>';
                 return;
             }
@@ -579,10 +618,10 @@
                     update();
                 };
             }
+            if (loadingDiv) loadingDiv.style.display = 'none';
         }
 
-        startInput.addEventListener('input', update);
-        endInput.addEventListener('input', update);
+        if (searchBtn) searchBtn.addEventListener('click', update);
         document.getElementById('swap-btn').onclick = function () {
             const start = document.getElementById('route-start');
             const end = document.getElementById('route-end');

@@ -415,6 +415,10 @@ body {
   width: 3rem;
   height: 3rem;
 }
+#route-loading .spinner-border {
+  width: 2rem;
+  height: 2rem;
+}
 
 /* Modal Enhancements */
 .modal-content {
