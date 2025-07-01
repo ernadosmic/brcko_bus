@@ -340,3 +340,289 @@ body {
 .download-schedule-btn {
   padding: 0 0.4rem;
 }
+
+.station-container {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+/* Stations Page Styles */
+.station-card {
+  transition: all 0.3s ease;
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+.station-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.station-card .card-body {
+  padding: 1.5rem;
+}
+
+.station-card .card-title {
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 0.5rem;
+}
+
+.station-card .badge {
+  font-size: 0.7rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+}
+
+.station-card .btn-outline-primary {
+  border-width: 1.5px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.station-card .btn-outline-primary:hover {
+  transform: none;
+  box-shadow: 0 4px 8px rgba(13, 110, 253, 0.25);
+}
+
+/* Search and Filter Section */
+.search-section .card {
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.search-section .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.search-section .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Station Count Badge */
+#station-count {
+  padding: 0.75rem 1rem;
+  border-radius: 25px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(13, 110, 253, 0.25);
+}
+
+/* Loading State */
+#loading-state .spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Modal Enhancements */
+.modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--primary-dark) 100%
+  );
+  color: white;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+}
+
+.modal-header .btn-close {
+  filter: invert(1);
+}
+
+.modal-body .card {
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.modal-body .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .station-card .card-body {
+    padding: 1rem;
+  }
+
+  .search-section .row .col-md-4 {
+    margin-top: 1rem;
+  }
+
+  #station-count {
+    margin-top: 1rem;
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .station-card {
+    margin-bottom: 1rem;
+  }
+
+  .modal-dialog {
+    margin: 0.5rem;
+  }
+
+  .modal-body .col-md-6 {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Animation for cards appearing */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.station-card {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Stagger animation for multiple cards */
+.station-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.station-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.station-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.station-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.station-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.station-card:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+/* No results state */
+#no-results i {
+  opacity: 0.5;
+}
+
+/* Page header improvements */
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-header h1 {
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.page-header .text-muted {
+  font-size: 1.1rem;
+}
+
+/* Utility classes for stations page */
+.station-line-badge {
+  background: linear-gradient(
+    45deg,
+    var(--primary-color),
+    var(--primary-light)
+  );
+  color: white;
+  border: none;
+  box-shadow: 0 2px 4px rgba(13, 110, 253, 0.2);
+}
+
+.station-info-badge {
+  background-color: #f8f9fa;
+  color: var(--gray-700);
+  border: 1px solid #e9ecef;
+}
+
+/* Search input enhancements */
+.search-section .position-relative .fa-search {
+  color: var(--gray-500);
+  z-index: 5;
+}
+
+.search-section .form-control {
+  padding-left: 2.5rem;
+  border-radius: 8px;
+  border: 1.5px solid #e9ecef;
+  font-size: 1rem;
+}
+
+.search-section .form-control::placeholder {
+  color: var(--gray-500);
+  font-style: italic;
+}
+
+/* Stations Grid Layout - Specific responsive columns */
+.stations-grid {
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Mobile: 1 card per row */
+@media (max-width: 767px) {
+  .stations-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Small tablets: 2 cards per row */
+@media (min-width: 768px) and (max-width: 991px) {
+  .stations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large tablets/small laptops: 3 cards per row */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .stations-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktop/widescreen: 4 cards per row */
+@media (min-width: 1200px) {
+  .stations-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.station-card-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure cards stretch to fill their grid cell */
+.station-card-wrapper .station-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.station-card-wrapper .card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.station-card-wrapper .d-grid {
+  margin-top: auto;
+}

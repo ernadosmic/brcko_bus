@@ -619,6 +619,8 @@
             .replace(/[đd]/g, 'd');
     }
 
+    // Station suggestion autocomplete inputs
+
     function setupAutocomplete(input, suggestionsDiv) {
         let isClickingOnSuggestion = false;
 
