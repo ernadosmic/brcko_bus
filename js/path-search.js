@@ -581,15 +581,39 @@
             }
         }
 
-        startInput.addEventListener('input', update);
-        endInput.addEventListener('input', update);
-        document.getElementById('swap-btn').onclick = function () {
-            const start = document.getElementById('route-start');
-            const end = document.getElementById('route-end');
-            const tmp = start.value;
-            start.value = end.value;
+        const searchBtn = document.getElementById('route-search-btn');
+        const loadingBar = document.getElementById('route-loading');
+
+        function showLoading() {
+            if (loadingBar) loadingBar.style.display = '';
+        }
+
+        function hideLoading() {
+            if (loadingBar) loadingBar.style.display = 'none';
+        }
+
+        function triggerSearch() {
+            showLoading();
+            update().finally(hideLoading);
+        }
+
+        searchBtn?.addEventListener('click', triggerSearch);
+        [startInput, endInput].forEach(inp =>
+            inp.addEventListener('keydown', e => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    triggerSearch();
+                }
+            })
+        );
+
+       document.getElementById('swap-btn').onclick = function () {
+           const start = document.getElementById('route-start');
+           const end = document.getElementById('route-end');
+           const tmp = start.value;
+           start.value = end.value;
             end.value = tmp;
-            update(); // Directly update results, do not trigger input events
+            triggerSearch(); // Update results after swap
         };
     });
 
@@ -643,7 +667,6 @@
                     input.value = st;
                     suggestionsDiv.innerHTML = '';
                     suggestionsDiv.classList.remove('active');
-                    input.dispatchEvent(new Event('input'));
                     isClickingOnSuggestion = false;
                     input.focus(); // Keep focus on input
                 };
