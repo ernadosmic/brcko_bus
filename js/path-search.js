@@ -410,8 +410,15 @@
                     const stopNames0 = sch0.stops.map(s => s.name);
 
                     // Sort transfer options chronologically by their arrival time on the first line
-                    group.transferOptions.sort((a, b) => {
-                        return parseTime(a.transferArr) - parseTime(b.transferArr);
+                    group.transferOptions.sort((a, b) => parseTime(a.transferArr) - parseTime(b.transferArr));
+
+                    // Remove duplicate transfer options that have the same line and times
+                    const seenTransfers = new Set();
+                    group.transferOptions = group.transferOptions.filter(opt => {
+                        const key = `${opt.line}|${opt.dep}|${opt.arr}`;
+                        if (seenTransfers.has(key)) return false;
+                        seenTransfers.add(key);
+                        return true;
                     });
 
                     // Find the first transfer point that is a short walk from the destination
