@@ -1,19 +1,22 @@
 {
     "$schema": "./bus_schema.json",
-    "name": "Bijela Škola - Tesla",
+    "name": "Bijela - Ulice - Vukšić - Tesla",
     "line_number": "10",
     "services": 3,
     "regular_services": [
-        1,
-        2,
-        3
+        2
     ],
     "weekday_services": [],
-    "regular_explanation": "Polasci pod brojevima 1, 2, 3 saobraćaju svakodnevno",
+    "irregular_services": [
+        1,
+        3
+    ],
+    "regular_explanation": "Polasci pod brojem 3 saobraćaju svakodnevno",
     "weekday_explanation": "",
+    "irregular_explanation": "Polasci pod brojem 1, 2 i 4 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
-            "name": "BIJELA ŠKOLA",
+            "name": "Bijela škola",
             "times": [
                 "05:35",
                 "08:00",
@@ -37,7 +40,7 @@
             ]
         },
         {
-            "name": "Dubrave Škola",
+            "name": "Dubrave škola",
             "times": [
                 "05:42",
                 "08:07",
@@ -61,7 +64,7 @@
             ]
         },
         {
-            "name": "G.Škakava Škola",
+            "name": "Gornja Skakava škola",
             "times": [
                 "05:49",
                 "08:14",
@@ -69,7 +72,7 @@
             ]
         },
         {
-            "name": "G.Škakava",
+            "name": "Gornja Skakava",
             "times": [
                 "05:51",
                 "08:16",
@@ -101,7 +104,7 @@
             ]
         },
         {
-            "name": "D.Škakava P.",
+            "name": "Donja Skakava P.",
             "times": [
                 "05:58",
                 "08:23",
@@ -109,7 +112,7 @@
             ]
         },
         {
-            "name": "D.Škakava Dom",
+            "name": "Donja Skakava Dom",
             "times": [
                 "05:59",
                 "08:24",
@@ -133,7 +136,7 @@
             ]
         },
         {
-            "name": "Poljaci Škola",
+            "name": "Poljaci škola",
             "times": [
                 "06:06",
                 "08:31",
@@ -229,7 +232,7 @@
             ]
         },
         {
-            "name": "Donji Rašić igrališ.",
+            "name": "Donji Rahić igralište",
             "times": [
                 "06:30",
                 "08:55",
@@ -237,7 +240,7 @@
             ]
         },
         {
-            "name": "Donji Rašić",
+            "name": "Donji Rahić",
             "times": [
                 "06:31",
                 "08:56",
@@ -255,13 +258,21 @@
         {
             "name": "Grbavica Dom",
             "times": [
+                "06:34",
+                "08:59",
+                "12:34"
+            ]
+        },
+        {
+            "name": "Grbavica škola",
+            "times": [
                 "06:35",
                 "09:00",
                 "12:35"
             ]
         },
         {
-            "name": "Grbavica Škola",
+            "name": "Ulički Put",
             "times": [
                 "06:36",
                 "09:01",
@@ -269,7 +280,7 @@
             ]
         },
         {
-            "name": "Ulički Put",
+            "name": "Gluhakovac",
             "times": [
                 "06:37",
                 "09:02",
@@ -277,7 +288,15 @@
             ]
         },
         {
-            "name": "Gluhakovac",
+            "name": "PSC",
+            "times": [
+                "06:37",
+                "09:02",
+                "12:37"
+            ]
+        },
+        {
+            "name": "Bolnica",
             "times": [
                 "06:38",
                 "09:03",
@@ -285,7 +304,7 @@
             ]
         },
         {
-            "name": "PSC",
+            "name": "Dom zdravlja",
             "times": [
                 "06:39",
                 "09:04",
@@ -293,7 +312,7 @@
             ]
         },
         {
-            "name": "Bolnica",
+            "name": "Kolobara",
             "times": [
                 "06:40",
                 "09:05",
@@ -301,39 +320,23 @@
             ]
         },
         {
-            "name": "Dom zdravlja",
+            "name": "Brčko Centar",
             "times": [
-                "06:41",
+                "06:42",
                 "09:07",
                 "12:42"
             ]
         },
         {
-            "name": "Kolobara",
+            "name": "Veterinarska Stanica",
             "times": [
-                "06:42",
+                "06:43",
                 "09:08",
                 "12:43"
             ]
         },
         {
-            "name": "Centar",
-            "times": [
-                "06:43",
-                "09:09",
-                "12:44"
-            ]
-        },
-        {
-            "name": "Vet. Stanica",
-            "times": [
-                "06:45",
-                "09:10",
-                "12:45"
-            ]
-        },
-        {
-            "name": "TESLA",
+            "name": "Tesla",
             "times": [
                 "06:45",
                 "09:10",

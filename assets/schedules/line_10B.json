@@ -1,279 +1,74 @@
 {
     "$schema": "./bus_schema.json",
-    "name": "Bijela Škola - Tesla (povratak)",
-    "line_number": "10B",
+    "name": "Tesla - Vukšić - Ulice - Bijela",
+    "line_number": "9",
     "services": 3,
     "regular_services": [
-        4,
-        5,
-        6
+        2
     ],
     "weekday_services": [],
-    "regular_explanation": "Polasci pod brojevima 4, 5, 6 saobraćaju svakodnevno",
+    "irregular_services": [
+        1,
+        3
+    ],
+    "regular_explanation": "Polasci pod brojem 3 saobraćaju svakodnevno",
     "weekday_explanation": "",
+    "irregular_explanation": "Polasci pod brojem 1, 2 i 4 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
-            "name": "BIJELA ŠKOLA",
+            "name": "Tesla",
             "times": [
-                "11:40",
-                "14:30",
-                "20:30"
+                "10:30",
+                "13:20",
+                "19:20"
             ]
         },
         {
-            "name": "Bijela Dom",
+            "name": "Veterinarska Stanica",
             "times": [
-                "11:39",
-                "14:29",
-                "20:29"
+                "10:32",
+                "13:22",
+                "19:22"
             ]
         },
         {
-            "name": "Dubrave 'R'",
+            "name": "Brčko Centar",
             "times": [
-                "11:35",
-                "14:25",
-                "20:25"
+                "10:33",
+                "13:23",
+                "19:23"
             ]
         },
         {
-            "name": "Dubrave Škola",
+            "name": "Kolobara",
             "times": [
-                "11:33",
-                "14:23",
-                "20:23"
+                "10:35",
+                "13:25",
+                "19:25"
             ]
         },
         {
-            "name": "Dubrave 'R'",
+            "name": "Dom zdravlja",
             "times": [
-                "11:30",
-                "14:20",
-                "20:20"
+                "10:36",
+                "13:26",
+                "19:26"
             ]
         },
         {
-            "name": "Bijela Dom",
+            "name": "Bolnica",
             "times": [
-                "11:28",
-                "14:18",
-                "20:18"
+                "10:37",
+                "13:27",
+                "19:27"
             ]
         },
         {
-            "name": "G. Skakava Škola",
+            "name": "PSC",
             "times": [
-                "11:24",
-                "14:14",
-                "20:14"
-            ]
-        },
-        {
-            "name": "G. Skakava",
-            "times": [
-                "11:24",
-                "14:14",
-                "20:14"
-            ]
-        },
-        {
-            "name": "Stjepkovica 'R'",
-            "times": [
-                "11:23",
-                "14:13",
-                "20:13"
-            ]
-        },
-        {
-            "name": "Prijedor Crkva",
-            "times": [
-                "11:22",
-                "14:12",
-                "20:12"
-            ]
-        },
-        {
-            "name": "Seonjaci 'R'",
-            "times": [
-                "11:20",
-                "14:10",
-                "20:10"
-            ]
-        },
-        {
-            "name": "D. Skakava P.",
-            "times": [
-                "11:17",
-                "14:07",
-                "20:07"
-            ]
-        },
-        {
-            "name": "D. Skakava Dom",
-            "times": [
-                "11:16",
-                "14:06",
-                "20:06"
-            ]
-        },
-        {
-            "name": "Bosutka 'R'",
-            "times": [
-                "11:14",
-                "14:04",
-                "20:04"
-            ]
-        },
-        {
-            "name": "Marićani",
-            "times": [
-                "11:12",
-                "14:02",
-                "20:02"
-            ]
-        },
-        {
-            "name": "Poljaci Škola",
-            "times": [
-                "11:09",
-                "13:59",
-                "19:59"
-            ]
-        },
-        {
-            "name": "Poljaci 'R'",
-            "times": [
-                "11:08",
-                "13:58",
-                "19:58"
-            ]
-        },
-        {
-            "name": "Jagodnjak M.",
-            "times": [
-                "11:06",
-                "13:56",
-                "19:56"
-            ]
-        },
-        {
-            "name": "Jagodnjak",
-            "times": [
-                "11:05",
-                "13:55",
-                "19:55"
-            ]
-        },
-        {
-            "name": "Bašče 'R'",
-            "times": [
-                "11:03",
-                "13:53",
-                "19:53"
-            ]
-        },
-        {
-            "name": "Zešče",
-            "times": [
-                "11:00",
-                "13:50",
-                "19:50"
-            ]
-        },
-        {
-            "name": "Vukišić",
-            "times": [
-                "10:58",
-                "13:48",
-                "19:48"
-            ]
-        },
-        {
-            "name": "Šukarice",
-            "times": [
-                "10:56",
-                "13:46",
-                "19:46"
-            ]
-        },
-        {
-            "name": "Ulice",
-            "times": [
-                "10:53",
-                "13:43",
-                "19:43"
-            ]
-        },
-        {
-            "name": "Jasenovac",
-            "times": [
-                "10:51",
-                "13:41",
-                "19:41"
-            ]
-        },
-        {
-            "name": "Barića Brdo",
-            "times": [
-                "10:48",
-                "13:38",
-                "19:38"
-            ]
-        },
-        {
-            "name": "Njivice",
-            "times": [
-                "10:47",
-                "13:37",
-                "19:37"
-            ]
-        },
-        {
-            "name": "Donji Rahić igralište",
-            "times": [
-                "10:45",
-                "13:35",
-                "19:35"
-            ]
-        },
-        {
-            "name": "Donji Rahić",
-            "times": [
-                "10:43",
-                "13:33",
-                "19:33"
-            ]
-        },
-        {
-            "name": "Grbavica I",
-            "times": [
-                "10:42",
-                "13:32",
-                "19:32"
-            ]
-        },
-        {
-            "name": "Grbavica Dom",
-            "times": [
-                "10:41",
-                "13:31",
-                "19:31"
-            ]
-        },
-        {
-            "name": "Grbavica Škola",
-            "times": [
-                "10:40",
-                "13:30",
-                "19:30"
-            ]
-        },
-        {
-            "name": "Ulički Put",
-            "times": [
-                "10:39",
-                "13:29",
-                "19:29"
+                "10:38",
+                "13:28",
+                "19:28"
             ]
         },
         {
@@ -285,59 +80,267 @@
             ]
         },
         {
-            "name": "PSC",
+            "name": "Ulički Put",
             "times": [
-                "10:36",
-                "13:26",
-                "19:26"
+                "10:39",
+                "13:29",
+                "19:29"
             ]
         },
         {
-            "name": "Bolnica",
+            "name": "Grbavica škola",
             "times": [
-                "10:35",
-                "13:25",
-                "19:25"
+                "10:40",
+                "13:30",
+                "19:30"
             ]
         },
         {
-            "name": "Dom zdravlja",
+            "name": "Grbavica Dom",
             "times": [
-                "10:34",
-                "13:24",
-                "19:24"
+                "10:41",
+                "13:31",
+                "19:31"
             ]
         },
         {
-            "name": "Kolobara",
+            "name": "Grbavica I",
             "times": [
-                "10:33",
-                "13:23",
-                "19:23"
+                "10:42",
+                "13:32",
+                "19:32"
             ]
         },
         {
-            "name": "Centar",
+            "name": "Donji Rahić",
             "times": [
-                "10:32",
-                "13:22",
-                "19:22"
+                "10:44",
+                "13:34",
+                "19:34"
             ]
         },
         {
-            "name": "Vet. Stanica",
+            "name": "Donji Rahić igralište",
             "times": [
-                "10:32",
-                "13:22",
-                "19:22"
+                "10:45",
+                "13:35",
+                "19:35"
             ]
         },
         {
-            "name": "TESLA",
+            "name": "Njivice",
             "times": [
-                "10:30",
-                "13:20",
-                "19:20"
+                "10:47",
+                "13:37",
+                "19:37"
+            ]
+        },
+        {
+            "name": "Barića Brdo",
+            "times": [
+                "10:48",
+                "13:38",
+                "19:38"
+            ]
+        },
+        {
+            "name": "Jasenovac",
+            "times": [
+                "10:51",
+                "13:41",
+                "19:41"
+            ]
+        },
+        {
+            "name": "Ulice",
+            "times": [
+                "10:53",
+                "13:43",
+                "19:43"
+            ]
+        },
+        {
+            "name": "Šukarice",
+            "times": [
+                "10:56",
+                "13:46",
+                "19:46"
+            ]
+        },
+        {
+            "name": "Vukšić",
+            "times": [
+                "10:58",
+                "13:48",
+                "19:48"
+            ]
+        },
+        {
+            "name": "Žešće",
+            "times": [
+                "11:00",
+                "13:50",
+                "19:50"
+            ]
+        },
+        {
+            "name": "Bašče (R)",
+            "times": [
+                "11:02",
+                "13:52",
+                "19:52"
+            ]
+        },
+        {
+            "name": "Jagodnjak",
+            "times": [
+                "11:05",
+                "13:55",
+                "19:55"
+            ]
+        },
+        {
+            "name": "Jagodnjak M.",
+            "times": [
+                "11:06",
+                "13:56",
+                "19:56"
+            ]
+        },
+        {
+            "name": "Poljaci (R)",
+            "times": [
+                "11:08",
+                "13:58",
+                "19:58"
+            ]
+        },
+        {
+            "name": "Poljaci škola",
+            "times": [
+                "11:09",
+                "13:59",
+                "19:59"
+            ]
+        },
+        {
+            "name": "Marićani",
+            "times": [
+                "11:12",
+                "14:02",
+                "20:02"
+            ]
+        },
+        {
+            "name": "Bosutka (R)",
+            "times": [
+                "11:14",
+                "14:04",
+                "20:04"
+            ]
+        },
+        {
+            "name": "Donja Skakava Dom",
+            "times": [
+                "11:16",
+                "14:06",
+                "20:06"
+            ]
+        },
+        {
+            "name": "Donja Skakava P.",
+            "times": [
+                "11:17",
+                "14:07",
+                "20:07"
+            ]
+        },
+        {
+            "name": "Seonjaci (R)",
+            "times": [
+                "11:20",
+                "14:10",
+                "20:10"
+            ]
+        },
+        {
+            "name": "Prijedor Crkva",
+            "times": [
+                "11:22",
+                "14:12",
+                "20:12"
+            ]
+        },
+        {
+            "name": "Stjepkovica (R)",
+            "times": [
+                "11:23",
+                "14:13",
+                "20:13"
+            ]
+        },
+        {
+            "name": "Gornja Skakava",
+            "times": [
+                "11:24",
+                "14:14",
+                "20:14"
+            ]
+        },
+        {
+            "name": "Gornja Skakava škola",
+            "times": [
+                "11:26",
+                "14:16",
+                "20:16"
+            ]
+        },
+        {
+            "name": "Bijela Dom",
+            "times": [
+                "11:28",
+                "14:18",
+                "20:18"
+            ]
+        },
+        {
+            "name": "Dubrave (R)",
+            "times": [
+                "11:30",
+                "14:20",
+                "20:20"
+            ]
+        },
+        {
+            "name": "Dubrave škola",
+            "times": [
+                "11:33",
+                "14:23",
+                "20:23"
+            ]
+        },
+        {
+            "name": "Dubrave (R)",
+            "times": [
+                "11:35",
+                "14:25",
+                "20:25"
+            ]
+        },
+        {
+            "name": "Bijela Dom",
+            "times": [
+                "11:39",
+                "14:30",
+                "20:29"
+            ]
+        },
+        {
+            "name": "Bijela škola",
+            "times": [
+                "11:40",
+                "14:30",
+                "20:30"
             ]
         }
     ]

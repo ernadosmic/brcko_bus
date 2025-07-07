@@ -53,8 +53,8 @@
             "type": "string"
         },
         "stops": {
-            "minItems": 40,
-            "maxItems": 40,
+            "minItems": 41,
+            "maxItems": 41,
             "type": "array",
             "items": {
                 "type": "object",

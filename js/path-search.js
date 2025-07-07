@@ -592,11 +592,17 @@
         const loadingBar = document.getElementById('route-loading');
 
         function showLoading() {
-            if (loadingBar) loadingBar.style.display = '';
+            if (searchBtn) {
+                searchBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Pretraži';
+                searchBtn.disabled = true;
+            }
         }
 
         function hideLoading() {
-            if (loadingBar) loadingBar.style.display = 'none';
+            if (searchBtn) {
+                searchBtn.innerHTML = 'Pretraži';
+                searchBtn.disabled = false;
+            }
         }
 
         function triggerSearch() {
@@ -614,11 +620,11 @@
             })
         );
 
-       document.getElementById('swap-btn').onclick = function () {
-           const start = document.getElementById('route-start');
-           const end = document.getElementById('route-end');
-           const tmp = start.value;
-           start.value = end.value;
+        document.getElementById('swap-btn').onclick = function () {
+            const start = document.getElementById('route-start');
+            const end = document.getElementById('route-end');
+            const tmp = start.value;
+            start.value = end.value;
             end.value = tmp;
             triggerSearch(); // Update results after swap
         };
