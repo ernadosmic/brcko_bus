@@ -1,5 +1,5 @@
 {
-    "name": "Potočari škola - Donji Brezik (R)",
+    "name": "Seljanka (škola) - Donji Brezik (R)",
     "line_number": "31",
     "services": 2,
     "regular_services": [
@@ -13,14 +13,14 @@
     "irregular_explanation": "",
     "stops": [
         {
-            "name": "Potočari škola",
+            "name": "Seljanka (škola)",
             "times": [
                 "15:00",
                 "15:40"
             ]
         },
         {
-            "name": "Potočari Crkva",
+            "name": "Potočari crkva",
             "times": [
                 "15:02",
                 "15:42"
@@ -83,14 +83,14 @@
             ]
         },
         {
-            "name": "Potočari Crkva",
+            "name": "Potočari crkva",
             "times": [
                 "15:24",
                 "16:04"
             ]
         },
         {
-            "name": "Potočari škola",
+            "name": "Seljanka (škola)",
             "times": [
                 "15:25",
                 "16:05"
@@ -111,7 +111,7 @@
             ]
         },
         {
-            "name": "Brezik Dom",
+            "name": "Brezik dom",
             "times": [
                 "15:29",
                 "16:09"

@@ -1,5 +1,5 @@
 {
-    "name": "Vitanovići Dom - Brka škola",
+    "name": "Vitanovići dom - Brka škola",
     "line_number": "24",
     "services": 1,
     "regular_services": [
@@ -12,7 +12,7 @@
     "irregular_explanation": "",
     "stops": [
         {
-            "name": "Vitanovići Dom",
+            "name": "Vitanovići dom",
             "times": [
                 "06:45",
                 "12:30",
@@ -20,7 +20,7 @@
             ]
         },
         {
-            "name": "Vitanovići Crkva",
+            "name": "Vitanovići crkva",
             "times": [
                 "06:48",
                 "12:33",
@@ -28,7 +28,7 @@
             ]
         },
         {
-            "name": "Bukovac Crkva",
+            "name": "Bukovac crkva",
             "times": [
                 "06:53",
                 "12:38",
@@ -60,7 +60,7 @@
             ]
         },
         {
-            "name": "Ulović (groblje)",
+            "name": "Ulović groblje",
             "times": [
                 "07:03",
                 "12:48",

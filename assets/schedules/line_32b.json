@@ -1,5 +1,5 @@
 {
-    "name": "Klanac škola - Stari Brod",
+    "name": "Klanac škola - Stari Brod (Spomenik)",
     "line_number": "14",
     "services": 2,
     "regular_services": [
@@ -48,7 +48,7 @@
             ]
         },
         {
-            "name": "Stari Brod",
+            "name": "Stari Brod (Spomenik)",
             "times": [
                 "12:55",
                 "17:40"

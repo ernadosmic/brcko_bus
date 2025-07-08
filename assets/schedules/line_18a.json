@@ -1,5 +1,5 @@
 {
-    "name": "Islamovac Rakovac - Gornji Rahić Centar",
+    "name": "Islamovac Rakovac - Gornji Rahić centar",
     "line_number": "18",
     "services": 3,
     "regular_services": [
@@ -22,7 +22,7 @@
             ]
         },
         {
-            "name": "Islamovac Škola",
+            "name": "Islamovac škola",
             "times": [
                 "07:08",
                 "11:08",
@@ -38,7 +38,7 @@
             ]
         },
         {
-            "name": "Maoča Centar (džamija)",
+            "name": "Maoča centar (džamija)",
             "times": [
                 "07:19",
                 "11:19",
@@ -46,7 +46,7 @@
             ]
         },
         {
-            "name": "Maoča Centar (džamija)",
+            "name": "Maoča centar (džamija)",
             "times": [
                 "07:22",
                 "11:22",
@@ -78,7 +78,7 @@
             ]
         },
         {
-            "name": "Gornji Rahić Centar",
+            "name": "Gornji Rahić centar",
             "times": [
                 "07:33",
                 "11:33",

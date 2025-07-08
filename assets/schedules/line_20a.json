@@ -1,5 +1,5 @@
 {
-    "name": "Veterinarska stanica - Bijela škola",
+    "name": "Veterinarska Stanica - Bijela škola",
     "line_number": "20",
     "services": 1,
     "regular_services": [
@@ -12,7 +12,7 @@
     "irregular_explanation": "",
     "stops": [
         {
-            "name": "Veterinarska stanica",
+            "name": "Veterinarska Stanica",
             "times": [
                 "06:45"
             ]
@@ -72,7 +72,7 @@
             ]
         },
         {
-            "name": "Stari Brod",
+            "name": "Stari Brod (Spomenik)",
             "times": [
                 "06:53"
             ]
@@ -90,7 +90,7 @@
             ]
         },
         {
-            "name": "Vitanovići Dom",
+            "name": "Vitanovići dom",
             "times": [
                 "07:09"
             ]
@@ -162,13 +162,13 @@
             ]
         },
         {
-            "name": "Donja Skakava Dom",
+            "name": "Donja Skakava dom",
             "times": [
                 "07:38"
             ]
         },
         {
-            "name": "Donja Skakava Škola",
+            "name": "Donja Skakava škola",
             "times": [
                 "07:39"
             ]
@@ -210,13 +210,13 @@
             ]
         },
         {
-            "name": "Gornja Skakava Škola",
+            "name": "Gornja Skakava škola",
             "times": [
                 "07:49"
             ]
         },
         {
-            "name": "Bijela Dom",
+            "name": "Bijela dom",
             "times": [
                 "07:54"
             ]

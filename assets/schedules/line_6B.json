@@ -1,6 +1,6 @@
 {
     "$schema": "./bus_schema.json",
-    "name": "Bolnica - Satorovići Dom",
+    "name": "Bolnica - Satorovići dom",
     "line_number": "6",
     "services": 5,
     "regular_services": [
@@ -108,7 +108,7 @@
             ]
         },
         {
-            "name": "Čadavac (R)",
+            "name": "Čađavac (R)",
             "times": [
                 "06:42",
                 "10:12",
@@ -138,7 +138,7 @@
             ]
         },
         {
-            "name": "Omerbegovača (R)",
+            "name": "Omerbegovača",
             "times": [
                 "06:46",
                 "10:16",
