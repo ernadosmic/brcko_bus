@@ -68,8 +68,8 @@
                     },
                     "times": {
                         "type": "array",
-                        "minItems": 4,
-                        "maxItems": 4,
+                        "minItems": 1,
+                        "maxItems": 1,
                         "items": {
                             "type": "string",
                             "pattern": "^\\d{2}:\\d{2}$"

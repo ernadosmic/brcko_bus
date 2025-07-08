@@ -1,0 +1,234 @@
+{
+    "name": "Bukvik ž.st.rask. - Tesla",
+    "line_number": "12",
+    "services": 2,
+    "regular_services": [
+        1
+    ],
+    "weekday_services": [],
+    "irregular_services": [
+        2
+    ],
+    "regular_explanation": "Polasci pod brojem 3 saobraćaju svakodnevno",
+    "weekday_explanation": "",
+    "irregular_explanation": "Polasci pod brojem 1, 2 i 4 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
+    "stops": [
+        {
+            "name": "Tesla",
+            "times": [
+                "10:10",
+                "13:20"
+            ]
+        },
+        {
+            "name": "Veterinarska stanica",
+            "times": [
+                "10:11",
+                "13:21"
+            ]
+        },
+        {
+            "name": "Brčko Centar",
+            "times": [
+                "10:14",
+                "13:24"
+            ]
+        },
+        {
+            "name": "Kolobara",
+            "times": [
+                "10:16",
+                "13:26"
+            ]
+        },
+        {
+            "name": "Dom Zdravlja",
+            "times": [
+                "10:17",
+                "13:27"
+            ]
+        },
+        {
+            "name": "Meraje",
+            "times": [
+                "10:18",
+                "13:28"
+            ]
+        },
+        {
+            "name": "Izbor",
+            "times": [
+                "10:19",
+                "13:29"
+            ]
+        },
+        {
+            "name": "Suljagića Sokak",
+            "times": [
+                "10:20",
+                "13:30"
+            ]
+        },
+        {
+            "name": "Šadrvan",
+            "times": [
+                "10:21",
+                "13:31"
+            ]
+        },
+        {
+            "name": "Brod škola",
+            "times": [
+                "10:25",
+                "13:35"
+            ]
+        },
+        {
+            "name": "Stari Brod",
+            "times": [
+                "10:27",
+                "13:37"
+            ]
+        },
+        {
+            "name": "Pruga (FIS)",
+            "times": [
+                "",
+                "13:39"
+            ]
+        },
+        {
+            "name": "Igralište Lipovac",
+            "times": [
+                "",
+                "13:40"
+            ]
+        },
+        {
+            "name": "Đukići",
+            "times": [
+                "",
+                "13:43"
+            ]
+        },
+        {
+            "name": "Lipovac",
+            "times": [
+                "",
+                "13:47"
+            ]
+        },
+        {
+            "name": "Ulović groblje",
+            "times": [
+                "",
+                "13:50"
+            ]
+        },
+        {
+            "name": "Ulović crkva",
+            "times": [
+                "",
+                "13:53"
+            ]
+        },
+        {
+            "name": "Radoševci",
+            "times": [
+                "",
+                "13:56"
+            ]
+        },
+        {
+            "name": "Bukovac ž.st.",
+            "times": [
+                "",
+                "13:58"
+            ]
+        },
+        {
+            "name": "Bukovac Crkva",
+            "times": [
+                "",
+                "13:59"
+            ]
+        },
+        {
+            "name": "Vitanovići Dom",
+            "times": [
+                "",
+                "14:00"
+            ]
+        },
+        {
+            "name": "Lukavac (R)",
+            "times": [
+                "10:32",
+                ""
+            ]
+        },
+        {
+            "name": "Bukvik Škola",
+            "times": [
+                "10:35",
+                "14:02"
+            ]
+        },
+        {
+            "name": "Bukvik ž.st. (R)",
+            "times": [
+                "10:40",
+                "14:07"
+            ]
+        },
+        {
+            "name": "Donja Skakava (R)",
+            "times": [
+                "10:45",
+                "14:12"
+            ]
+        },
+        {
+            "name": "Seonjaci",
+            "times": [
+                "10:50",
+                "14:17"
+            ]
+        },
+        {
+            "name": "Dubrave škola",
+            "times": [
+                "",
+                "14:22"
+            ]
+        },
+        {
+            "name": "Bijela škola",
+            "times": [
+                "",
+                "14:32"
+            ]
+        },
+        {
+            "name": "Dubrave (R)",
+            "times": [
+                "11:00",
+                "14:42"
+            ]
+        },
+        {
+            "name": "Cerik (R)",
+            "times": [
+                "11:00",
+                ""
+            ]
+        },
+        {
+            "name": "Cerik Bor",
+            "times": [
+                "11:05",
+                "14:52"
+            ]
+        }
+    ]
+}

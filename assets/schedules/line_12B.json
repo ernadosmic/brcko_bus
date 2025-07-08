@@ -1,0 +1,204 @@
+{
+    "name": "Cerik Bor - Tesla",
+    "line_number": "12",
+    "services": 2,
+    "regular_services": [
+        1
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "Povratak",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Cerik Bor",
+            "times": [
+                "7:00",
+                "11:30"
+            ]
+        },
+        {
+            "name": "Cerik (R)",
+            "times": [
+                "7:05",
+                "11:45"
+            ]
+        },
+        {
+            "name": "Dubrave (R)",
+            "times": [
+                "07:10",
+                "11:50"
+            ]
+        },
+        {
+            "name": "Prijedor Crkva",
+            "times": [
+                "07:45",
+                ""
+            ]
+        },
+        {
+            "name": "D.Skakava raskrsnica",
+            "times": [
+                "",
+                "11:53"
+            ]
+        },
+        {
+            "name": "Bukvik ž.st. (R)",
+            "times": [
+                "07:50",
+                "11:55"
+            ]
+        },
+        {
+            "name": "Bukvik Škola",
+            "times": [
+                "07:55",
+                "12:00"
+            ]
+        },
+        {
+            "name": "Bukvik ben.pum.",
+            "times": [
+                "",
+                "12:01"
+            ]
+        },
+        {
+            "name": "Lukavac (R)",
+            "times": [
+                "07:58",
+                "12:03"
+            ]
+        },
+        {
+            "name": "Bukvik ben.pum.",
+            "times": [
+                "",
+                "12:05"
+            ]
+        },
+        {
+            "name": "Vitanovići Crkva",
+            "times": [
+                "",
+                "12:17"
+            ]
+        },
+        {
+            "name": "Bukovac Crkva",
+            "times": [
+                "",
+                "12:18"
+            ]
+        },
+        {
+            "name": "Bukovac ž.stan.",
+            "times": [
+                "",
+                "12:19"
+            ]
+        },
+        {
+            "name": "Radoševci",
+            "times": [
+                "",
+                "12:21"
+            ]
+        },
+        {
+            "name": "Ulović crkva",
+            "times": [
+                "",
+                "12:24"
+            ]
+        },
+        {
+            "name": "Ulović groblje",
+            "times": [
+                "",
+                "12:27"
+            ]
+        },
+        {
+            "name": "Stari Brod",
+            "times": [
+                "08:03",
+                "12:33"
+            ]
+        },
+        {
+            "name": "Brod škola",
+            "times": [
+                "08:05",
+                "12:35"
+            ]
+        },
+        {
+            "name": "Šadrvan",
+            "times": [
+                "08:09",
+                "12:39"
+            ]
+        },
+        {
+            "name": "Suljagića Sokak",
+            "times": [
+                "08:10",
+                "12:40"
+            ]
+        },
+        {
+            "name": "Izbor",
+            "times": [
+                "08:11",
+                "12:41"
+            ]
+        },
+        {
+            "name": "Meraje",
+            "times": [
+                "08:12",
+                "12:42"
+            ]
+        },
+        {
+            "name": "Dom Zdravlja",
+            "times": [
+                "08:13",
+                "12:43"
+            ]
+        },
+        {
+            "name": "Kolobara",
+            "times": [
+                "08:14",
+                "12:44"
+            ]
+        },
+        {
+            "name": "Brčko Centar",
+            "times": [
+                "08:16",
+                "12:46"
+            ]
+        },
+        {
+            "name": "Veterinarska stanica",
+            "times": [
+                "08:19",
+                "12:49"
+            ]
+        },
+        {
+            "name": "Tesla",
+            "times": [
+                "08:20",
+                "12:50"
+            ]
+        }
+    ]
+}
