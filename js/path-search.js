@@ -5,6 +5,8 @@
     // Cache for loaded schedule data
     const scheduleCache = {};
 
+    let schedulesLoaded = false;
+
     // Fetch schedule JSON for a given line code (e.g., "line_1A")
     async function fetchSchedule(lineCode) {
         if (scheduleCache[lineCode]) return scheduleCache[lineCode];
@@ -41,24 +43,35 @@
 
     // Load all schedules referenced on the page
     async function loadAllSchedules() {
-        console.log('[path-search.js] loadAllSchedules()');
-        const cards = document.querySelectorAll('.card');
-        const promises = [];
+        if (schedulesLoaded) return;
 
-        cards.forEach(card => {
-            card.querySelectorAll('a').forEach(a => {
-                const href = a.getAttribute('href') || '';
-                const m = href.match(/line_(\d+)([A-Za-z])/i);
-                if (m) {
-                    const code = `line_${m[1]}${m[2].toUpperCase()}`;
-                    console.log('[path-search.js] will fetch schedule for', code);
-                    promises.push(fetchSchedule(code));
+        console.log('Loading all bus schedules...');
+
+        try {
+            // Get list of all line files (you'll need to maintain this list)
+            const lineFiles = ["line_1A.json", "line_1B.json", "line_2A.json", "line_2B.json", "line_3A.json", "line_3B.json", "line_4A.json", "line_4B.json", "line_5A.json", "line_5B.json", "line_6A.json", "line_6B.json", "line_7A.json", "line_7B.json", "line_8A.json", "line_8B.json", "line_9A.json", "line_9B.json", "line_10A.json", "line_10B.json", "line_11A.json", "line_11B.json", "line_12A.json", "line_12B.json", "line_13A.json", "line_13B.json", "line_14A.json", "line_14B.json", "line_15A.json", "line_15B.json", "line_16A.json", "line_16B.json", "line_17A.json", "line_17B.json", "line_18A.json", "line_18B.json", "line_20A.json", "line_20B.json", "line_22A.json", "line_22B.json", "line_23A.json", "line_23B.json", "line_24A.json", "line_24B.json", "line_25A.json", "line_25B.json", "line_26A.json", "line_26B.json", "line_28A.json", "line_28B.json", "line_29A.json", "line_29B.json", "line_30A.json", "line_30B.json", "line_31A.json", "line_31B.json", "line_32A.json", "line_32B.json", "line_33A.json", "line_33B.json", "line_34A.json", "line_34B.json", "line_35A.json", "line_35B.json"
+            ];
+
+            const promises = lineFiles.map(async (filename) => {
+                try {
+                    const response = await fetch(`assets/schedules/${filename}`);
+                    if (response.ok) {
+                        const schedule = await response.json();
+                        const lineId = filename.replace('.json', '');
+                        scheduleCache[lineId] = schedule;
+                    }
+                } catch (error) {
+                    console.warn(`Failed to load ${filename}:`, error);
                 }
             });
-        });
 
-        await Promise.all(promises);
-        console.log('[path-search.js] All schedules loaded:', Object.keys(scheduleCache));
+            await Promise.all(promises);
+            schedulesLoaded = true;
+            console.log(`Loaded ${Object.keys(scheduleCache).length} schedules`);
+
+        } catch (error) {
+            console.error('Error loading schedules:', error);
+        }
     }
 
     // Search routes between two stations (direct or one transfer)
@@ -395,12 +408,23 @@
                     }
                 });
 
-                // Post-process the grouped transfers to remove illogical options
+                // Post-process the grouped transfers to remove illogical options and deduplicate
                 for (const key in groups) {
                     const group = groups[key];
                     if (!group.transferOptions || group.transferOptions.length <= 1) {
                         continue; // Nothing to process
                     }
+
+                    // Remove duplicates based on transfer stop arrival time
+                    const seenTransferArrivals = new Map();
+                    group.transferOptions = group.transferOptions.filter(opt => {
+                        const transferKey = `${opt.from}|${opt.transferArr}|${opt.dep}|${opt.to}`;
+                        if (seenTransferArrivals.has(transferKey)) {
+                            return false; // Skip duplicate
+                        }
+                        seenTransferArrivals.set(transferKey, true);
+                        return true;
+                    });
 
                     const sch0 = scheduleCache[group.segments[0].line];
                     if (!sch0 || !sch0.stops) {
@@ -409,16 +433,11 @@
 
                     const stopNames0 = sch0.stops.map(s => s.name);
 
-                    // Sort transfer options chronologically by their arrival time on the first line
-                    group.transferOptions.sort((a, b) => parseTime(a.transferArr) - parseTime(b.transferArr));
-
-                    // Remove duplicate transfer options that have the same line and times
-                    const seenTransfers = new Set();
-                    group.transferOptions = group.transferOptions.filter(opt => {
-                        const key = `${opt.line}|${opt.dep}|${opt.arr}`;
-                        if (seenTransfers.has(key)) return false;
-                        seenTransfers.add(key);
-                        return true;
+                    // Sort transfer options by the order they appear on the first line
+                    group.transferOptions.sort((a, b) => {
+                        const indexA = stopNames0.indexOf(a.from);
+                        const indexB = stopNames0.indexOf(b.from);
+                        return indexA - indexB;
                     });
 
                     // Find the first transfer point that is a short walk from the destination
@@ -482,22 +501,29 @@
 
                     // Main line: show start time and all transfer stops with arrival times
                     let main = `
-                        <div class="route-segment">
-        ${dayLabelHtml}
-        <div><strong>Linija ${lineNum0} (${lineName0})</strong>: <span class="transfer-time">(${seg0.dep})</span> ${seg0.from} &rarr;</div>
-        <div class="mt-2">
-            ${r.transferOptions.map(seg1 => {
-                        const travelTime = parseTime(seg1.arr) - parseTime(seg1.dep);
-                        let walkingHtml = '';
-                        if (travelTime === 1) {
-                            walkingHtml = ` + <i class="fa-duotone fa-solid fa-person-walking"></i> <span class="transfer-time">(4 min)</span> &rarr; ${seg1.to}<hr>`;
-                        } else if (travelTime === 2) {
-                            walkingHtml = ` + <i class="fa-duotone fa-solid fa-person-walking"></i> <span class="transfer-time">(6 min)</span> &rarr; ${seg1.to}<hr>`;
-                        }
-                        return `→ <span class="transfer-time">(${seg1.transferArr})</span> ${seg1.from}${walkingHtml}`;
-                    }).join('<br>')}
-        </div>
-                    `;
+    <div class="route-segment">
+${dayLabelHtml}
+<div><strong>Linija ${lineNum0} (${lineName0})</strong>: <span class="transfer-time">(${seg0.dep})</span> ${seg0.from} &rarr;</div>
+<div class="mt-2">
+    ${(() => {
+                            // Deduplicate the display strings before rendering
+                            const displayStrings = r.transferOptions.map(seg1 => {
+                                const travelTime = parseTime(seg1.arr) - parseTime(seg1.dep);
+                                let walkingHtml = '';
+                                if (travelTime === 1) {
+                                    walkingHtml = ` + <i class="fa-duotone fa-solid fa-person-walking"></i> <span class="transfer-time">(4 min)</span> &rarr; ${seg1.to}<hr>`;
+                                } else if (travelTime === 2) {
+                                    walkingHtml = ` + <i class="fa-duotone fa-solid fa-person-walking"></i> <span class="transfer-time">(6 min)</span> &rarr; ${seg1.to}<hr>`;
+                                }
+                                return `→ <span class="transfer-time">(${seg1.transferArr})</span> ${seg1.from}${walkingHtml}`;
+                            });
+
+                            // Remove duplicate display strings
+                            const uniqueDisplayStrings = [...new Set(displayStrings)];
+                            return uniqueDisplayStrings.join('<br>');
+                        })()}
+</div>
+`;
 
                     // Transfer line: show all transfer options with both times
                     const sch1 = scheduleCache[r.transferOptions[0].line];
@@ -593,8 +619,12 @@
 
         function showLoading() {
             if (searchBtn) {
-                searchBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Pretraži';
+                searchBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Pretražujem...';
                 searchBtn.disabled = true;
+            }
+            // Clear previous results to show loading state
+            if (resultsDiv) {
+                resultsDiv.innerHTML = '<div class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i><br>Pretražujem rute...</div>';
             }
         }
 
@@ -607,7 +637,10 @@
 
         function triggerSearch() {
             showLoading();
-            update().finally(hideLoading);
+            // Add a small delay to ensure the loading state is visible
+            setTimeout(() => {
+                update().finally(hideLoading);
+            }, 10);
         }
 
         searchBtn?.addEventListener('click', triggerSearch);
