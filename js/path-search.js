@@ -144,7 +144,7 @@
 
             await Promise.all(promises);
             schedulesLoaded = true;
-            console.log(`Loaded ${Object.keys(scheduleCache).length} schedules`);
+
 
         } catch (error) {
             console.error('Error loading schedules:', error);
