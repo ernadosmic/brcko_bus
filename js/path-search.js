@@ -1,6 +1,6 @@
 /* path-search.js */
 ; (function () {
-    console.log('[path-search.js] Loaded. URL:', window.location.href);
+
 
     // Cache for loaded schedule data
     const scheduleCache = {};
@@ -122,7 +122,7 @@
     async function loadAllSchedules() {
         if (schedulesLoaded) return;
 
-        console.log('Loading all bus schedules...');
+
 
         try {
             // Get list of all line files (you'll need to maintain this list)

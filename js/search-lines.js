@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     searchBar.disabled = true;
     cachedStations = await getLineStations();
-    console.log('✅ all stations in memory', cachedStations);
+
 
     searchBar.disabled = false;
     searchBar.addEventListener('input', e =>
