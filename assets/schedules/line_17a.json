@@ -1,0 +1,121 @@
+{
+    "name": "Tesla - Lipovac",
+    "line_number": "17",
+    "services": 2,
+    "regular_services": [
+        1,
+        2
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Tesla",
+            "times": [
+                "11:00",
+                "19:20"
+            ]
+        },
+        {
+            "name": "Veterinarska Stanica",
+            "times": [
+                "11:01",
+                "19:21"
+            ]
+        },
+        {
+            "name": "Brčko Centar",
+            "times": [
+                "11:04",
+                "19:24"
+            ]
+        },
+        {
+            "name": "Kolobara",
+            "times": [
+                "11:06",
+                "19:26"
+            ]
+        },
+        {
+            "name": "Dom Zdravlja",
+            "times": [
+                "11:07",
+                "19:27"
+            ]
+        },
+        {
+            "name": "Meraje",
+            "times": [
+                "11:08",
+                "19:28"
+            ]
+        },
+        {
+            "name": "Izbor",
+            "times": [
+                "11:09",
+                "19:29"
+            ]
+        },
+        {
+            "name": "Suljagića Sokak",
+            "times": [
+                "11:11",
+                "19:31"
+            ]
+        },
+        {
+            "name": "Šadrvan",
+            "times": [
+                "11:12",
+                "19:32"
+            ]
+        },
+        {
+            "name": "Brod škola",
+            "times": [
+                "11:13",
+                "19:33"
+            ]
+        },
+        {
+            "name": "Stari Brod",
+            "times": [
+                "11:14",
+                "19:34"
+            ]
+        },
+        {
+            "name": "Pruga (FIS)",
+            "times": [
+                "11:16",
+                "19:36"
+            ]
+        },
+        {
+            "name": "Igralište Lipovac",
+            "times": [
+                "11:17",
+                "19:37"
+            ]
+        },
+        {
+            "name": "Đukići",
+            "times": [
+                "11:20",
+                "19:40"
+            ]
+        },
+        {
+            "name": "Lipovac",
+            "times": [
+                "11:24",
+                "19:44"
+            ]
+        }
+    ]
+}

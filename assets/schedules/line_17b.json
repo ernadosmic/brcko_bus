@@ -1,0 +1,153 @@
+{
+    "name": "Lipovac - Tesla",
+    "line_number": "17",
+    "services": 4,
+    "regular_services": [
+        1,
+        2,
+        3,
+        4
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Lipovac",
+            "times": [
+                "06:20",
+                "07:00",
+                "12:15",
+                "19:45"
+            ]
+        },
+        {
+            "name": "Đukići",
+            "times": [
+                "06:24",
+                "07:04",
+                "12:19",
+                "19:49"
+            ]
+        },
+        {
+            "name": "Igralište Lipovac",
+            "times": [
+                "06:27",
+                "07:07",
+                "12:22",
+                "19:52"
+            ]
+        },
+        {
+            "name": "Pruga (FIS)",
+            "times": [
+                "06:28",
+                "07:08",
+                "12:23",
+                "19:53"
+            ]
+        },
+        {
+            "name": "Stari Brod",
+            "times": [
+                "06:30",
+                "07:10",
+                "12:25",
+                "19:55"
+            ]
+        },
+        {
+            "name": "Brod škola",
+            "times": [
+                "06:31",
+                "07:11",
+                "12:26",
+                "19:56"
+            ]
+        },
+        {
+            "name": "Šadrvan",
+            "times": [
+                "06:32",
+                "07:12",
+                "12:27",
+                "19:57"
+            ]
+        },
+        {
+            "name": "Suljagića Sokak",
+            "times": [
+                "06:33",
+                "07:13",
+                "12:28",
+                "19:58"
+            ]
+        },
+        {
+            "name": "Izbor",
+            "times": [
+                "06:35",
+                "07:15",
+                "12:30",
+                "20:00"
+            ]
+        },
+        {
+            "name": "Meraje",
+            "times": [
+                "06:36",
+                "07:16",
+                "12:31",
+                "20:01"
+            ]
+        },
+        {
+            "name": "Dom Zdravlja",
+            "times": [
+                "06:37",
+                "07:17",
+                "12:32",
+                "20:02"
+            ]
+        },
+        {
+            "name": "Kolobara",
+            "times": [
+                "06:38",
+                "07:18",
+                "12:33",
+                "20:03"
+            ]
+        },
+        {
+            "name": "Brčko Centar",
+            "times": [
+                "06:40",
+                "07:20",
+                "12:35",
+                "20:05"
+            ]
+        },
+        {
+            "name": "Veterinarska Stanica",
+            "times": [
+                "06:43",
+                "07:23",
+                "12:38",
+                "20:08"
+            ]
+        },
+        {
+            "name": "Tesla",
+            "times": [
+                "06:44",
+                "07:24",
+                "12:39",
+                "20:09"
+            ]
+        }
+    ]
+}

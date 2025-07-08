@@ -1,0 +1,89 @@
+{
+    "name": "Gornji Rahić Centar - Islamovac Rakovac",
+    "line_number": "18",
+    "services": 3,
+    "regular_services": [
+        1,
+        2,
+        3
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Gornji Rahić Centar",
+            "times": [
+                "10:00",
+                "12:15",
+                "17:00"
+            ]
+        },
+        {
+            "name": "Šljunkara",
+            "times": [
+                "10:03",
+                "12:18",
+                "17:03"
+            ]
+        },
+        {
+            "name": "Prutače",
+            "times": [
+                "10:05",
+                "12:20",
+                "17:05"
+            ]
+        },
+        {
+            "name": "Rašljani",
+            "times": [
+                "10:08",
+                "12:23",
+                "17:08"
+            ]
+        },
+        {
+            "name": "Maoča Centar",
+            "times": [
+                "10:11",
+                "12:26",
+                "17:11"
+            ]
+        },
+        {
+            "name": "Maoca Džamija",
+            "times": [
+                "10:14",
+                "12:29",
+                "17:14"
+            ]
+        },
+        {
+            "name": "Maoča Tabaci",
+            "times": [
+                "10:16",
+                "12:31",
+                "17:16"
+            ]
+        },
+        {
+            "name": "Islamovac Škola",
+            "times": [
+                "10:25",
+                "12:40",
+                "17:25"
+            ]
+        },
+        {
+            "name": "Islamovac Rakovac",
+            "times": [
+                "10:33",
+                "12:48",
+                "17:33"
+            ]
+        }
+    ]
+}

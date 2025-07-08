@@ -1,0 +1,113 @@
+{
+    "name": "Brka škola - Ćoseti džamija",
+    "line_number": "16",
+    "services": 3,
+    "regular_services": [
+        1,
+        2,
+        3
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Brka škola",
+            "times": [
+                "07:05",
+                "12:45",
+                "18:15"
+            ]
+        },
+        {
+            "name": "Brka Centar",
+            "times": [
+                "07:06",
+                "12:46",
+                "18:16"
+            ]
+        },
+        {
+            "name": "Brka Musići",
+            "times": [
+                "07:07",
+                "12:47",
+                "18:17"
+            ]
+        },
+        {
+            "name": "Palanka (R)",
+            "times": [
+                "07:10",
+                "12:50",
+                "18:20"
+            ]
+        },
+        {
+            "name": "Palanka",
+            "times": [
+                "07:13",
+                "12:53",
+                "18:23"
+            ]
+        },
+        {
+            "name": "Palanka (R)",
+            "times": [
+                "07:16",
+                "12:56",
+                "18:26"
+            ]
+        },
+        {
+            "name": "Ograđenovac",
+            "times": [
+                "07:18",
+                "12:58",
+                "18:28"
+            ]
+        },
+        {
+            "name": "Gornji Rahić škola",
+            "times": [
+                "07:20",
+                "13:00",
+                "18:30"
+            ]
+        },
+        {
+            "name": "Gornji Rahić Centar",
+            "times": [
+                "07:22",
+                "13:02",
+                "18:32"
+            ]
+        },
+        {
+            "name": "Gornjih Rahić Brdo",
+            "times": [
+                "07:26",
+                "13:06",
+                "18:36"
+            ]
+        },
+        {
+            "name": "Čande džamija",
+            "times": [
+                "07:28",
+                "13:08",
+                "18:38"
+            ]
+        },
+        {
+            "name": "Ćoseti džamija",
+            "times": [
+                "07:30",
+                "13:10",
+                "18:40"
+            ]
+        }
+    ]
+}

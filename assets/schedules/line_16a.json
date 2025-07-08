@@ -1,0 +1,113 @@
+{
+    "name": "Ćoseti džamija - Brka škola",
+    "line_number": "16",
+    "services": 3,
+    "regular_services": [
+        1,
+        2,
+        3
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Ćoseti džamija",
+            "times": [
+                "06:40",
+                "11:00",
+                "17:00"
+            ]
+        },
+        {
+            "name": "Čande džamija",
+            "times": [
+                "06:42",
+                "11:02",
+                "17:02"
+            ]
+        },
+        {
+            "name": "Gornjih Rahić Brdo",
+            "times": [
+                "06:44",
+                "11:04",
+                "17:04"
+            ]
+        },
+        {
+            "name": "Gornji Rahić Centar",
+            "times": [
+                "06:48",
+                "11:08",
+                "17:08"
+            ]
+        },
+        {
+            "name": "Gornji Rahić škola",
+            "times": [
+                "06:50",
+                "11:10",
+                "17:10"
+            ]
+        },
+        {
+            "name": "Ograđenovac",
+            "times": [
+                "06:52",
+                "11:12",
+                "12:12"
+            ]
+        },
+        {
+            "name": "Palanka (R)",
+            "times": [
+                "06:54",
+                "11:14",
+                "17:14"
+            ]
+        },
+        {
+            "name": "Palanka",
+            "times": [
+                "06:57",
+                "11:17",
+                "17:17"
+            ]
+        },
+        {
+            "name": "Palanka (R)",
+            "times": [
+                "07:00",
+                "11:20",
+                "17:20"
+            ]
+        },
+        {
+            "name": "Brka Musići",
+            "times": [
+                "07:03",
+                "11:23",
+                "17:23"
+            ]
+        },
+        {
+            "name": "Brka Centar",
+            "times": [
+                "07:04",
+                "11:24",
+                "17:24"
+            ]
+        },
+        {
+            "name": "Brka škola",
+            "times": [
+                "07:05",
+                "11:25",
+                "17:25"
+            ]
+        }
+    ]
+}
