@@ -7,6 +7,13 @@
 
     let schedulesLoaded = false;
 
+    // Memoization caches
+    const pathCache = new Map();
+    const normalizeCache = new Map();
+    // Precomputed indices
+    const stationIndices = new Map();
+    const stationToLines = new Map();
+
     // Fetch schedule JSON for a given line code (e.g., "line_1A")
     async function fetchSchedule(lineCode) {
         if (scheduleCache[lineCode]) return scheduleCache[lineCode];
@@ -74,11 +81,93 @@
         }
     }
 
+    function normalize(str) {
+        if (normalizeCache.has(str)) return normalizeCache.get(str);
+        const normalized = str
+            .toLowerCase()
+            .replace(/[čćc]/g, 'c')
+            .replace(/[žz]/g, 'z')
+            .replace(/[šs]/g, 's')
+            .replace(/[đd]/g, 'd');
+        normalizeCache.set(str, normalized);
+        return normalized;
+    }
+
+    function precomputeStationIndices() {
+        stationIndices.clear();
+        for (const [code, sch] of Object.entries(scheduleCache)) {
+            if (!sch || !Array.isArray(sch.stops)) continue;
+            const normalizedNames = sch.stops.map(s => normalize(s.name));
+            for (let i = 0; i < normalizedNames.length; i++) {
+                stationIndices.set(`${code}|${normalizedNames[i]}`, i);
+            }
+        }
+    }
+
+    function buildStationIndex() {
+        stationToLines.clear();
+        for (const [code, sch] of Object.entries(scheduleCache)) {
+            if (!sch || !Array.isArray(sch.stops)) continue;
+            for (const stop of sch.stops) {
+                const normName = normalize(stop.name);
+                if (!stationToLines.has(normName)) {
+                    stationToLines.set(normName, new Set());
+                }
+                stationToLines.get(normName).add(code);
+            }
+        }
+    }
+
+    // Load all schedules referenced on the page
+    async function loadAllSchedules() {
+        if (schedulesLoaded) return;
+
+        console.log('Loading all bus schedules...');
+
+        try {
+            // Get list of all line files (you'll need to maintain this list)
+            const lineFiles = ["line_1A.json", "line_1B.json", "line_2A.json", "line_2B.json", "line_3A.json", "line_3B.json", "line_4A.json", "line_4B.json", "line_5A.json", "line_5B.json", "line_6A.json", "line_6B.json", "line_7A.json", "line_7B.json", "line_8A.json", "line_8B.json", "line_9A.json", "line_9B.json", "line_10A.json", "line_10B.json", "line_11A.json", "line_11B.json", "line_12A.json", "line_12B.json", "line_13A.json", "line_13B.json", "line_14A.json", "line_14B.json", "line_15A.json", "line_15B.json", "line_16A.json", "line_16B.json", "line_17A.json", "line_17B.json", "line_18A.json", "line_18B.json", "line_20A.json", "line_20B.json", "line_22A.json", "line_22B.json", "line_23A.json", "line_23B.json", "line_24A.json", "line_24B.json", "line_25A.json", "line_25B.json", "line_26A.json", "line_26B.json", "line_28A.json", "line_28B.json", "line_29A.json", "line_29B.json", "line_30A.json", "line_30B.json", "line_31A.json", "line_31B.json", "line_32A.json", "line_32B.json", "line_33A.json", "line_33B.json", "line_34A.json", "line_34B.json", "line_35A.json", "line_35B.json"
+            ];
+
+            const promises = lineFiles.map(async (filename) => {
+                try {
+                    const response = await fetch(`assets/schedules/${filename}`);
+                    if (response.ok) {
+                        const schedule = await response.json();
+                        const lineId = filename.replace('.json', '');
+                        scheduleCache[lineId] = schedule;
+                    }
+                } catch (error) {
+                    console.warn(`Failed to load ${filename}:`, error);
+                }
+            });
+
+            await Promise.all(promises);
+            schedulesLoaded = true;
+            console.log(`Loaded ${Object.keys(scheduleCache).length} schedules`);
+
+        } catch (error) {
+            console.error('Error loading schedules:', error);
+        }
+    }
+
+    // Patch loadAllSchedules to precompute indices after loading
+    const origLoadAllSchedules = loadAllSchedules;
+    loadAllSchedules = async function () {
+        await origLoadAllSchedules();
+        precomputeStationIndices();
+        buildStationIndex();
+    };
+
     // Search routes between two stations (direct or one transfer)
     async function searchRoutes(startStation, endStation, nowMinOverride, dayOffset = 0) {
         const startKey = normalize(startStation.trim());
         const endKey = normalize(endStation.trim());
         if (!startKey || !endKey) return [];
+
+        // Memoization: cache by input
+        const cacheKey = `${startKey}|${endKey}|${nowMinOverride}|${dayOffset}`;
+        if (pathCache.has(cacheKey)) return pathCache.get(cacheKey);
 
         // Ensure schedules are loaded (redundant if preloaded, but safe)
         await loadAllSchedules();
@@ -92,24 +181,29 @@
         const schedules = Object.entries(scheduleCache);
 
         // Record helper
-
         function record(dep, arr, segments) {
+            if (results.length >= MAX_RESULTS) return; // Early break
             results.push({ dep, arr, segments });
         }
 
-        // Direct routes
-        // Collect direct route earliest arrival
+        // Pre-filter lines containing start and end
+        const startLines = stationToLines.get(startKey) || new Set();
+        const endLines = stationToLines.get(endKey) || new Set();
+
+        // Direct routes: only check lines that contain both stations
+        const potentialDirectLines = [...startLines].filter(code => endLines.has(code));
         let bestDirectArrival = Infinity;
-        for (const [code, sch] of schedules) {
+        for (const code of potentialDirectLines) {
+            const sch = scheduleCache[code];
             if (!sch || !Array.isArray(sch.stops)) continue;
             const names = sch.stops.map(s => normalize(s.name));
-            const sIdx = names.indexOf(startKey);
-            const eIdx = names.indexOf(endKey);
-            if (sIdx !== -1 && eIdx !== -1 && sIdx < eIdx) {
+            const sIdx = stationIndices.get(`${code}|${startKey}`);
+            const eIdx = stationIndices.get(`${code}|${endKey}`);
+            if (sIdx !== undefined && eIdx !== undefined && sIdx < eIdx) {
                 for (let i = 0; i < sch.services; i++) {
                     const depStr = sch.stops[sIdx].times[i];
                     const arrStr = sch.stops[eIdx].times[i];
-                    if (!depStr || depStr === '—' || depStr === '' || !arrStr || arrStr === '—' || arrStr === '') continue; // skip invalid
+                    if (!depStr || depStr === '—' || depStr === '' || !arrStr || arrStr === '—' || arrStr === '') continue;
                     const dep = parseTime(depStr);
                     if (dep >= nowMin) {
                         const arr = parseTime(arrStr);
@@ -131,30 +225,28 @@
         for (const [c1, sch1] of schedules) {
             if (!sch1 || !Array.isArray(sch1.stops)) continue;
             const names1 = sch1.stops.map(s => normalize(s.name));
-            const sIdx = names1.indexOf(startKey);
-            if (sIdx === -1) continue;
+            const sIdx = stationIndices.get(`${c1}|${startKey}`);
+            if (sIdx === undefined) continue;
 
+            // Precompute transfer points
+            const eIdx1 = stationIndices.get(`${c1}|${endKey}`);
             for (let t = sIdx + 1; t < names1.length; t++) {
+                if (eIdx1 !== undefined && eIdx1 > t) continue; // Don't suggest transfer if direct route exists
                 const transfer = names1[t];
-                // Check if sch1 continues to the destination after transfer stop
-                const eIdx1 = names1.indexOf(endKey);
-                if (eIdx1 > t) continue; // Don't suggest transfer if direct route exists
-
-                for (const [c2, sch2] of schedules) {
-                    if (c1 === c2) continue;
+                // Only consider lines that have this transfer and the end
+                const linesWithTransfer = stationToLines.get(transfer) || new Set();
+                const linesWithEnd = stationToLines.get(endKey) || new Set();
+                const possibleC2s = [...linesWithTransfer].filter(code => linesWithEnd.has(code) && code !== c1 && getLineNumber(code) !== getLineNumber(c1));
+                for (const c2 of possibleC2s) {
+                    const sch2 = scheduleCache[c2];
                     if (!sch2 || !Array.isArray(sch2.stops)) continue;
-                    // Prevent transfers between A/B of the same line number
-                    if (getLineNumber(c1) === getLineNumber(c2)) continue;
-                    const names2 = sch2.stops.map(s => normalize(s.name));
-                    const tIdx2 = names2.indexOf(transfer);
-                    const eIdx2 = names2.indexOf(endKey);
-                    if (tIdx2 === -1 || eIdx2 === -1 || tIdx2 >= eIdx2) continue;
-
+                    const tIdx2 = stationIndices.get(`${c2}|${transfer}`);
+                    const eIdx2 = stationIndices.get(`${c2}|${endKey}`);
+                    if (tIdx2 === undefined || eIdx2 === undefined || tIdx2 >= eIdx2) continue;
                     for (let i = 0; i < sch1.services; i++) {
                         const dep1Str = sch1.stops[sIdx].times[i];
                         const arr1Str = sch1.stops[t].times[i];
                         if (!dep1Str || dep1Str === '—' || dep1Str === '' || !arr1Str || arr1Str === '—' || arr1Str === '') continue;
-
                         for (let j = 0; j < sch2.services; j++) {
                             const dep2Str = sch2.stops[tIdx2].times[j];
                             const arr2Str = sch2.stops[eIdx2].times[j];
@@ -163,10 +255,10 @@
                             if (dep1 < nowMin) continue;
                             const arr1 = parseTime(arr1Str);
                             const dep2 = parseTime(dep2Str);
-                            if (dep2 < arr1) continue; // Transfer 
+                            if (dep2 < arr1) continue;
                             const arr2 = parseTime(arr2Str);
-                            if (arr2 >= bestDirectArrival) continue; // <-- Only keep if better than direct
-                            if (arr2 - dep1 > 5 * 60) continue; // Skip if travel time > 5 hours
+                            if (arr2 >= bestDirectArrival) continue;
+                            if (arr2 - dep1 > 5 * 60) continue;
                             record(dep1, arr2, [
                                 {
                                     line: c1,
@@ -185,45 +277,45 @@
                             ]);
                             break;
                         }
+                        if (results.length >= MAX_RESULTS) break;
                     }
+                    if (results.length >= MAX_RESULTS) break;
                 }
+                if (results.length >= MAX_RESULTS) break;
             }
+            if (results.length >= MAX_RESULTS) break;
         }
 
         // Two-transfer routes (up to three segments)
         for (const [c1, sch1] of schedules) {
             if (!sch1 || !Array.isArray(sch1.stops)) continue;
             const names1 = sch1.stops.map(s => normalize(s.name));
-            const sIdx = names1.indexOf(startKey);
-            if (sIdx === -1) continue;
-
+            const sIdx = stationIndices.get(`${c1}|${startKey}`);
+            if (sIdx === undefined) continue;
+            const eIdx1 = stationIndices.get(`${c1}|${endKey}`);
             for (let t1 = sIdx + 1; t1 < names1.length; t1++) {
+                if (eIdx1 !== undefined && eIdx1 > t1) continue;
                 const transfer1 = names1[t1];
-                const eIdx1 = names1.indexOf(endKey);
-                if (eIdx1 > t1) continue; // Don't suggest transfer if direct route exists
-
-                for (const [c2, sch2] of schedules) {
-                    if (c1 === c2) continue;
+                const linesWithTransfer1 = stationToLines.get(transfer1) || new Set();
+                for (const c2 of linesWithTransfer1) {
+                    if (c2 === c1 || getLineNumber(c2) === getLineNumber(c1)) continue;
+                    const sch2 = scheduleCache[c2];
                     if (!sch2 || !Array.isArray(sch2.stops)) continue;
-                    if (getLineNumber(c1) === getLineNumber(c2)) continue;
                     const names2 = sch2.stops.map(s => normalize(s.name));
-                    const t1Idx2 = names2.indexOf(transfer1);
-                    if (t1Idx2 === -1) continue;
-
+                    const t1Idx2 = stationIndices.get(`${c2}|${transfer1}`);
+                    if (t1Idx2 === undefined) continue;
+                    const eIdx2 = stationIndices.get(`${c2}|${endKey}`);
                     for (let t2 = t1Idx2 + 1; t2 < names2.length; t2++) {
+                        if (eIdx2 !== undefined && eIdx2 > t2) continue;
                         const transfer2 = names2[t2];
-                        const eIdx2 = names2.indexOf(endKey);
-                        if (eIdx2 > t2) continue;
-
-                        for (const [c3, sch3] of schedules) {
-                            if (c3 === c2 || c3 === c1) continue;
+                        const linesWithTransfer2 = stationToLines.get(transfer2) || new Set();
+                        for (const c3 of linesWithTransfer2) {
+                            if (c3 === c2 || c3 === c1 || getLineNumber(c3) === getLineNumber(c2) || getLineNumber(c3) === getLineNumber(c1)) continue;
+                            const sch3 = scheduleCache[c3];
                             if (!sch3 || !Array.isArray(sch3.stops)) continue;
-                            if (getLineNumber(c3) === getLineNumber(c2) || getLineNumber(c3) === getLineNumber(c1)) continue;
-                            const names3 = sch3.stops.map(s => normalize(s.name));
-                            const t2Idx3 = names3.indexOf(transfer2);
-                            const eIdx3 = names3.indexOf(endKey);
-                            if (t2Idx3 === -1 || eIdx3 === -1 || t2Idx3 >= eIdx3) continue;
-
+                            const t2Idx3 = stationIndices.get(`${c3}|${transfer2}`);
+                            const eIdx3 = stationIndices.get(`${c3}|${endKey}`);
+                            if (t2Idx3 === undefined || eIdx3 === undefined || t2Idx3 >= eIdx3) continue;
                             for (let i = 0; i < sch1.services; i++) {
                                 const dep1Str = sch1.stops[sIdx].times[i];
                                 const arr1Str = sch1.stops[t1].times[i];
@@ -231,15 +323,13 @@
                                 const dep1 = parseTime(dep1Str);
                                 if (dep1 < nowMin) continue;
                                 const arr1 = parseTime(arr1Str);
-
                                 for (let j = 0; j < sch2.services; j++) {
                                     const dep2Str = sch2.stops[t1Idx2].times[j];
                                     const arr2Str = sch2.stops[t2].times[j];
                                     if (!dep2Str || dep2Str === '—' || dep2Str === '' || !arr2Str || arr2Str === '—' || arr2Str === '') continue;
                                     const dep2 = parseTime(dep2Str);
-                                    if (dep2 < arr1) continue; // Transfer bus must depart after arrival
+                                    if (dep2 < arr1) continue;
                                     const arr2 = parseTime(arr2Str);
-
                                     for (let k = 0; k < sch3.services; k++) {
                                         const dep3Str = sch3.stops[t2Idx3].times[k];
                                         const arr3Str = sch3.stops[eIdx3].times[k];
@@ -248,7 +338,7 @@
                                         if (dep3 < arr2) continue;
                                         const arr3 = parseTime(arr3Str);
                                         if (arr3 >= bestDirectArrival) continue;
-                                        if (arr3 - dep1 > 5 * 60) continue; // Skip if travel time > 5 hours
+                                        if (arr3 - dep1 > 5 * 60) continue;
                                         record(dep1, arr3, [
                                             {
                                                 line: c1,
@@ -274,21 +364,30 @@
                                         ]);
                                         break;
                                     }
+                                    if (results.length >= MAX_RESULTS) break;
                                 }
+                                if (results.length >= MAX_RESULTS) break;
                             }
+                            if (results.length >= MAX_RESULTS) break;
                         }
+                        if (results.length >= MAX_RESULTS) break;
                     }
+                    if (results.length >= MAX_RESULTS) break;
                 }
+                if (results.length >= MAX_RESULTS) break;
             }
+            if (results.length >= MAX_RESULTS) break;
         }
 
         results.sort((a, b) => a.dep - b.dep);
-        return results.map(r => ({
+        const mapped = results.map(r => ({
             start: formatTime(r.dep),
             end: formatTime(r.arr),
             segments: r.segments,
-            dayOffset // <-- add this
+            dayOffset
         }));
+        pathCache.set(cacheKey, mapped);
+        return mapped;
     }
 
 
@@ -678,15 +777,6 @@ ${dayLabelHtml}
     function getLineNumber(code) {
         const m = code.match(/^line_(\d+)/i);
         return m ? m[1] : null;
-    }
-
-    function normalize(str) {
-        return str
-            .toLowerCase()
-            .replace(/[čćc]/g, 'c')
-            .replace(/[žz]/g, 'z')
-            .replace(/[šs]/g, 's')
-            .replace(/[đd]/g, 'd');
     }
 
     // Station suggestion autocomplete inputs
