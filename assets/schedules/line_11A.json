@@ -1,20 +1,24 @@
 {
     "$schema": "./bus_schema.json",
     "name": "Tesla - Bukvik ž.st.rask.",
-    "line_number": "11a",
+    "line_number": "10",
     "services": 4,
     "regular_services": [
+        2
+    ],
+    "weekday_services": [
+        3
+    ],
+    "irregular_services": [
         1,
-        2,
-        3,
         4
     ],
-    "weekday_services": [],
-    "regular_explanation": "Polasci pod brojevima 1, 2, 3, 4 saobraćaju svakodnevno",
+    "regular_explanation": "Polasci pod brojem 3 saobraćaju svakodnevno",
     "weekday_explanation": "",
+    "irregular_explanation": "Polasci pod brojem 1, 2 i 4 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
-            "name": "TESLA",
+            "name": "Tesla",
             "times": [
                 "05:20",
                 "06:30",
@@ -23,7 +27,7 @@
             ]
         },
         {
-            "name": "Vet. Stanica",
+            "name": "Veterinarska Stanica",
             "times": [
                 "05:22",
                 "06:32",
@@ -32,7 +36,7 @@
             ]
         },
         {
-            "name": "Centar",
+            "name": "Brčko Centar",
             "times": [
                 "05:24",
                 "06:34",

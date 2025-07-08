@@ -53,8 +53,8 @@
             "type": "string"
         },
         "stops": {
-            "minItems": 41,
-            "maxItems": 41,
+            "minItems": 20,
+            "maxItems": 20,
             "type": "array",
             "items": {
                 "type": "object",
@@ -68,8 +68,8 @@
                     },
                     "times": {
                         "type": "array",
-                        "minItems": 3,
-                        "maxItems": 3,
+                        "minItems": 4,
+                        "maxItems": 4,
                         "items": {
                             "type": "string",
                             "pattern": "^\\d{2}:\\d{2}$"
