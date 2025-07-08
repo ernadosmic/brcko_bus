@@ -40,28 +40,28 @@
             ]
         },
         {
-            "name": "D.Skakava raskrsnica",
+            "name": "Donja Skakava (R)",
             "times": [
                 "",
                 "11:53"
             ]
         },
         {
-            "name": "Bukvik ž.st. (R)",
+            "name": "Bukvik željeznička stanica (R)",
             "times": [
                 "07:50",
                 "11:55"
             ]
         },
         {
-            "name": "Bukvik Škola",
+            "name": "Bukvik škola",
             "times": [
                 "07:55",
                 "12:00"
             ]
         },
         {
-            "name": "Bukvik ben.pum.",
+            "name": "Bukvik benzinska pumpa",
             "times": [
                 "",
                 "12:01"
@@ -75,7 +75,7 @@
             ]
         },
         {
-            "name": "Bukvik ben.pum.",
+            "name": "Bukvik benzinska pumpa",
             "times": [
                 "",
                 "12:05"
@@ -96,7 +96,7 @@
             ]
         },
         {
-            "name": "Bukovac ž.stan.",
+            "name": "Bukovac željeznička stanica",
             "times": [
                 "",
                 "12:19"
@@ -180,7 +180,7 @@
             ]
         },
         {
-            "name": "Brčko Centar",
+            "name": "Brčko centar",
             "times": [
                 "08:16",
                 "12:46"

@@ -1,0 +1,92 @@
+{
+    "name": "Seonjaci - Bijela",
+    "line_number": "29",
+    "services": 2,
+    "regular_services": [
+        1
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Seonjaci",
+            "times": [
+                "07:00",
+                ""
+            ]
+        },
+        {
+            "name": "Dubrave Škola",
+            "times": [
+                "07:02",
+                "12:22"
+            ]
+        },
+        {
+            "name": "Krajnovići",
+            "times": [
+                "07:05",
+                "12:25"
+            ]
+        },
+        {
+            "name": "Poljaci",
+            "times": [
+                "07:08",
+                "12:28"
+            ]
+        },
+        {
+            "name": "Marićani",
+            "times": [
+                "07:12",
+                "12:32"
+            ]
+        },
+        {
+            "name": "Bosutka (R)",
+            "times": [
+                "07:14",
+                "12:34"
+            ]
+        },
+        {
+            "name": "Donja Skakava",
+            "times": [
+                "07:18",
+                "12:38"
+            ]
+        },
+        {
+            "name": "Seonjaci",
+            "times": [
+                "07:20",
+                "12:40"
+            ]
+        },
+        {
+            "name": "Dubrave škola",
+            "times": [
+                "07:20",
+                ""
+            ]
+        },
+        {
+            "name": "Dubrave (R)",
+            "times": [
+                "07:22",
+                ""
+            ]
+        },
+        {
+            "name": "Bijela Dom",
+            "times": [
+                "07:28",
+                ""
+            ]
+        }
+    ]
+}

@@ -1,0 +1,99 @@
+{
+    "name": "Sandići - Novo Naselje",
+    "line_number": "28",
+    "services": 2,
+    "regular_services": [
+        1
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Novo Naselje",
+            "times": [
+                "11:40",
+                "13:20"
+            ]
+        },
+        {
+            "name": "Brezovo Polje",
+            "times": [
+                "11:43",
+                "13:23"
+            ]
+        },
+        {
+            "name": "S. B. Polje (R)",
+            "times": [
+                "11:45",
+                "13:25"
+            ]
+        },
+        {
+            "name": "S.B. Pol'e igralište",
+            "times": [
+                "11:47",
+                "13:27"
+            ]
+        },
+        {
+            "name": "S.B.Polje",
+            "times": [
+                "11:49",
+                "13:29"
+            ]
+        },
+        {
+            "name": "S.B. Pol'e igralište",
+            "times": [
+                "11:51",
+                "13:31"
+            ]
+        },
+        {
+            "name": "S. B. Polje (R)",
+            "times": [
+                "11:53",
+                "13:33"
+            ]
+        },
+        {
+            "name": "Rnjaci (R)",
+            "times": [
+                "11:55",
+                "13:35"
+            ]
+        },
+        {
+            "name": "Trnjaci",
+            "times": [
+                "11:57",
+                "13:37"
+            ]
+        },
+        {
+            "name": "Trnjaci Crkva",
+            "times": [
+                "11:58",
+                "13:38"
+            ]
+        },
+        {
+            "name": "Sandići Dom",
+            "times": [
+                "12:05",
+                "13:45"
+            ]
+        },
+        {
+            "name": "Sandići (R)",
+            "times": [
+                "12:09",
+                "13:49"
+            ]
+        }
+    ]
+}

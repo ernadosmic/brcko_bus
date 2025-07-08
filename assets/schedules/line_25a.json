@@ -1,0 +1,155 @@
+{
+    "name": "Dubravice - Štrepci",
+    "line_number": "12",
+    "services": 5,
+    "regular_services": [
+        1
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Dubravice",
+            "times": [
+                "07:10",
+                "12:15",
+                "",
+                "14:05",
+                ""
+            ]
+        },
+        {
+            "name": "Dubravice Crkva",
+            "times": [
+                "07:13",
+                "12:18",
+                "",
+                "14:08",
+                ""
+            ]
+        },
+        {
+            "name": "Boderište",
+            "times": [
+                "07:20",
+                "12:25",
+                "",
+                "14:15",
+                ""
+            ]
+        },
+        {
+            "name": "Nivarice",
+            "times": [
+                "07:25",
+                "12:30",
+                "",
+                "14:20",
+                ""
+            ]
+        },
+        {
+            "name": "Boće Tromeđa",
+            "times": [
+                "07:26",
+                "12:31",
+                "",
+                "14:21",
+                ""
+            ]
+        },
+        {
+            "name": "Boće Crkva",
+            "times": [
+                "07:28",
+                "12:33",
+                "",
+                "14:23",
+                ""
+            ]
+        },
+        {
+            "name": "Boće Gornje",
+            "times": [
+                "07:30",
+                "12:35",
+                "",
+                "14:25",
+                ""
+            ]
+        },
+        {
+            "name": "P. Selo",
+            "times": [
+                "07:32",
+                "12:37",
+                "",
+                "14:27",
+                ""
+            ]
+        },
+        {
+            "name": "Klindarija",
+            "times": [
+                "07:34",
+                "12:39",
+                "",
+                "14:29",
+                ""
+            ]
+        },
+        {
+            "name": "Donji Zovik",
+            "times": [
+                "07:37",
+                "12:42",
+                "",
+                "14:32",
+                ""
+            ]
+        },
+        {
+            "name": "Nikići",
+            "times": [
+                "07:41",
+                "12:46",
+                "",
+                "14:36",
+                ""
+            ]
+        },
+        {
+            "name": "Vražići (R)",
+            "times": [
+                "07:43",
+                "12:48",
+                "",
+                "14:38",
+                ""
+            ]
+        },
+        {
+            "name": "Gornji Zovik Dom",
+            "times": [
+                "07:44",
+                "12:49",
+                "13:10",
+                "14:39",
+                "14:39"
+            ]
+        },
+        {
+            "name": "Štrepci",
+            "times": [
+                "",
+                "",
+                "13:20",
+                "",
+                "14:49"
+            ]
+        }
+    ]
+}

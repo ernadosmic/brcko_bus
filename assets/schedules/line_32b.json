@@ -1,0 +1,58 @@
+{
+    "name": "Klanac škola - Stari Brod",
+    "line_number": "14",
+    "services": 2,
+    "regular_services": [
+        1,
+        2
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Klanac škola",
+            "times": [
+                "12:45",
+                "17:30"
+            ]
+        },
+        {
+            "name": "Izbor",
+            "times": [
+                "12:47",
+                "17:32"
+            ]
+        },
+        {
+            "name": "Suljagića Sokak",
+            "times": [
+                "12:48",
+                "17:33"
+            ]
+        },
+        {
+            "name": "Šadrvan",
+            "times": [
+                "12:49",
+                "17:34"
+            ]
+        },
+        {
+            "name": "Brod škola",
+            "times": [
+                "12:53",
+                "17:38"
+            ]
+        },
+        {
+            "name": "Stari Brod",
+            "times": [
+                "12:55",
+                "17:40"
+            ]
+        }
+    ]
+}

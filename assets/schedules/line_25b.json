@@ -1,0 +1,127 @@
+{
+    "name": "Štrepci - Dubravice",
+    "line_number": "12",
+    "services": 3,
+    "regular_services": [
+        1
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Štrepci",
+            "times": [
+                "",
+                "13:20",
+                "14:49"
+            ]
+        },
+        {
+            "name": "Gornji Zovik Dom",
+            "times": [
+                "11:40",
+                "13:30",
+                "14:59"
+            ]
+        },
+        {
+            "name": "Vražići (R)",
+            "times": [
+                "11:41",
+                "13:31",
+                "15:00"
+            ]
+        },
+        {
+            "name": "Nikići",
+            "times": [
+                "11:43",
+                "13:33",
+                "15:02"
+            ]
+        },
+        {
+            "name": "Donji Zovik",
+            "times": [
+                "11:47",
+                "13:37",
+                "15:06"
+            ]
+        },
+        {
+            "name": "Klindarija",
+            "times": [
+                "11:50",
+                "13:40",
+                "15:09"
+            ]
+        },
+        {
+            "name": "P. Selo",
+            "times": [
+                "11:52",
+                "13:42",
+                "15:11"
+            ]
+        },
+        {
+            "name": "Boće Gornje",
+            "times": [
+                "11:54",
+                "13:44",
+                "15:13"
+            ]
+        },
+        {
+            "name": "Boće Crkva",
+            "times": [
+                "11:56",
+                "13:46",
+                "15:15"
+            ]
+        },
+        {
+            "name": "Boće Tromeđa",
+            "times": [
+                "11:58",
+                "13:48",
+                "15:17"
+            ]
+        },
+        {
+            "name": "Nivarice",
+            "times": [
+                "11:59",
+                "13:49",
+                "15:18"
+            ]
+        },
+        {
+            "name": "Boderište",
+            "times": [
+                "12:04",
+                "13:54",
+                "15:23"
+            ]
+        },
+        {
+            "name": "Dubravice Crkva",
+            "times": [
+                "12:11",
+                "14:01",
+                ""
+            ]
+        },
+        {
+            "name": "Dubravice",
+            "times": [
+                "12:14",
+                "14:04",
+                ""
+            ]
+        }
+    ]
+}

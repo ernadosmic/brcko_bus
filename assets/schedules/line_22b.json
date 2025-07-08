@@ -1,0 +1,305 @@
+{
+    "name": "Brdo Šterac - Gorice",
+    "line_number": "22",
+    "services": 5,
+    "regular_services": [
+        1
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Brdo Šterac",
+            "times": [
+                "07:42",
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "name": "Tufekčići",
+            "times": [
+                "07:43",
+                "",
+                "",
+                "",
+                "12:32"
+            ]
+        },
+        {
+            "name": "Sluganovići",
+            "times": [
+                "07:45",
+                "09:15",
+                "",
+                "",
+                "12:34"
+            ]
+        },
+        {
+            "name": "Šokčevići",
+            "times": [
+                "07:47",
+                "09:17",
+                "",
+                "",
+                "12:36"
+            ]
+        },
+        {
+            "name": "Grgići (R)",
+            "times": [
+                "07:48",
+                "09:18",
+                "",
+                "",
+                "12:37"
+            ]
+        },
+        {
+            "name": "Bosankići (R)",
+            "times": [
+                "07:49",
+                "09:19",
+                "",
+                "",
+                "12:38"
+            ]
+        },
+        {
+            "name": "Vitanovići škola",
+            "times": [
+                "07:51",
+                "09:21",
+                "",
+                "",
+                "12:39"
+            ]
+        },
+        {
+            "name": "Rogozan (R)",
+            "times": [
+                "07:55",
+                "09:25",
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "name": "Rogozan",
+            "times": [
+                "07:56",
+                "09:26",
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "name": "Rogozan (R)",
+            "times": [
+                "07:57",
+                "09:27",
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "name": "Ulice škola",
+            "times": [
+                "08:00",
+                "09:30",
+                "09:30",
+                "11:25",
+                ""
+            ]
+        },
+        {
+            "name": "Donji Vukśić (R)",
+            "times": [
+                "",
+                "",
+                "09:35",
+                "11:28",
+                ""
+            ]
+        },
+        {
+            "name": "Laništa kapela",
+            "times": [
+                "",
+                "",
+                "09:45",
+                "",
+                ""
+            ]
+        },
+        {
+            "name": "Gornja Laništa",
+            "times": [
+                "",
+                "",
+                "09:50",
+                "",
+                ""
+            ]
+        },
+        {
+            "name": "Krepšić škola",
+            "times": [
+                "",
+                "",
+                "10:00",
+                "",
+                ""
+            ]
+        },
+        {
+            "name": "Gornji Vukšić \"Dalas\"",
+            "times": [
+                "",
+                "",
+                "",
+                "11:29",
+                ""
+            ]
+        },
+        {
+            "name": "Gonji Vukśić 2",
+            "times": [
+                "",
+                "",
+                "",
+                "11:31",
+                ""
+            ]
+        },
+        {
+            "name": "Gornji Vukšić \"Dalas\"",
+            "times": [
+                "",
+                "",
+                "",
+                "11:33",
+                ""
+            ]
+        },
+        {
+            "name": "Donji Vukśić (R)",
+            "times": [
+                "",
+                "",
+                "",
+                "11:34",
+                ""
+            ]
+        },
+        {
+            "name": "Ulice škola",
+            "times": [
+                "",
+                "",
+                "",
+                "11:36",
+                ""
+            ]
+        },
+        {
+            "name": "Lukići (R)",
+            "times": [
+                "",
+                "",
+                "",
+                "11:37",
+                ""
+            ]
+        },
+        {
+            "name": "Lukići",
+            "times": [
+                "",
+                "",
+                "",
+                "11:40",
+                ""
+            ]
+        },
+        {
+            "name": "Lukići (R)",
+            "times": [
+                "",
+                "",
+                "",
+                "11:43",
+                ""
+            ]
+        },
+        {
+            "name": "Jasenovac",
+            "times": [
+                "",
+                "",
+                "",
+                "11:45",
+                ""
+            ]
+        },
+        {
+            "name": "Pekići",
+            "times": [
+                "",
+                "",
+                "",
+                "11:46",
+                ""
+            ]
+        },
+        {
+            "name": "Jasenovac",
+            "times": [
+                "",
+                "",
+                "",
+                "11:47",
+                ""
+            ]
+        },
+        {
+            "name": "Jasenovac (R)",
+            "times": [
+                "",
+                "",
+                "",
+                "11:50",
+                ""
+            ]
+        },
+        {
+            "name": "Zečevići",
+            "times": [
+                "",
+                "",
+                "",
+                "11:53",
+                ""
+            ]
+        },
+        {
+            "name": "Gorice",
+            "times": [
+                "",
+                "",
+                "",
+                "11:55",
+                ""
+            ]
+        }
+    ]
+}

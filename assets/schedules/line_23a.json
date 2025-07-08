@@ -1,0 +1,39 @@
+{
+    "name": "Vitanovići - Bukvik škola",
+    "line_number": "23",
+    "services": 1,
+    "regular_services": [
+        1
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Vitanovići",
+            "times": [
+                "08:15"
+            ]
+        },
+        {
+            "name": "Vitanovići Dom",
+            "times": [
+                "08:18"
+            ]
+        },
+        {
+            "name": "Bukvik benzinska pumpa",
+            "times": [
+                "08:20"
+            ]
+        },
+        {
+            "name": "Bukvik škola",
+            "times": [
+                "08:25"
+            ]
+        }
+    ]
+}

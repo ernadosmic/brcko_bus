@@ -1,0 +1,99 @@
+{
+    "name": "Donja Brka - Dom Zdravlja",
+    "line_number": "30",
+    "services": 5,
+    "regular_services": [
+        1,
+        2,
+        3,
+        4,
+        5
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Donja Brka",
+            "times": [
+                "06:20",
+                "07:16",
+                "11:55",
+                "15:00",
+                "19:00"
+            ]
+        },
+        {
+            "name": "Stari Brod",
+            "times": [
+                "06:26",
+                "07:21",
+                "12:01",
+                "15:06",
+                "19:06"
+            ]
+        },
+        {
+            "name": "Brod škola",
+            "times": [
+                "06:27",
+                "07:22",
+                "12:02",
+                "15:07",
+                "19:07"
+            ]
+        },
+        {
+            "name": "Šadrvan",
+            "times": [
+                "06:28",
+                "07:23",
+                "12:03",
+                "15:08",
+                "19:08"
+            ]
+        },
+        {
+            "name": "Suljagića Sokak",
+            "times": [
+                "06:29",
+                "07:24",
+                "12:04",
+                "15:09",
+                "19:09"
+            ]
+        },
+        {
+            "name": "Izbor",
+            "times": [
+                "06:31",
+                "07:26",
+                "12:06",
+                "15:11",
+                "19:11"
+            ]
+        },
+        {
+            "name": "Meraje",
+            "times": [
+                "06:32",
+                "07:27",
+                "12:07",
+                "15:12",
+                "19:12"
+            ]
+        },
+        {
+            "name": "Dom Zdravlja",
+            "times": [
+                "06:33",
+                "07:28",
+                "12:08",
+                "15:13",
+                "19:13"
+            ]
+        }
+    ]
+}

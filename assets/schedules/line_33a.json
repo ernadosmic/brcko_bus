@@ -1,0 +1,97 @@
+{
+    "name": "Stjepkovica - Bijela škola",
+    "line_number": "33",
+    "services": 3,
+    "regular_services": [
+        1,
+        2,
+        3
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Stjepkovica",
+            "times": [
+                "07:10",
+                "",
+                ""
+            ]
+        },
+        {
+            "name": "Prijedor",
+            "times": [
+                "07:14",
+                "",
+                ""
+            ]
+        },
+        {
+            "name": "Donja Skakava",
+            "times": [
+                "07:18",
+                "",
+                "14:30"
+            ]
+        },
+        {
+            "name": "Dubrave",
+            "times": [
+                "07:21",
+                "11:00",
+                "14:33"
+            ]
+        },
+        {
+            "name": "Arizona (R)",
+            "times": [
+                "07:25",
+                "11:04",
+                "14:37"
+            ]
+        },
+        {
+            "name": "Cerik (R)",
+            "times": [
+                "07:29",
+                "11:08",
+                "14:41"
+            ]
+        },
+        {
+            "name": "Seonjaci",
+            "times": [
+                "07:32",
+                "11:11",
+                ""
+            ]
+        },
+        {
+            "name": "Prijedor",
+            "times": [
+                "07:35",
+                "11:14",
+                ""
+            ]
+        },
+        {
+            "name": "Gornja Skakava",
+            "times": [
+                "07:39",
+                "11:18",
+                ""
+            ]
+        },
+        {
+            "name": "Bijela škola",
+            "times": [
+                "07:43",
+                "11:22",
+                ""
+            ]
+        }
+    ]
+}

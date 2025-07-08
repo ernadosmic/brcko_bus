@@ -1,0 +1,135 @@
+{
+    "name": "Potočari škola - Donji Brezik (R)",
+    "line_number": "31",
+    "services": 2,
+    "regular_services": [
+        1,
+        2
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Potočari škola",
+            "times": [
+                "15:00",
+                "15:40"
+            ]
+        },
+        {
+            "name": "Potočari Crkva",
+            "times": [
+                "15:02",
+                "15:42"
+            ]
+        },
+        {
+            "name": "Potočari I",
+            "times": [
+                "15:03",
+                "15:43"
+            ]
+        },
+        {
+            "name": "Potočari II",
+            "times": [
+                "15:04",
+                "15:44"
+            ]
+        },
+        {
+            "name": "Potočari III",
+            "times": [
+                "15:06",
+                "15:46"
+            ]
+        },
+        {
+            "name": "Trešnjica",
+            "times": [
+                "15:09",
+                "15:49"
+            ]
+        },
+        {
+            "name": "Dubravice D. (R)",
+            "times": [
+                "15:13",
+                "15:53"
+            ]
+        },
+        {
+            "name": "Potočari III",
+            "times": [
+                "15:20",
+                "16:00"
+            ]
+        },
+        {
+            "name": "Potočari II",
+            "times": [
+                "15:22",
+                "16:02"
+            ]
+        },
+        {
+            "name": "Potočari I",
+            "times": [
+                "15:23",
+                "16:03"
+            ]
+        },
+        {
+            "name": "Potočari Crkva",
+            "times": [
+                "15:24",
+                "16:04"
+            ]
+        },
+        {
+            "name": "Potočari škola",
+            "times": [
+                "15:25",
+                "16:05"
+            ]
+        },
+        {
+            "name": "Brezik (R)",
+            "times": [
+                "15:26",
+                "16:06"
+            ]
+        },
+        {
+            "name": "Brezik I",
+            "times": [
+                "15:28",
+                "16:08"
+            ]
+        },
+        {
+            "name": "Brezik Dom",
+            "times": [
+                "15:29",
+                "16:09"
+            ]
+        },
+        {
+            "name": "Donji Brezik",
+            "times": [
+                "15:34",
+                "16:14"
+            ]
+        },
+        {
+            "name": "Donji Brezik (R)",
+            "times": [
+                "15:36",
+                "16:16"
+            ]
+        }
+    ]
+}

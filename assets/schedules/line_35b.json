@@ -1,0 +1,128 @@
+{
+    "name": "Bolnica - Sandići",
+    "line_number": "15",
+    "services": 2,
+    "regular_services": [
+        1,
+        2
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Bolnica",
+            "times": [
+                "13:25",
+                "19:20"
+            ]
+        },
+        {
+            "name": "Dom Zdravlja",
+            "times": [
+                "13:26",
+                "19:21"
+            ]
+        },
+        {
+            "name": "Kolobara",
+            "times": [
+                "13:27",
+                "19:22"
+            ]
+        },
+        {
+            "name": "Brčko centar",
+            "times": [
+                "13:28",
+                "19:23"
+            ]
+        },
+        {
+            "name": "Šumarija",
+            "times": [
+                "13:29",
+                "19:24"
+            ]
+        },
+        {
+            "name": "Uljarica",
+            "times": [
+                "13:30",
+                "19:25"
+            ]
+        },
+        {
+            "name": "Bosnaplod",
+            "times": [
+                "13:31",
+                "19:26"
+            ]
+        },
+        {
+            "name": "Farma",
+            "times": [
+                "13:32",
+                "19:27"
+            ]
+        },
+        {
+            "name": "Blizna",
+            "times": [
+                "13:33",
+                "19:28"
+            ]
+        },
+        {
+            "name": "Donji Brezik (R)",
+            "times": [
+                "13:34",
+                "19:29"
+            ]
+        },
+        {
+            "name": "Stolin",
+            "times": [
+                "13:35",
+                "19:30"
+            ]
+        },
+        {
+            "name": "Pirometal",
+            "times": [
+                "13:36",
+                "19:31"
+            ]
+        },
+        {
+            "name": "Gredice (R)",
+            "times": [
+                "13:38",
+                "19:33"
+            ]
+        },
+        {
+            "name": "Gredice II (R)",
+            "times": [
+                "13:40",
+                "19:35"
+            ]
+        },
+        {
+            "name": "Sandići (R)",
+            "times": [
+                "13:41",
+                "19:36"
+            ]
+        },
+        {
+            "name": "Sandići Stadion",
+            "times": [
+                "13:46",
+                "19:41"
+            ]
+        }
+    ]
+}

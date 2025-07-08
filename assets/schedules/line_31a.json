@@ -1,0 +1,135 @@
+{
+    "name": "Donji Brezik (R) - Potočari škola",
+    "line_number": "31",
+    "services": 2,
+    "regular_services": [
+        1,
+        2
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Donji Brezik (R)",
+            "times": [
+                "10:45",
+                "11:30"
+            ]
+        },
+        {
+            "name": "Donji Brezik",
+            "times": [
+                "10:47",
+                "11:32"
+            ]
+        },
+        {
+            "name": "Brezik Dom",
+            "times": [
+                "10:52",
+                "11:37"
+            ]
+        },
+        {
+            "name": "Brezik I",
+            "times": [
+                "10:53",
+                "11:38"
+            ]
+        },
+        {
+            "name": "Brezik (R)",
+            "times": [
+                "10:55",
+                "11:40"
+            ]
+        },
+        {
+            "name": "Potočari škola",
+            "times": [
+                "10:56",
+                "11:41"
+            ]
+        },
+        {
+            "name": "Potočari Crkva",
+            "times": [
+                "10:57",
+                "11:42"
+            ]
+        },
+        {
+            "name": "Potočari I",
+            "times": [
+                "10:58",
+                "11:43"
+            ]
+        },
+        {
+            "name": "Potočari II",
+            "times": [
+                "10:59",
+                "11:44"
+            ]
+        },
+        {
+            "name": "Potočari III",
+            "times": [
+                "11:01",
+                "11:46"
+            ]
+        },
+        {
+            "name": "Trešnjica",
+            "times": [
+                "11:04",
+                "11:49"
+            ]
+        },
+        {
+            "name": "Dubravice D. (R)",
+            "times": [
+                "11:08",
+                "11:53"
+            ]
+        },
+        {
+            "name": "Potočari III",
+            "times": [
+                "11:15",
+                "12:00"
+            ]
+        },
+        {
+            "name": "Potočari II",
+            "times": [
+                "11:17",
+                "12:02"
+            ]
+        },
+        {
+            "name": "Potočari I",
+            "times": [
+                "11:18",
+                "12:03"
+            ]
+        },
+        {
+            "name": "Potočari Crkva",
+            "times": [
+                "11:19",
+                "12:04"
+            ]
+        },
+        {
+            "name": "Potočari škola",
+            "times": [
+                "11:21",
+                "12:06"
+            ]
+        }
+    ]
+}

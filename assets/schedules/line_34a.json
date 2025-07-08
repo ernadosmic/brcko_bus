@@ -1,0 +1,148 @@
+{
+    "name": "Bukvik - Bijela škola",
+    "line_number": "34",
+    "services": 2,
+    "regular_services": [
+        1
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Bukvik",
+            "times": [
+                "08:50",
+                ""
+            ]
+        },
+        {
+            "name": "Vitanovići Dom",
+            "times": [
+                "08:55",
+                ""
+            ]
+        },
+        {
+            "name": "Ulice",
+            "times": [
+                "09:01",
+                ""
+            ]
+        },
+        {
+            "name": "Gornji Vukšić",
+            "times": [
+                "09:05",
+                ""
+            ]
+        },
+        {
+            "name": "Poljaci (R)",
+            "times": [
+                "09:12",
+                "12:20"
+            ]
+        },
+        {
+            "name": "Poljaci škola",
+            "times": [
+                "09:13",
+                "12:22"
+            ]
+        },
+        {
+            "name": "Donja Skakava Dom",
+            "times": [
+                "09:21",
+                "12:30"
+            ]
+        },
+        {
+            "name": "Seonjaci",
+            "times": [
+                "09:22",
+                ""
+            ]
+        },
+        {
+            "name": "Dubrave škola",
+            "times": [
+                "09:25",
+                ""
+            ]
+        },
+        {
+            "name": "Cerik (R)",
+            "times": [
+                "09:29",
+                ""
+            ]
+        },
+        {
+            "name": "Cerik Bor",
+            "times": [
+                "09:33",
+                ""
+            ]
+        },
+        {
+            "name": "Dubrave škola",
+            "times": [
+                "09:34",
+                ""
+            ]
+        },
+        {
+            "name": "Seonjaci",
+            "times": [
+                "09:36",
+                ""
+            ]
+        },
+        {
+            "name": "Prijedor",
+            "times": [
+                "09:40",
+                ""
+            ]
+        },
+        {
+            "name": "Stjepkovica (R)",
+            "times": [
+                "09:42",
+                ""
+            ]
+        },
+        {
+            "name": "Gornja Skakava",
+            "times": [
+                "09:44",
+                ""
+            ]
+        },
+        {
+            "name": "Gornja Skakava škola",
+            "times": [
+                "09:45",
+                ""
+            ]
+        },
+        {
+            "name": "Bijela Dom",
+            "times": [
+                "09:46",
+                ""
+            ]
+        },
+        {
+            "name": "Bijela škola",
+            "times": [
+                "09:48",
+                ""
+            ]
+        }
+    ]
+}

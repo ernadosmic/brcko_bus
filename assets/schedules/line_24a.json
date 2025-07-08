@@ -1,0 +1,79 @@
+{
+    "name": "Vitanovići Dom - Brka škola",
+    "line_number": "24",
+    "services": 1,
+    "regular_services": [
+        1
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Vitanovići Dom",
+            "times": [
+                "06:45",
+                "12:30",
+                "17:00"
+            ]
+        },
+        {
+            "name": "Vitanovići Crkva",
+            "times": [
+                "06:48",
+                "12:33",
+                "17:03"
+            ]
+        },
+        {
+            "name": "Bukovac Crkva",
+            "times": [
+                "06:53",
+                "12:38",
+                "17:08"
+            ]
+        },
+        {
+            "name": "Bukovac željeznička stanica",
+            "times": [
+                "06:56",
+                "12:41",
+                "17:11"
+            ]
+        },
+        {
+            "name": "Stadion",
+            "times": [
+                "06:58",
+                "12:43",
+                "17:13"
+            ]
+        },
+        {
+            "name": "Ulović(crkva)",
+            "times": [
+                "07:00",
+                "12:45",
+                "17:15"
+            ]
+        },
+        {
+            "name": "Ulović (groblje)",
+            "times": [
+                "07:03",
+                "12:48",
+                "17:18"
+            ]
+        },
+        {
+            "name": "Brka škola",
+            "times": [
+                "07:07",
+                "12:52",
+                "17:22"
+            ]
+        }
+    ]
+}

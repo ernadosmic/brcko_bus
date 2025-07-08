@@ -1,0 +1,231 @@
+{
+    "name": "Veterinarska stanica - Bijela škola",
+    "line_number": "20",
+    "services": 1,
+    "regular_services": [
+        1
+    ],
+    "weekday_services": [],
+    "irregular_services": [],
+    "regular_explanation": "",
+    "weekday_explanation": "",
+    "irregular_explanation": "",
+    "stops": [
+        {
+            "name": "Veterinarska stanica",
+            "times": [
+                "06:45"
+            ]
+        },
+        {
+            "name": "Brčko centar",
+            "times": [
+                "06:46"
+            ]
+        },
+        {
+            "name": "Kolobara",
+            "times": [
+                "06:47"
+            ]
+        },
+        {
+            "name": "Dom Zdravlja",
+            "times": [
+                "06:48"
+            ]
+        },
+        {
+            "name": "Meraje",
+            "times": [
+                "06:48"
+            ]
+        },
+        {
+            "name": "Izbor",
+            "times": [
+                "06:49"
+            ]
+        },
+        {
+            "name": "Broduša",
+            "times": [
+                "06:50"
+            ]
+        },
+        {
+            "name": "Suljagića Sokak",
+            "times": [
+                "06:50"
+            ]
+        },
+        {
+            "name": "Stari Rasadnik",
+            "times": [
+                "06:51"
+            ]
+        },
+        {
+            "name": "Brod škola",
+            "times": [
+                "06:52"
+            ]
+        },
+        {
+            "name": "Stari Brod",
+            "times": [
+                "06:53"
+            ]
+        },
+        {
+            "name": "Lukavac (R)",
+            "times": [
+                "07:03"
+            ]
+        },
+        {
+            "name": "Bukvik benzinska pumpa",
+            "times": [
+                "07:04"
+            ]
+        },
+        {
+            "name": "Vitanovići Dom",
+            "times": [
+                "07:09"
+            ]
+        },
+        {
+            "name": "Ulice",
+            "times": [
+                "07:15"
+            ]
+        },
+        {
+            "name": "Šukarice",
+            "times": [
+                "07:17"
+            ]
+        },
+        {
+            "name": "Vukšić",
+            "times": [
+                "07:19"
+            ]
+        },
+        {
+            "name": "Žešće",
+            "times": [
+                "07:21"
+            ]
+        },
+        {
+            "name": "Bašče (R)",
+            "times": [
+                "07:25"
+            ]
+        },
+        {
+            "name": "Jagodnjak",
+            "times": [
+                "07:27"
+            ]
+        },
+        {
+            "name": "Jagodnjak M.",
+            "times": [
+                "07:31"
+            ]
+        },
+        {
+            "name": "Poljaci (R)",
+            "times": [
+                "07:33"
+            ]
+        },
+        {
+            "name": "Poljaci škola",
+            "times": [
+                "07:34"
+            ]
+        },
+        {
+            "name": "Marićani",
+            "times": [
+                "07:35"
+            ]
+        },
+        {
+            "name": "Bosutka (R)",
+            "times": [
+                "07:36"
+            ]
+        },
+        {
+            "name": "Donja Skakava Dom",
+            "times": [
+                "07:38"
+            ]
+        },
+        {
+            "name": "Donja Skakava Škola",
+            "times": [
+                "07:39"
+            ]
+        },
+        {
+            "name": "Seonjaci (R)",
+            "times": [
+                "07:40"
+            ]
+        },
+        {
+            "name": "Seonjaci",
+            "times": [
+                "07:41"
+            ]
+        },
+        {
+            "name": "Seonjaci (R)",
+            "times": [
+                "07:42"
+            ]
+        },
+        {
+            "name": "Prijedor",
+            "times": [
+                "07:44"
+            ]
+        },
+        {
+            "name": "Stjepkovica (R)",
+            "times": [
+                "07:45"
+            ]
+        },
+        {
+            "name": "Gornja Skakava",
+            "times": [
+                "07:47"
+            ]
+        },
+        {
+            "name": "Gornja Skakava Škola",
+            "times": [
+                "07:49"
+            ]
+        },
+        {
+            "name": "Bijela Dom",
+            "times": [
+                "07:54"
+            ]
+        },
+        {
+            "name": "Bijela škola",
+            "times": [
+                "07:55"
+            ]
+        }
+    ]
+}

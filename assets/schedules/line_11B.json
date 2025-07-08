@@ -1,6 +1,6 @@
 {
     "$schema": "./bus_schema.json",
-    "name": "Bukvik ž.st.rask. - Tesla",
+    "name": "Bukvik željeznička stanica (R) - Tesla",
     "line_number": "10",
     "services": 4,
     "regular_services": [
@@ -18,7 +18,7 @@
     "irregular_explanation": "Polasci pod brojem 1, 2 i 4 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
-            "name": "Bukvik ž.st.rask.",
+            "name": "Bukvik željeznička stanica (R)",
             "times": [
                 "",
                 "",
@@ -27,7 +27,7 @@
             ]
         },
         {
-            "name": "Bukvik Škola",
+            "name": "Bukvik škola",
             "times": [
                 "05:54",
                 "07:05",
@@ -63,7 +63,7 @@
             ]
         },
         {
-            "name": "Bukovac Ž.St.",
+            "name": "Bukovac željeznička stanica",
             "times": [
                 "05:59",
                 "07:10",
@@ -99,7 +99,7 @@
             ]
         },
         {
-            "name": "Brod Škola",
+            "name": "Brod škola",
             "times": [
                 "06:13",
                 "07:24",
@@ -153,7 +153,7 @@
             ]
         },
         {
-            "name": "Dom zdravlja",
+            "name": "Dom Zdravlja",
             "times": [
                 "06:22",
                 "07:33",
@@ -171,7 +171,7 @@
             ]
         },
         {
-            "name": "Brčko Centar",
+            "name": "Brčko centar",
             "times": [
                 "06:24",
                 "07:35",

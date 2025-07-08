@@ -1,5 +1,5 @@
 {
-    "name": "Bukvik ž.st.rask. - Tesla",
+    "name": "Bukvik željeznička stanica (R) - Tesla",
     "line_number": "12",
     "services": 2,
     "regular_services": [
@@ -28,7 +28,7 @@
             ]
         },
         {
-            "name": "Brčko Centar",
+            "name": "Brčko centar",
             "times": [
                 "10:14",
                 "13:24"
@@ -140,7 +140,7 @@
             ]
         },
         {
-            "name": "Bukovac ž.st.",
+            "name": "Bukovac željeznička stanica",
             "times": [
                 "",
                 "13:58"
@@ -168,14 +168,14 @@
             ]
         },
         {
-            "name": "Bukvik Škola",
+            "name": "Bukvik škola",
             "times": [
                 "10:35",
                 "14:02"
             ]
         },
         {
-            "name": "Bukvik ž.st. (R)",
+            "name": "Bukvik željeznička stanica (R)",
             "times": [
                 "10:40",
                 "14:07"

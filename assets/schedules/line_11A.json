@@ -1,6 +1,6 @@
 {
     "$schema": "./bus_schema.json",
-    "name": "Tesla - Bukvik ž.st.rask.",
+    "name": "Tesla - Bukvik željeznička stanica (R)",
     "line_number": "10",
     "services": 4,
     "regular_services": [
@@ -36,7 +36,7 @@
             ]
         },
         {
-            "name": "Brčko Centar",
+            "name": "Brčko centar",
             "times": [
                 "05:24",
                 "06:34",
@@ -54,7 +54,7 @@
             ]
         },
         {
-            "name": "Dom zdravlja",
+            "name": "Dom Zdravlja",
             "times": [
                 "05:26",
                 "06:36",
@@ -108,7 +108,7 @@
             ]
         },
         {
-            "name": "Brod Škola",
+            "name": "Brod škola",
             "times": [
                 "05:35",
                 "06:45",
@@ -144,7 +144,7 @@
             ]
         },
         {
-            "name": "Bukovac Ž.St.",
+            "name": "Bukovac željeznička stanica",
             "times": [
                 "05:49",
                 "06:59",
@@ -180,7 +180,7 @@
             ]
         },
         {
-            "name": "Bukvik Škola",
+            "name": "Bukvik škola",
             "times": [
                 "05:54",
                 "07:04",
@@ -189,7 +189,7 @@
             ]
         },
         {
-            "name": "Bukvik ž.st.rask.",
+            "name": "Bukvik željeznička stanica (R)",
             "times": [
                 "",
                 "",

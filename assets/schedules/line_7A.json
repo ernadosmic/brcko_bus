@@ -1,6 +1,6 @@
 {
     "$schema": "./bus_schema.json",
-    "name": "Štrepci - Dom zdravlja - Izbor",
+    "name": "Štrepci - Dom Zdravlja - Izbor",
     "line_number": "7",
     "services": 5,
     "regular_services": [
@@ -119,7 +119,7 @@
             ]
         },
         {
-            "name": "Boće Trom.",
+            "name": "Boće Tromeđa",
             "times": [
                 "06:22",
                 "08:22",
@@ -239,7 +239,7 @@
             ]
         },
         {
-            "name": "Brčko Centar",
+            "name": "Brčko centar",
             "times": [
                 "06:37",
                 "08:37",
@@ -259,7 +259,7 @@
             ]
         },
         {
-            "name": "Dom zdravlja",
+            "name": "Dom Zdravlja",
             "times": [
                 "06:39",
                 "08:39",
