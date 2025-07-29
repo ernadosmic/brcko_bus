@@ -13,6 +13,7 @@
     // Precomputed indices
     const stationIndices = new Map();
     const stationToLines = new Map();
+    const { parseTime, formatTime } = window.TimeUtils;
 
     // Fetch schedule JSON for a given line code (e.g., "line_1A")
     async function fetchSchedule(lineCode) {
@@ -35,18 +36,6 @@
         }
     }
 
-    // Parse time "HH:MM" into minutes since midnight
-    function parseTime(t) {
-        const [h, m] = t.split(':').map(Number);
-        return h * 60 + m;
-    }
-
-    // Format minutes since midnight back to "HH:MM"
-    function formatTime(mins) {
-        const h = String(Math.floor(mins / 60)).padStart(2, '0');
-        const m = String(mins % 60).padStart(2, '0');
-        return `${h}:${m}`;
-    }
 
     // Load all schedules referenced on the page
     async function loadAllSchedules() {
@@ -118,38 +107,6 @@
         }
     }
 
-    // Load all schedules referenced on the page
-    async function loadAllSchedules() {
-        if (schedulesLoaded) return;
-
-
-
-        try {
-            // Get list of all line files (you'll need to maintain this list)
-            const lineFiles = ["line_1A.json", "line_1B.json", "line_2A.json", "line_2B.json", "line_3A.json", "line_3B.json", "line_4A.json", "line_4B.json", "line_5A.json", "line_5B.json", "line_6A.json", "line_6B.json", "line_7A.json", "line_7B.json", "line_8A.json", "line_8B.json", "line_9A.json", "line_9B.json", "line_10A.json", "line_10B.json", "line_11A.json", "line_11B.json", "line_12A.json", "line_12B.json", "line_13A.json", "line_13B.json", "line_14A.json", "line_14B.json", "line_15A.json", "line_15B.json", "line_16A.json", "line_16B.json", "line_17A.json", "line_17B.json", "line_18A.json", "line_18B.json", "line_20A.json", "line_20B.json", "line_22A.json", "line_22B.json", "line_23A.json", "line_23B.json", "line_24A.json", "line_24B.json", "line_25A.json", "line_25B.json", "line_26A.json", "line_26B.json", "line_28A.json", "line_28B.json", "line_29A.json", "line_29B.json", "line_30A.json", "line_30B.json", "line_31A.json", "line_31B.json", "line_32A.json", "line_32B.json", "line_33A.json", "line_33B.json", "line_34A.json", "line_34B.json", "line_35A.json", "line_35B.json"
-            ];
-
-            const promises = lineFiles.map(async (filename) => {
-                try {
-                    const response = await fetch(`assets/schedules/${filename}`);
-                    if (response.ok) {
-                        const schedule = await response.json();
-                        const lineId = filename.replace('.json', '');
-                        scheduleCache[lineId] = schedule;
-                    }
-                } catch (error) {
-                    console.warn(`Failed to load ${filename}:`, error);
-                }
-            });
-
-            await Promise.all(promises);
-            schedulesLoaded = true;
-
-
-        } catch (error) {
-            console.error('Error loading schedules:', error);
-        }
-    }
 
     // Patch loadAllSchedules to precompute indices after loading
     const origLoadAllSchedules = loadAllSchedules;
