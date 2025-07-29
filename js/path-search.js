@@ -496,47 +496,35 @@
                         return indexA - indexB;
                     });
 
-                    // Find the first transfer point that is a short walk from the destination
-                    let walkableTransferIndex = -1;
-                    for (let i = 0; i < group.transferOptions.length; i++) {
-                        const opt = group.transferOptions[i];
+                    // Calculate best arrival time (bus vs walking) for each transfer option
+                    group.transferOptions = group.transferOptions.map(opt => {
+                        const busArrival = parseTime(opt.originalEnd);
                         const travelTime = parseTime(opt.arr) - parseTime(opt.dep);
-                        if (travelTime === 1 || travelTime === 2) {
-                            walkableTransferIndex = i;
-                            break; // Found the first walkable transfer, this is our logical cutoff
+                        let walkArrival = Infinity;
+                        let walkMinutes = Infinity;
+                        if (travelTime === 1) {
+                            walkArrival = parseTime(opt.transferArr) + 4; // 4 min walk
+                            walkMinutes = 4;
+                        } else if (travelTime === 2) {
+                            walkArrival = parseTime(opt.transferArr) + 6; // 6 min walk
+                            walkMinutes = 6;
                         }
+                        opt.bestArrival = Math.min(busArrival, walkArrival);
+                        opt.walkMinutes = walkMinutes;
+                        return opt;
+                    });
+
+                    // Determine the earliest arrival time across all options
+                    const earliest = Math.min(...group.transferOptions.map(o => o.bestArrival));
+                    group.transferOptions = group.transferOptions.filter(o => o.bestArrival === earliest);
+
+                    // If multiple options lead to the same arrival, prefer the one with the shorter walk
+                    if (group.transferOptions.length > 1) {
+                        const minWalk = Math.min(...group.transferOptions.map(o => o.walkMinutes));
+                        group.transferOptions = group.transferOptions.filter(o => o.walkMinutes === minWalk);
                     }
 
-                    // If a walkable transfer was found, prune all subsequent (less logical) options
-                    if (walkableTransferIndex !== -1) {
-                        group.transferOptions = group.transferOptions.slice(0, walkableTransferIndex + 1);
-                    }
-
-                    // After pruning, find the earliest arrival time among the remaining valid options
-                    // and set it as the main 'end' time for the entire grouped route.
-                    if (group.transferOptions.length > 0) {
-                        const bestEndTimeInMinutes = group.transferOptions.reduce((bestTime, currentOpt) => {
-                            // Time if taking the bus transfer
-                            const busArrivalTime = parseTime(currentOpt.originalEnd);
-
-                            // Time if walking from the transfer stop
-                            const travelTime = parseTime(currentOpt.arr) - parseTime(currentOpt.dep);
-                            let walkingArrivalTime = Infinity;
-                            if (travelTime === 1) {
-                                walkingArrivalTime = parseTime(currentOpt.transferArr) + 4; // 4 min walk
-                            } else if (travelTime === 2) {
-                                walkingArrivalTime = parseTime(currentOpt.transferArr) + 6; // 6 min walk
-                            }
-
-                            // The best time for this specific option is the minimum of walking or taking the bus
-                            const bestTimeForThisOption = Math.min(busArrivalTime, walkingArrivalTime);
-
-                            // Compare with the overall best time found so far
-                            return Math.min(bestTime, bestTimeForThisOption);
-                        }, parseTime(group.transferOptions[0].originalEnd)); // Initial best time
-
-                        group.end = formatTime(bestEndTimeInMinutes);
-                    }
+                    group.end = formatTime(earliest);
                 }
 
                 return Object.values(groups);
