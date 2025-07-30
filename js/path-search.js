@@ -544,10 +544,13 @@
                     const dayLabelHtml = `<span class="route-time">${seg0.dep} - ${r.end}<sup>${dayLabel}</sup></span>`;
 
                     // Main line: show start time and all transfer stops with arrival times
+                    const firstNote = getServiceNote(seg0.line, seg0.from, seg0.dep);
+
                     let main = `
     <div class="route-segment">
 ${dayLabelHtml}
 <div><strong>Linija ${lineNum0} (${lineName0})</strong>: <span class="transfer-time">(${seg0.dep})</span> ${seg0.from} &rarr;</div>
+${firstNote}
 <div class="mt-2">
     ${(() => {
                             // Deduplicate the display strings before rendering
@@ -573,6 +576,8 @@ ${dayLabelHtml}
                     const sch1 = scheduleCache[r.transferOptions[0].line];
                     const lineNum1 = sch1?.line_number || r.transferOptions[0].line.replace(/^line_/, '');
                     const lineName1 = sch1?.name || '';
+                    const secondNotes = [...new Set(r.transferOptions.map(seg1 => getServiceNote(seg1.line, seg1.from, seg1.dep)).filter(Boolean))].join('');
+
                     main += `
                         <div class="mt-2"><strong>Stanice presjedanja Linija ${lineNum1} (${lineName1}):</strong></div>
     <div>
@@ -580,6 +585,7 @@ ${dayLabelHtml}
                         `<span class="transfer-time">(${seg1.dep})</span> ${seg1.from} → <span class="transfer-time">(${seg1.arr})</span> ${seg1.to}`
                     ).join('<br>')}
     </div>
+    ${secondNotes}
     </div>
                     `;
                     return `<div class="route-result">${main}</div>`;
@@ -722,6 +728,30 @@ ${dayLabelHtml}
     function getLineNumber(code) {
         const m = code.match(/^line_(\d+)/i);
         return m ? m[1] : null;
+    }
+
+    function getServiceNote(lineCode, from, dep) {
+        const sch = scheduleCache[lineCode];
+        if (!sch || !sch.stops) return '';
+        const fromIdx = sch.stops.findIndex(s => s.name === from);
+        if (fromIdx === -1) return '';
+        const serviceIdx = sch.stops[fromIdx].times.indexOf(dep);
+        if (serviceIdx === -1) return '';
+        const isWeekday = sch.weekday_services?.includes(serviceIdx + 1);
+        const isIrregular = sch.irregular_services?.includes(serviceIdx + 1);
+
+        if (isWeekday) {
+            return `<div class="weekday-note">
+                        <strong>Napomena:</strong> Polasci ove linije u ovom terminu saobraćaju samo radnim danima.<br>
+                        <a href="linije/${lineCode}.html" target="_blank" class="weekday-link">Provjeri detaljnije plan</a>
+                    </div>`;
+        } else if (isIrregular) {
+            return `<div class="weekday-note">
+                        <strong>Napomena:</strong> Polasci ove linije u ovom terminu ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta.<br>
+                        <a href="linije/${lineCode}.html" target="_blank" class="weekday-link">Provjeri detaljnije plan</a>
+                    </div>`;
+        }
+        return '';
     }
 
     // Station suggestion autocomplete inputs
