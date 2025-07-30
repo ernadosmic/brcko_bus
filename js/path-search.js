@@ -626,9 +626,14 @@ ${firstNote}
                     // Always define the standard "as-is" route display
                     const originalSegmentHtml = `<div><strong>Linija ${lineNum} (${lineName})</strong>: <span class="transfer-time">(${seg.dep})</span> ${seg.from} &rarr; <span class="transfer-time">(${seg.arr})</span> ${seg.to}</div>`;
 
-                    if (idx === arr.length - 1 && (travelTime === 1 || travelTime === 2)) {
-                        // If it's a short final leg, create the walking suggestion
-                        const walkingTime = travelTime === 1 ? 4 : 6; // 1 minute = 4 minutes walking, 2 minutes = 5 minutes walking
+                    if (
+                        idx === arr.length - 1 &&
+                        (travelTime === 1 || travelTime === 2) &&
+                        arr.length > 1
+                    ) {
+                        // If it's a short final leg on a multi-segment route,
+                        // create the walking suggestion
+                        const walkingTime = travelTime === 1 ? 4 : 6; // 1 minute = 4 minutes walking, 2 minutes = 6 minutes walking
                         const walkingPart = ` + <i class="fa-duotone fa-solid fa-person-walking"></i> <span class="transfer-time">(${walkingTime} min)</span> &rarr; ${seg.to}`;
                         const walkingSuggestionHtml = `<div>${seg.from}${walkingPart}</div>`;
                         // Combine the suggestion and the original, separated by a line
