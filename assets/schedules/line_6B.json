@@ -13,9 +13,9 @@
         3,
         5
     ],
-    "regular_explanation": "Polasci pod brojem 4 saobraćaju svakodnevno",
-    "weekday_explanation": "",
-    "irregular_explanation": "Polasci pod brojem 1, 2, 3 i 5 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
+    "regular_explanation": "Polasci saobraćaju svakodnevno",
+    "weekday_explanation": "Polasci saobraćaju radnim danima",
+    "irregular_explanation": "Polasci ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
             "name": "Bolnica",

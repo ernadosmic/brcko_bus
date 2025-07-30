@@ -1,7 +1,7 @@
 {
     "$schema": "./bus_schema.json",
     "name": "Bukvik željeznička stanica (R) - Tesla",
-    "line_number": "10",
+    "line_number": "11",
     "services": 4,
     "regular_services": [
         2
@@ -13,9 +13,9 @@
         1,
         4
     ],
-    "regular_explanation": "Polasci pod brojem 3 saobraćaju svakodnevno",
-    "weekday_explanation": "",
-    "irregular_explanation": "Polasci pod brojem 1, 2 i 4 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
+    "regular_explanation": "Polasci saobraćaju svakodnevno",
+    "weekday_explanation": "Polasci saobraćaju radnim danima",
+    "irregular_explanation": "Polasci ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
             "name": "Bukvik željeznička stanica (R)",

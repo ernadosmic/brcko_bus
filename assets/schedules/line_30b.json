@@ -2,18 +2,18 @@
     "name": "Dom Zdravlja - Donja Brka",
     "line_number": "30",
     "services": 5,
-    "regular_services": [
+    "regular_services": [],
+    "weekday_services": [],
+    "irregular_services": [
         1,
         2,
         3,
         4,
         5
     ],
-    "weekday_services": [],
-    "irregular_services": [],
-    "regular_explanation": "",
-    "weekday_explanation": "",
-    "irregular_explanation": "",
+    "regular_explanation": "Polasci saobraćaju svakodnevno",
+    "weekday_explanation": "Polasci saobraćaju radnim danima",
+    "irregular_explanation": "Polasci ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
             "name": "Dom Zdravlja",

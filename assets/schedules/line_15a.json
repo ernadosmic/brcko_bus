@@ -3,16 +3,17 @@
     "line_number": "15",
     "services": 4,
     "regular_services": [
-        1,
-        2,
-        3,
-        4
+        3
     ],
     "weekday_services": [],
-    "irregular_services": [],
-    "regular_explanation": "",
-    "weekday_explanation": "",
-    "irregular_explanation": "",
+    "irregular_services": [
+        1,
+        2,
+        4
+    ],
+    "regular_explanation": "Polasci saobraćaju svakodnevno",
+    "weekday_explanation": "Polasci saobraćaju radnim danima",
+    "irregular_explanation": "Polasci ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
             "name": "Bolnica",

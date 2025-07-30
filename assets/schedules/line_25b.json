@@ -1,15 +1,17 @@
 {
     "name": "Štrepci - Dubravice",
-    "line_number": "12",
+    "line_number": "25",
     "services": 3,
-    "regular_services": [
-        1
-    ],
+    "regular_services": [],
     "weekday_services": [],
-    "irregular_services": [],
-    "regular_explanation": "",
-    "weekday_explanation": "",
-    "irregular_explanation": "",
+    "irregular_services": [
+        1,
+        2,
+        3
+    ],
+    "regular_explanation": "Polasci saobraćaju svakodnevno",
+    "weekday_explanation": "Polasci saobraćaju radnim danima",
+    "irregular_explanation": "Polasci ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta (Polazak pod rednim brojem 3 saobraća ponedjeljkom, srijedom i četvrtkom na relaciji Štrepci-Boderište, a ostalim danima ne saobraća.)",
     "stops": [
         {
             "name": "Štrepci",

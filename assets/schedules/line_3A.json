@@ -14,9 +14,9 @@
         4,
         5
     ],
-    "regular_explanation": "Polasci pod brojem 2 saobraćaju svakodnevno",
-    "weekday_explanation": "Polasci pod brojem 3 saobraćaju radnim danima",
-    "irregular_explanation": "Polasci pod brojem 1, 4 i 5 ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
+    "regular_explanation": "Polasci saobraćaju svakodnevno",
+    "weekday_explanation": "Polasci saobraćaju radnim danima",
+    "irregular_explanation": "Polasci ne saobraćaju subotom, nedeljom, praznicima i radnim danom za vrijeme školskog raspusta",
     "stops": [
         {
             "name": "Posavci",
